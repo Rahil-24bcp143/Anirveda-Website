@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, MapPin, Clock } from "lucide-react";
-
 const UpcomingEventsTimeline = () => {
   const upcomingEvents = [
     {
@@ -81,14 +80,14 @@ const UpcomingEventsTimeline = () => {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.2 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-6xl font-bold text-amber-600 mb-6">
+          <h2 className="text-4xl md:text-6xl font-bold text-primary mb-6">
             Upcoming Events
           </h2>
-          <p className="text-xl text-amber-400 max-w-2xl mx-auto">
+          <p className="text-xl text-secondary max-w-2xl mx-auto">
             Mark your calendar for these exciting events and join us in creating memorable experiences
           </p>
         </motion.div>
@@ -105,7 +104,7 @@ const UpcomingEventsTimeline = () => {
                 initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{
-                  duration: 0.8,
+                  duration: 0.2,
                   delay: index * 0.1,
                   type: "spring",
                   stiffness: 100
@@ -137,7 +136,7 @@ const UpcomingEventsTimeline = () => {
                     boxShadow: "0 25px 50px rgba(245, 158, 11, 0.15)",
                     y: -8
                   }}
-                  className={`bg-gradient-to-br from-gray-900 to-black rounded-3xl shadow-2xl ml-20 md:ml-0 md:w-5/12 ${
+                  className={`bg-gradient-to-br bg-tertiary rounded-3xl shadow-2xl ml-20 md:ml-0 md:w-5/12 ${
                     index % 2 === 0 ? 'md:mr-12' : 'md:ml-12'
                   } relative border border-amber-600/30 backdrop-blur-sm overflow-hidden group`}
                 >
@@ -163,7 +162,7 @@ const UpcomingEventsTimeline = () => {
                     
                     {/* Event Type Badge */}
                     <motion.div
-                      initial={{ opacity: 0, scale: 0.8 }}
+                      initial={{ opacity: 0, scale: 0.2 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ delay: index * 0.1 + 0.3 }}
                       className="absolute top-4 left-4"
@@ -180,7 +179,7 @@ const UpcomingEventsTimeline = () => {
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 + 0.4 }}
-                      className="text-2xl font-bold text-amber-100 mb-3 group-hover:text-amber-50 transition-colors"
+                      className="text-2xl font-bold text-primary mb-3 group-hover:text-amber-50 transition-colors"
                     >
                       {event.title}
                     </motion.h3>
@@ -189,7 +188,7 @@ const UpcomingEventsTimeline = () => {
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 + 0.5 }}
-                      className="text-amber-300 mb-6 line-clamp-3 leading-relaxed"
+                      className="text-secondary mb-6 line-clamp-3 leading-relaxed"
                     >
                       {event.description}
                     </motion.p>
@@ -200,16 +199,16 @@ const UpcomingEventsTimeline = () => {
                       transition={{ delay: index * 0.1 + 0.6 }}
                       className="space-y-3 mb-6"
                     >
-                      <div className="flex items-center gap-3 text-sm text-amber-300">
-                        <Calendar className="w-4 h-4 text-amber-600" />
+                      <div className="flex items-center gap-3 text-sm text-primary">
+                        <Calendar className="w-4 h-4 text-secondary" />
                         <span>{event.date}</span>
                       </div>
-                      <div className="flex items-center gap-3 text-sm text-amber-300">
-                        <Clock className="w-4 h-4 text-amber-600" />
+                      <div className="flex items-center gap-3 text-sm text-primary">
+                        <Clock className="w-4 h-4 text-secondary" />
                         <span>{event.timing}</span>
                       </div>
-                      <div className="flex items-center gap-3 text-sm text-amber-300">
-                        <MapPin className="w-4 h-4 text-amber-600" />
+                      <div className="flex items-center gap-3 text-sm text-primary">
+                        <MapPin className="w-4 h-4 text-secondary" />
                         <span>{event.venue}</span>
                       </div>
                     </motion.div>
@@ -218,7 +217,7 @@ const UpcomingEventsTimeline = () => {
                       href={event.registrationLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      initial={{ opacity: 0, scale: 0.8 }}
+                      initial={{ opacity: 0, scale: 0.2 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ delay: index * 0.1 + 0.7 }}
                       whileHover={{ scale: 1.05 }}
