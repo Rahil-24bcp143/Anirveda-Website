@@ -1,0 +1,6 @@
+.bigText {
+  font-size: clamp(128px, calc(8rem + ((1vw - 3.5px) * 20.2105)), 320px);
+}
+body{
+  overflow-x: hidden;
+}
