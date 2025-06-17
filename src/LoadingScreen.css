@@ -48,7 +48,7 @@
   .shape {
     position: absolute;
     font-size: 2rem;
-    color: rgb(201, 135, 43); /* Matching color for consistency */
+    color: #c9872b; /* Matching color for consistency */
     animation: moveShapes 10s infinite linear;
     pointer-events: none;
   }

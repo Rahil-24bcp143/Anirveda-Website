@@ -1,4 +1,3 @@
-import React from "react"
 
 import Navbar from "../components/Navbar"
 import Main from "../components/Home/Main"
@@ -6,7 +5,9 @@ import BigText from "../components/Home/BigText"
 import About from "../components/Home/About"
 import ContactUs from "../components/ContactUs"
 import Testimonial from "../components/Home/Testimonial"
-import UpcomingEvent from "../components/Home/UpcomingEvent"
+
+import StaggeredDropDown from "../components/Home/staggereddropdown";
+
 
 const HomePage = () => { 
 
@@ -18,7 +19,8 @@ const HomePage = () => {
       </div>
       <BigText />
       <About />
-      <UpcomingEvent />
+      <StaggeredDropDown/>
+
       <Testimonial/>
       <ContactUs />
     </div>

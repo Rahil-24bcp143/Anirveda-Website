@@ -74,6 +74,7 @@ const UpcomingEventsTimeline = () => {
     }
   ];
 
+
   return (
     <section className="py-20 px-4 bg-black min-h-screen">
       <div className="max-w-7xl mx-auto">
@@ -92,9 +93,11 @@ const UpcomingEventsTimeline = () => {
           </p>
         </motion.div>
 
+
         <div className="relative">
           {/* Timeline line */}
           <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-amber-600 via-amber-500 to-amber-400 transform md:-translate-x-0.5 rounded-full"></div>
+
 
           {/* Events */}
           <div className="space-y-16">
@@ -129,6 +132,7 @@ const UpcomingEventsTimeline = () => {
                   />
                 </motion.div>
 
+
                 {/* Event Card */}
                 <motion.div
                   whileHover={{
@@ -142,13 +146,14 @@ const UpcomingEventsTimeline = () => {
                 >
                   {/* Glowing effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-amber-600/5 to-amber-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
+                 
                   {/* Arrow pointing to timeline */}
                   <div className={`absolute top-8 w-0 h-0 ${
                     index % 2 === 0
                       ? 'md:right-[-12px] border-l-12 border-l-gray-900'
                       : 'md:left-[-12px] border-r-12 border-r-gray-900'
                   } border-t-12 border-b-12 border-t-transparent border-b-transparent hidden md:block z-10`}></div>
+
 
                   {/* Event Image */}
                   <div className="relative h-48 overflow-hidden rounded-t-3xl">
@@ -159,7 +164,7 @@ const UpcomingEventsTimeline = () => {
                       whileHover={{ scale: 1.1 }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                    
+                   
                     {/* Event Type Badge */}
                     <motion.div
                       initial={{ opacity: 0, scale: 0.2 }}
@@ -173,6 +178,7 @@ const UpcomingEventsTimeline = () => {
                     </motion.div>
                   </div>
 
+
                   {/* Card Content */}
                   <div className="p-6">
                     <motion.h3
@@ -184,6 +190,7 @@ const UpcomingEventsTimeline = () => {
                       {event.title}
                     </motion.h3>
 
+
                     <motion.p
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
@@ -192,6 +199,7 @@ const UpcomingEventsTimeline = () => {
                     >
                       {event.description}
                     </motion.p>
+
 
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
@@ -213,6 +221,7 @@ const UpcomingEventsTimeline = () => {
                       </div>
                     </motion.div>
 
+
                     <motion.a
                       href={event.registrationLink}
                       target="_blank"
@@ -224,7 +233,7 @@ const UpcomingEventsTimeline = () => {
                       whileTap={{ scale: 0.95 }}
                       className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 to-amber-500 text-black px-6 py-3 rounded-full font-bold hover:from-amber-700 hover:to-amber-600 transition-all duration-300 shadow-lg hover:shadow-amber-600/25"
                     >
-                      Register Now 
+                      Register Now
                       <ArrowRight className="w-4 h-4 text-black transition-transform group-hover:translate-x-1" />
                     </motion.a>
                   </div>
@@ -238,4 +247,6 @@ const UpcomingEventsTimeline = () => {
   );
 };
 
+
 export default UpcomingEventsTimeline;
+
