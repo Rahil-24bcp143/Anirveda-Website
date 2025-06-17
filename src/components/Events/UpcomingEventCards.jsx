@@ -75,7 +75,7 @@ const UpcomingEventsTimeline = () => {
   ];
 
   return (
-    <section className="py-20 px-4 bg-black min-h-screen">
+    <section className="py-10 px-4 bg-black min-h-screen">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -84,7 +84,7 @@ const UpcomingEventsTimeline = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-6xl font-bold text-primary mb-6">
+          <h2 className="text-4xl md:text-6xl font-bold text-primary mb-">
             Upcoming Events
           </h2>
           <p className="text-xl text-secondary max-w-2xl mx-auto">
