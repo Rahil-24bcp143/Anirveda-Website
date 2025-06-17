@@ -56,7 +56,7 @@ const App = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false); 
-    }, 3000); //time to change after which the loading page ends
+    }, 1000); //time to change after which the loading page ends
 
     return () => clearTimeout(timer); 
   }, []);
