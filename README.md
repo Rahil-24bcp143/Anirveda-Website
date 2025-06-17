@@ -2,7 +2,7 @@
 
 This repository contains the source code for anirveda's website.
 
-Visit the website at [anirveda.osailpdeu.in](https://anirveda.osailpdeu.in)
+Visit the website at [anirveda.osailpdeu.in](anirvedapdeu.in)
 
 ## Tech Stack
 
