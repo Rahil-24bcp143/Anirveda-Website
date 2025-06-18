@@ -3,7 +3,7 @@ import { pastEvents } from "../../data/pastEvents";
 
 export default function PastEventCards() {
   const [isOpen, setIsOpen] = useState(false);
-  const [expandedMap, setExpandedMap] = useState({});
+  const [expandedIndex, setExpandedIndex] = useState(null);
 
   return (
     <div className="w-full px-4 mb-10">
@@ -12,6 +12,7 @@ export default function PastEventCards() {
           Our Past Events
         </h1>
       </div>
+
       <div className="pastEventsButton flex justify-center items-center mt-12 mb-20">
         <button
           onClick={() => setIsOpen((prev) => !prev)}
@@ -22,25 +23,21 @@ export default function PastEventCards() {
       </div>
 
       {isOpen && (
-        <div className="flex flex-wrap justify-center gap-8">
+        <div className="flex flex-wrap items-start justify-center gap-8">
           {pastEvents.map((event, index) => {
             const isLong = event.description.length > 50;
-            const isExpanded = !!expandedMap[index];
+            const isExpanded = expandedIndex === index;
             const textToShow =
               isExpanded || !isLong
                 ? event.description
-                : `${event.description.slice(0, 100)}...`;
+                : event.description.slice(0, 100) + "...";
 
             return (
               <div
                 key={index}
-                className="p-4 sm:w-1/2 md:w-1/3 lg:w-1/4 flex"
+                className="p-4 sm:w-1/2 md:w-1/3 lg:w-1/4 flex self-start"
               >
-                {/* card container fills its flex cell */}
-                <div
-                  className="w-full flex flex-col h-full rounded-md shadow-md bg-black text-gray-100
-                             transition-transform duration-300 hover:scale-105 hover:shadow-[0_4px_20px_rgba(0,255,255,0.5)]"
-                >
+                <div className="relative w-full flex flex-col h-full rounded-md shadow-md bg-black text-gray-100 transition-transform duration-300 hover:scale-105 hover:shadow-[0_4px_20px_rgba(0,255,255,0.5)]">
                   <img
                     src={event.img}
                     alt={event.title}
@@ -48,30 +45,24 @@ export default function PastEventCards() {
                     style={{ height: "160px" }}
                   />
 
-                  {/* flex-col that pushes button to the bottom */}
-                  <div className="flex-1 p-6 flex flex-col justify-between">
-                    <div>
-                      <h2 className="break-words text-2xl font-semibold tracking-wide text-primary">
-                        {event.title}
-                      </h2>
-                      <p className="mt-4 text-gray-100">{textToShow}</p>
-                    </div>
-
-                    {isLong && (
-                      <button
-                        onClick={() =>
-                          setExpandedMap((prev) => ({
-                            ...prev,
-                            [index]: !prev[index],
-                          }))
-                        }
-                        className="mt-6 self-start rounded-3xl border border-gray-500 px-4 py-1
-                                   text-gray-500 hover:bg-gray-500 hover:text-gray-100 transition duration-200"
-                      >
-                        {isExpanded ? "Show Less" : "Read more"}
-                      </button>
-                    )}
+                  {/* add extra bottom padding so text never overlaps the button */}
+                  <div className="flex-1 p-6 pb-16 overflow-hidden">
+                    <h2 className="break-words text-2xl font-semibold tracking-wide text-primary">
+                      {event.title}
+                    </h2>
+                    <p className="mt-4 text-gray-100">{textToShow}</p>
                   </div>
+
+                  {isLong && (
+                    <button 
+                      onClick={() =>
+                        setExpandedIndex(isExpanded ? null : index)
+                      }
+                      className="absolute bottom-2 right-2 rounded-3xl border-2 border-primary px-4 py-1 text-black bg-primary"
+                    >
+                      {isExpanded ? "Show Less" : "Read more"}
+                    </button>
+                  )}
                 </div>
               </div>
             );
