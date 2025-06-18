@@ -25,12 +25,12 @@ export default function EventsPage() {
   return (
     <section>
       <div className="container mx-auto px-5 py-16 sm:py-20">
-        <div className="bg-gradient-to-br from-black via-black to-black py-16 rounded-2xl">
+        {/* <div className="bg-gradient-to-br from-black via-black to-black py-16 rounded-2xl">
           <h2 className="mb-8 text-center font-Bebas text-4xl font-medium text-primary">
             Events Timeline
           </h2>
           <Timeline events={events} />
-        </div>
+        </div> */}
         <UpcomingEventCards />
       </div>
       <div className="container mx-auto px-5">
