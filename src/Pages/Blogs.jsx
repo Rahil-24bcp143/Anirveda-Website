@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import ContactUs from "../components/ContactUs";
 import BlogCard from "../components/Blogs/BlogCard";
 import blogData from "../data/blogs";
+import TypingText from "../components/Animation/TypingText";
 
 const Blogs = () => {
   return (
@@ -17,7 +18,12 @@ const Blogs = () => {
         <div className="container mx-auto text-center">
           <h1 className="text-5xl font-Yeseva text-primary mb-4">Our Blogs</h1>
           <p className="text-secondary text-lg max-w-2xl mx-auto">
-            Explore insights, tips, and stories curated just for you.
+            <TypingText
+            text="Explore insights, tips, and stories curated just for you."
+            delay="1200"
+            typingSpeed="20"
+
+            />
           </p>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 // import Popup from "../Popup.jsx";
+import TypingText from "../Animation/TypingText";
 
 export default function Main() {
   const [showPopup, setShowPopup] = useState(false); // State to toggle popup visibility
@@ -19,10 +20,13 @@ export default function Main() {
           anirveda
         </h1>
         <h2 className="-mt-2 font-Abel text-4xl text-secondary btwnMdAndLg:text-3xl xl:text-4xl">
-          The TechnoEconomics Club
+          <TypingText
+            text="The Techno-Economics Club"
+            typingSpeed="50"
+          />
         </h2>
         <p className="mx-auto mt-2 w-4/5 text-justify font-Abel text-base text-secondary btwnMdAndLg:mx-0 btwnMdAndLg:text-xl xl:w-3/5 xl:text-2xl">
-          Anirveda, the TechnoEconomics Club of PDEU, was established with an
+          was established with an
           astute vision - "Making student pioneers possess both business acumen
           and technical expertise." It continues to grow as an effort to combine
           the forces of Economics and Technology. In this interwoven web of a
@@ -37,7 +41,7 @@ export default function Main() {
             Committee
           </button>
         </Link>
-        <a href="#upcomingevents">
+        <a href="/upcomingevents">
           <button className="rounded-3xl border border-primary px-7 pt-1 pb-[6px] text-lg text-primary hover:bg-primary hover:text-white hover:duration-300">
             Events
           </button>
