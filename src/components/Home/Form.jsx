@@ -1,10 +1,11 @@
-import React, {useRef, useState} from "react"
-import emailjs from "@emailjs/browser"
+import React, { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
+import { FiSend } from "react-icons/fi";
 
 export default function Form(props) {
-  const {showStrip, setStripText} = props
+  const { showStrip, setStripText } = props;
 
-  const [submitting, setSubmitting] = useState(false)
+  const [submitting, setSubmitting] = useState(false);
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -13,53 +14,42 @@ export default function Form(props) {
     phone: "",
     subject: "",
     message: "",
-  })
+  });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-    })
-  }
+    });
+  };
 
-  const form = useRef()
+  const form = useRef();
 
   const sendEmail = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    // Form validation
     if (
       formData.email === "" ||
       formData.message === "" ||
       formData.phone === "" ||
       formData.subject === ""
     ) {
-      alert("Please fill all the fields")
-    } else if (formData.phone.length != 10) {
-      alert("Please enter a valid phone number")
+      alert("Please fill all the fields");
+    } else if (formData.phone.length !== 10) {
+      alert("Please enter a valid phone number");
     } else {
-      // console.log(formData)
+      setSubmitting(true);
 
-      setSubmitting(true)
-      // Send form data to email
-      // emailjs
-      //   .sendForm(
-      //     "service_0snfcfj",
-      //     "template_w1dksr9",
-      //     form.current,
-      //     "e3UnHOO6CAQpz_XOL"
-      //   )
       emailjs
-          .sendForm(
-            "service_b1udhff",
-            "template_ljeybx6",
-            form.current,
-            "6TsDXqZKcdkjk8gMS"
-          )
+        .sendForm(
+          "service_b1udhff",
+          "template_ljeybx6",
+          form.current,
+          "6TsDXqZKcdkjk8gMS"
+        )
         .then(
-          (result) => {
-            // console.log(result)
-            showStrip()
+          () => {
+            showStrip();
             setFormData({
               firstName: "",
               lastName: "",
@@ -67,18 +57,18 @@ export default function Form(props) {
               phone: "",
               subject: "",
               message: "",
-            })
-            setSubmitting(false)
+            });
+            setSubmitting(false);
           },
           (error) => {
-            console.log(error)
-            setSubmitting(false)
-            setStripText("Something went wrong. Please try again later")
-            showStrip()
+            console.log(error);
+            setSubmitting(false);
+            setStripText("Something went wrong. Please try again later");
+            showStrip();
           }
-        )
+        );
     }
-  }
+  };
 
   return (
     <div
@@ -93,66 +83,34 @@ export default function Form(props) {
         ref={form}
         onSubmit={sendEmail}
       >
-        <div className="flex items-center justify-between gap-3 lg:flex-col lg:items-start lg:justify-start lg:gap-2">
-          <label htmlFor="firstName" className="text-lg xl:text-[21px]">
-            First name
-          </label>
-          <div className="mt-1 w-3/5 lg:mt-0 lg:w-full ">
-            <input
-              type="text"
-              name="firstName"
-              id="firstName"
-              className=" w-full rounded-lg bg-inputFieldColor px-2 py-1"
-              onChange={handleChange}
-              value={formData.firstName}
-            />
+        {/* Form Fields */}
+        {[
+          ["firstName", "First name"],
+          ["lastName", "Last name"],
+          ["email", "Email address"],
+          ["phone", "Phone number"],
+        ].map(([name, label]) => (
+          <div
+            key={name}
+            className="flex items-center justify-between gap-3 lg:flex-col lg:items-start lg:justify-start lg:gap-2"
+          >
+            <label htmlFor={name} className="text-lg xl:text-[21px]">
+              {label}
+            </label>
+            <div className="mt-1 w-3/5 lg:mt-0 lg:w-full">
+              <input
+                type={name === "email" ? "email" : "text"}
+                name={name}
+                id={name}
+                className="w-full rounded-lg bg-inputFieldColor px-2 py-1 **focus:outline-none focus:border-2 focus:border-[#b69575]**"
+                onChange={handleChange}
+                value={formData[name]}
+              />
+            </div>
           </div>
-        </div>
-        <div className="flex items-center justify-between gap-3 lg:flex-col lg:items-start lg:justify-start lg:gap-2">
-          <label htmlFor="lastName" className="text-lg xl:text-[21px]">
-            Last name
-          </label>
-          <div className="mt-1 w-3/5 lg:mt-0 lg:w-full">
-            <input
-              type="text"
-              name="lastName"
-              id="lastName"
-              className="w-full rounded-lg bg-inputFieldColor px-2 py-1"
-              onChange={handleChange}
-              value={formData.lastName}
-            />
-          </div>
-        </div>
-        <div className="flex items-center justify-between gap-3 lg:flex-col lg:items-start lg:justify-start lg:gap-2">
-          <label htmlFor="email" className="text-lg xl:text-[21px]">
-            Email address
-          </label>
-          <div className="mt-1 w-3/5 lg:mt-0 lg:w-full">
-            <input
-              type="email"
-              name="email"
-              id="email"
-              onChange={handleChange}
-              className="w-full rounded-lg bg-inputFieldColor px-2 py-1 "
-              value={formData.email}
-            />
-          </div>
-        </div>
-        <div className="flex items-center justify-between gap-3 lg:flex-col lg:items-start lg:justify-start lg:gap-2">
-          <label htmlFor="phone" className="text-lg xl:text-[21px]">
-            Phone number
-          </label>
-          <div className="mt-1 w-3/5 lg:mt-0 lg:w-full">
-            <input
-              type="tel"
-              name="phone"
-              id="phone"
-              onChange={handleChange}
-              className=" w-full rounded-lg bg-inputFieldColor px-2 py-1"
-              value={formData.phone}
-            />
-          </div>
-        </div>
+        ))}
+
+        {/* Subject */}
         <div className="flex items-center justify-between gap-3 lg:col-span-2 lg:flex-col lg:items-start lg:justify-start lg:gap-2">
           <label htmlFor="subject" className="text-lg xl:text-[21px]">
             Subject
@@ -162,37 +120,67 @@ export default function Form(props) {
               type="text"
               name="subject"
               id="subject"
-              className=" w-full rounded-lg border-none bg-inputFieldColor px-2 py-1"
+              className=" w-full rounded-lg bg-inputFieldColor px-2 py-1 **focus:outline-none focus:border-2 focus:border-[#b69575]**"
               onChange={handleChange}
               value={formData.subject}
             />
           </div>
         </div>
+
+        {/* Message */}
         <div className="flex items-center justify-between gap-3 lg:col-span-2 lg:flex-col lg:items-start lg:justify-start lg:gap-2">
           <label htmlFor="message" className="text-lg xl:text-[21px]">
             Message
           </label>
           <div className="mt-1 w-3/5 lg:mt-0 lg:w-full">
             <textarea
-              type="text"
               rows={4}
               name="message"
               id="message"
-              className=" w-full rounded-lg bg-inputFieldColor px-2 py-1"
+              className=" w-full rounded-lg bg-inputFieldColor px-2 py-1 **focus:outline-none focus:border-2 focus:border-[#b69575]**"
               onChange={handleChange}
               value={formData.message}
             />
           </div>
         </div>
 
+        {/* Submit Button */}
         <div className="mt-5 flex justify-center md:mt-7 lg:justify-start">
-          <input
+          <button
             type="submit"
-            value={submitting ? "Submitting..." : "Send"}
-            className="cursor-pointer rounded-lg bg-black px-8 py-1 text-white md:text-xl"
-          />
+            disabled={submitting}
+            className="flex items-center gap-2 cursor-pointer rounded-lg bg-black px-8 py-2 text-white md:text-xl transition-transform duration-200 hover:bg-[#655341] border border-[#b69575]"
+          >
+            {submitting ? (
+              <>
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v8z"
+                  ></path>
+                </svg>
+                Submitting...
+              </>
+            ) : (
+              <>
+                <FiSend className="text-lg" /> Send
+              </>
+            )}
+          </button>
         </div>
       </form>
     </div>
-  )
+  );
 }

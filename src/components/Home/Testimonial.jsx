@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
+import { motion, AnimatePresence } from "framer-motion"; // Import motion and AnimatePresence
 
 export default function Testimonial() {
   const testimonials = [
@@ -9,7 +10,7 @@ export default function Testimonial() {
       name: "Soham Payal Pathak",
       designation: "Co-Founder (The Simply Salad)",
       fame: "Shark Tank India - Funded by Aman Gupta and Vineeta Singh",
-      profilePicture: "images/testimonials/soham.png", 
+      profilePicture: "images/testimonials/soham.png",
       linkedIn: "https://www.linkedin.com/in/soham-payal-pathak/",
       twitter: "",
     },
@@ -33,7 +34,7 @@ export default function Testimonial() {
     },
     {
       id: 4,
-      text: "Anirveda has been more than just a club for me; it has been a transformative journey of growth and self-discovery. From starting as a subcommittee member in the Documentation Department to serving as President, every role taught me invaluable lessons in leadership, teamwork, and resilience. The club’s nurturing environment allowed me to break out of my shell, evolve socially, and embrace new challenges with confidence. Passing on the baton to the next generation was bittersweet, but seeing them carry forward the legacy with passion reassures me of Anirveda's bright future. Forever grateful to the club that shaped me in ways beyond words.",
+      text: "Anirveda has been more than just a club for me; it has been a transformative journey of growth and self-discovery. From starting as a subcommittee member in the Documentation Department to serving as President, every role taught me invaluable lessons in leadership, teamwork, and resilience. The club’s nurturing environment allowed me to break out of my shell, evolve socially, and embrace new challenges with confidence. Passing on the baton to the next generation was bittersweet, but seeing them carry forward the legacy with passion reassuring me of Anirveda's bright future. Forever grateful to the club that shaped me in ways beyond words.",
       name: "Harshvardhan Gaikwad",
       designation: "Reliance Industries Ltd.",
       profilePicture: "images/testimonials/harshvardhan.png",
@@ -52,51 +53,72 @@ export default function Testimonial() {
     setCurrent((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
   };
 
+  // Framer Motion variants for the animation
+  const cardVariants = {
+    initial: { opacity: 0, y: 20 }, // Starts slightly below and invisible
+    animate: { opacity: 1, y: 0 },  // Fades in and slides up to original position
+    exit: { opacity: 0, y: -20 },   // Fades out and slides up when leaving
+  };
+
   return (
     <div className="mt-14 pb-8">
       <h1 className="text-center font-Abel text-3xl font-medium text-primary lg:text-4xl">
         What people have to say about us
       </h1>
-      <div className="mt-8 flex flex-col items-center">
-        <div className="relative w-[90%] max-w-3xl rounded-2xl bg-tertiary py-8 px-8 shadow-lg xs:w-4/5 sm:w-[65%] xl:px-11">
-          <p className="text-justify font-Lato text-lg text-secondary">
-            "{testimonials[current].text}"
-          </p>
-          <div className="mt-6 flex items-center justify-left gap-6">
-            <img
-              src={testimonials[current].profilePicture}
-              alt={testimonials[current].name}
-              className="h-20 w-20 rounded-full object-cover shadow-lg"
-            />
-            <div className="text-left">
-              <h2 className="font-Lato text-xl font-semibold text-primary">{testimonials[current].name}</h2>
-              <p className="text-sm font-Lato text-secondary">{testimonials[current].designation}</p>
-              <p className="text-sm font-Lato text-secondary">{testimonials[current].fame}</p>
+      <div className="mt-8 flex flex-col items-center justify-center"> {/* Added justify-center */}
+        <AnimatePresence mode="wait"> {/* Use AnimatePresence for exit animations */}
+          <motion.div
+            key={testimonials[current].id} // Crucial for unique key, triggers re-render and animation
+            variants={cardVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.5, ease: "easeOut" }} // Smooth transition
+            className="relative w-full max-w-2xl min-h-[400px] rounded-2xl bg-tertiary py-8 px-8 shadow-lg xs:w-4/5 sm:w-[65%] xl:px-11 flex flex-col justify-between" // Added max-w-2xl and min-h-[400px], flex-col justify-between for content distribution
+          >
+            <div> {/* Wrapper for text and profile for better layout control */}
+              <p className="text-justify font-Lato text-lg text-secondary">
+                "{testimonials[current].text}"
+              </p>
+              <div className="mt-6 flex items-center justify-start gap-6"> {/* Changed justify-left to justify-start */}
+                <img
+                  src={testimonials[current].profilePicture}
+                  alt={testimonials[current].name}
+                  className="h-20 w-20 rounded-full object-cover shadow-lg"
+                />
+                <div className="text-left">
+                  <h2 className="font-Lato text-xl font-semibold text-primary">{testimonials[current].name}</h2>
+                  <p className="text-sm font-Lato text-secondary">{testimonials[current].designation}</p>
+                  {testimonials[current].fame && ( // Conditionally render fame
+                    <p className="text-sm font-Lato text-secondary">{testimonials[current].fame}</p>
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
-          <div className="mt-6 flex justify-center gap-4">
-            {testimonials[current].linkedIn && (
-              <a
-                href={testimonials[current].linkedIn}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-3xl border border-primary px-7 pt-1 pb-[6px] text-lg text-primary hover:bg-primary hover:text-white hover:duration-300 text-center"
-              >
-                <Icon icon="mdi:linkedin" className="text-xl" />
-              </a>
-            )}
-            {testimonials[current].twitter && (
-              <a
-                href={testimonials[current].twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-3xl border border-primary px-7 pt-1 pb-[6px] text-lg text-primary hover:bg-primary hover:text-white hover:duration-300 text-center"
-              >
-                <Icon icon="mdi:twitter" className="text-xl" />
-              </a>
-            )}
-          </div>
-        </div>
+            <div className="mt-6 flex justify-start gap-4"> {/* Changed justify-center to justify-start */}
+              {testimonials[current].linkedIn && (
+                <a
+                  href={testimonials[current].linkedIn}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-3xl border border-primary px-7 pt-1 pb-[6px] text-lg text-primary hover:bg-primary hover:text-white hover:duration-300 flex items-center justify-center" // Added flex for icon centering
+                >
+                  <Icon icon="mdi:linkedin" className="text-xl" />
+                </a>
+              )}
+              {testimonials[current].twitter && (
+                <a
+                  href={testimonials[current].twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-3xl border border-primary px-7 pt-1 pb-[6px] text-lg text-primary hover:bg-primary hover:text-white hover:duration-300 flex items-center justify-center" // Added flex for icon centering
+                >
+                  <Icon icon="mdi:twitter" className="text-xl" />
+                </a>
+              )}
+            </div>
+          </motion.div>
+        </AnimatePresence>
         <div className="mt-6 flex gap-4">
           <button
             onClick={handlePrev}
