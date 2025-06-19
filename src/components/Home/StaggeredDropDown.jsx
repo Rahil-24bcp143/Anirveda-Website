@@ -58,8 +58,8 @@ const StaggeredDropDown = () => {
         <button
           ref={buttonRef}
           onClick={handleToggle}
-          className="flex  justify-center text-2xl items-center gap-2 px-4 py-5 rounded-2xl border transition duration-200 hover:bg-amber-500/10 hover:text-amber-300 w-full"
-          style={{ color: "rgb(201, 135, 43)", borderColor: "#b69575" }}
+          className="flex  justify-center text-2xl items-center gap-2 px-4 py-5 rounded-2xl  transition duration-200 hover:bg-amber-500/10 hover:text-amber-300 w-full"
+          style={{ color: "rgb(201, 135, 43)" }}
         >
           <div className="flex items-center gap-2">
             <span className="font-medium text-2xl">Upcoming Events</span>
