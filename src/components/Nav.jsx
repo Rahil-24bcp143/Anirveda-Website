@@ -114,13 +114,13 @@ export default function Nav() {
       </div>
 
       Contact Button
-      {/* <div>
+      <div>
         <a href="#contact">
           <button className=" rounded-lg border-[2px] border-primary px-3 py-1 text-lg uppercase text-primary hover:border-secondary hover:bg-secondary-opacity hover:text-secondary ">
             Contact
           </button>
         </a>
-      </div> */}
+      </div>
 
       {/* Hamburger Icon for Mobile/Tablet */}
       <div className="lg:hidden">
