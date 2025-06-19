@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, MapPin, Clock } from "lucide-react";
 const UpcomingEventsTimeline = () => {
+
+  // If want to alter with the appearancee of the Card while scrolling look for the delay keyword and change it however Required!
+
   const upcomingEvents = [
     {
       id: 3,
@@ -108,7 +111,7 @@ const UpcomingEventsTimeline = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{
                   duration: 0.2,
-                  delay: index * 0.1,
+                  // delay: index * 0.1,
                   type: "spring",
                   stiffness: 100
                 }}
@@ -121,7 +124,7 @@ const UpcomingEventsTimeline = () => {
                 <motion.div
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
-                  transition={{ delay: index * 0.1 + 0.5, type: "spring", stiffness: 200 }}
+                  transition={{/* delay: index * 0.1 + 0.5 */ type: "spring", stiffness: 200 }}
                   viewport={{ once: true }}
                   className="absolute left-8 md:left-1/2 w-6 h-6 bg-black border-4 border-amber-600 rounded-full transform -translate-x-3 md:-translate-x-3 z-20"
                 >
@@ -169,7 +172,7 @@ const UpcomingEventsTimeline = () => {
                     <motion.div
                       initial={{ opacity: 0, scale: 0.2 }}
                       whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: index * 0.1 + 0.3 }}
+                      // transition={{ delay: index * 0.1 + 0.3 }}
                       className="absolute top-4 left-4"
                     >
                       <span className="text-xs text-black font-bold px-3 py-1.5 bg-amber-600 rounded-full shadow-lg">
@@ -184,7 +187,7 @@ const UpcomingEventsTimeline = () => {
                     <motion.h3
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 + 0.4 }}
+                      // transition={{ delay: index * 0.1 + 0.4 }}
                       className="text-2xl font-bold text-primary mb-3 group-hover:text-amber-50 transition-colors"
                     >
                       {event.title}
@@ -194,7 +197,7 @@ const UpcomingEventsTimeline = () => {
                     <motion.p
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 + 0.5 }}
+                      // transition={{ delay: index * 0.1 + 0.5 }}
                       className="text-secondary mb-6 line-clamp-3 leading-relaxed"
                     >
                       {event.description}
@@ -204,7 +207,7 @@ const UpcomingEventsTimeline = () => {
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 + 0.6 }}
+                      // transition={{ delay: index * 0.1 + 0.6 }}
                       className="space-y-3 mb-6"
                     >
                       <div className="flex items-center gap-3 text-sm text-primary">
@@ -228,7 +231,7 @@ const UpcomingEventsTimeline = () => {
                       rel="noopener noreferrer"
                       initial={{ opacity: 0, scale: 0.2 }}
                       whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: index * 0.1 + 0.7 }}
+                      // transition={{ delay: index * 0.1 + 0.7 }}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 to-amber-500 text-black px-6 py-3 rounded-full font-bold hover:from-amber-700 hover:to-amber-600 transition-all duration-300 shadow-lg hover:shadow-amber-600/25"

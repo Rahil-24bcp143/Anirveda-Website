@@ -99,13 +99,13 @@ export const pastEvents = [
     description:
       "The event ‘Diving in the Tank’ is about hearing the untold stories and struggles a startup faces while it starts its journey and reaches a peak point. We will be having a Shark Tank Season 2 participant Soham from AU, who will share his experiences with the audience and then we will have a case study competition where the participants will be given problem statements based on some crisis. They have to find an appropriate solution and present them.",
   },
-  {
-    id: 7,
-    img: "images/pastevents/anirvedaXencode.webp",
-    title: "Getting started with Blockchain Technology",
-    description:
-      "A speaker from Polygon will conduct a hands-on workshop revolving around cryptocurrency and smart contracts, which are essential components of Web 3.0.",
-  },
+  // {
+  //   id: 7,
+  //   img: "images/pastevents/anirvedaXencode.webp",
+  //   title: "Getting started with Blockchain Technology",
+  //   description:
+  //     "A speaker from Polygon will conduct a hands-on workshop revolving around cryptocurrency and smart contracts, which are essential components of Web 3.0.",
+  // },
   {
     id: 8,
     img: "images/pastevents/anirvedaXsom.webp",

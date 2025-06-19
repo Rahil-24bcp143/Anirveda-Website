@@ -25,34 +25,18 @@ export default function EventsPage() {
   return (
     <section>
       <div className="container mx-auto px-5 py-16 sm:py-20">
-        <div className="bg-gradient-to-br from-black via-black to-black py-16 rounded-2xl">
+        {/* <div className="bg-gradient-to-br from-black via-black to-black py-16 rounded-2xl">
           <h2 className="mb-8 text-center font-Bebas text-4xl font-medium text-primary">
             Events Timeline
           </h2>
           <Timeline events={events} />
-        </div>
-        <br/>
-        <div className="mb-12 flex w-full flex-wrap">
-          <div className="mb-6 w-full lg:mb-0 lg:w-1/2 2xl:pl-4">
-            <h1 className="mb-2 font-Bebas text-4xl font-medium text-primary sm:text-5xl ">
-              Our Upcoming Events
-            </h1>
-            <div className="h-1 w-20 rounded bg-primary"></div>
-          </div>
-        </div>
+        </div> */}
         <UpcomingEventCards />
       </div>
-      <div className="container mx-auto px-5 pb-12">
-        <div className="mb-20 flex w-full flex-wrap">
-          <div className="mb-6 w-full lg:mb-0 lg:w-1/2 2xl:pl-4">
-            <h1 className="mb-2 font-Bebas text-4xl font-medium text-primary sm:text-5xl ">
-              Our Past Events
-            </h1>
-            <div className="h-1 w-20 rounded bg-primary"></div>
-          </div>
-        </div>
+      <div className="container mx-auto px-5">
+        <div className="mb-10 flex w-full lg lg:mb-0 lg:w-1/2 2xl:pl-4"></div>
         <PastEventsCards />
-      </div>
+      </div> 
     </section>
   );
 }
