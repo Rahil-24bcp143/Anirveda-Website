@@ -54,21 +54,12 @@ const StaggeredDropDown = () => {
   return (
     <div className=" mt-20 mb-20 bg-black px-4 relative" ref={wrapperRef}>
       {/* Sticky Button */}
-<<<<<<< Updated upstream
-      <div className="sticky top-0 z-50 bg-black px-20 py-2">
-        <button
-          ref={buttonRef}
-          onClick={handleToggle}
-          className="flex justify-center items-center py-2 rounded-2xl  transition duration-200 hover:bg-amber-500/10 hover:text-amber-300 w-full"
-          style={{ color: "rgb(201, 135, 43)" }}
-=======
       <div className="sticky top-0 z-50  bg-black py-2">
         <button
           ref={buttonRef}
           onClick={handleToggle}
           className="flex  justify-center text-2xl items-center gap-2 px-4 py-5 rounded-2xl border transition duration-200 hover:bg-amber-500/10 hover:text-amber-300 w-full"
           style={{ color: "rgb(201, 135, 43)", borderColor: "#b69575" }}
->>>>>>> Stashed changes
         >
           <div className="flex items-center gap-2">
             <span className="font-medium text-2xl">Upcoming Events</span>
