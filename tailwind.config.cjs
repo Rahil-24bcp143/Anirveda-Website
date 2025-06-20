@@ -40,6 +40,9 @@ module.exports = {
           "100%": { transform: "translate3d(100vw, 100vh, 0)" },
         },
       },
+      boxShadow: {
+        hovershadow: "1px 2px 10px rgb(245,158,11)", // 👈 Custom hover shadow
+      },
     },
   },
   plugins: [],

@@ -37,7 +37,9 @@ export default function PastEventCards() {
                 key={index}
                 className="p-4 sm:w-1/2 md:w-1/3 lg:w-1/4 flex self-start"
               >
-                <div className="relative w-full flex flex-col h-full rounded-md shadow-md bg-black text-gray-100 transition-transform duration-300 hover:scale-105 hover:shadow-[0_4px_20px_rgba(0,255,255,0.5)]">
+                {/* <div className="relative w-full flex flex-col h-full rounded-md shadow-md bg-black text-gray-100 transition-transform duration-300 hover:scale-105 hover:shadow-[0_4px_20px_rgb(182,149,117)]]"> */}
+                <div class="relative w-full flex flex-col h-full rounded-md shadow-md bg-black text-gray-100 transition-transform duration-300 hover:scale-105 hover:shadow-[1px_2px_10px_rgb(245,158,11)]">
+    
                   <img
                     src={event.img}
                     alt={event.title}
