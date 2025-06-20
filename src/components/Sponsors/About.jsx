@@ -11,6 +11,8 @@ export default function Main() {
         <h2 className="-mt-2 font-Abel text-4xl text-secondary btwnMdAndLg:text-3xl xl:text-4xl" >
           <TypingText 
             text="Empowering Innovation and Growth"
+            typingSpeed="50"
+            delay="1000"
           />
           
         </h2>

@@ -1,71 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import { sponsors } from "../../data/sponsors";
-import { Icon } from "@iconify/react"; // Import Iconify for icons
+import Card from "../Card/Card"; // Adjust path as needed
 
 export default function SponsorsCards() {
-  const [expanded, setExpanded] = useState({});
+  return (
+    <div className="w-full px-4 mb-10">
+      <div className="flex justify-center items-center">
+        <h1 className="font-bebas text-4xl text-primary sm:text-5xl">
+          Our Sponsors
+        </h1>
+      </div>
 
-  const toggleReadMore = (index) => {
-    setExpanded((prevState) => ({ ...prevState, [index]: !prevState[index] }));
-  };
-
-  const pastSponsors = sponsors.map((sponsor, index) => (
-    <div key={index} className="p-4 sm:w-1/2 md:w-1/3 lg:w-1/4">
-      <div className="max-w-xs rounded-md shadow-md bg-black text-gray-100 transition-transform duration-300 hover:scale-105 hover:shadow-[0_4px_20px_rgba(0,255,255,0.5)]">
-        <img
-          src={sponsor.img}
-          alt="content"
-          className="object-cover object-center w-full rounded-t-md bg-black"
-        />
-        <div className="flex flex-col justify-between p-6 space-y-8">
-          <div className="space-y-2">
-            <h2 className="break-words text-3xl font-semibold tracking-wide text-primary">
-              {sponsor.title}
-            </h2>
-            <div
-              className="break-words bg-black text-gray-300"
-              style={{
-                maxHeight: expanded[index] ? "none" : "100px",
-                overflow: expanded[index] ? "visible" : "hidden",
-              }}
-            >
-              {sponsor.description}
-            </div>
-            <button
-              onClick={() => toggleReadMore(index)}
-              className="mt-2 text-primary underline"
-            >
-              {expanded[index] ? "Read Less" : "Read More"}
-            </button>
-          </div>
-          <div className="flex flex-wrap gap-4 mt-4">
-            {sponsor.website && (
-              <a
-                href={sponsor.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-3xl border border-primary px-4 py-1 text-lg text-primary hover:bg-primary hover:text-white flex items-center gap-2"
-              >
-                <Icon icon="mdi:web" className="text-xl" />
-                Website
-              </a>
-            )}
-            {sponsor.instagram && (
-              <a
-                href={sponsor.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-3xl border border-primary px-4 py-1 text-lg text-primary hover:bg-primary hover:text-white flex items-center gap-2"
-              >
-                <Icon icon="mdi:instagram" className="text-xl" />
-                Instagram
-              </a>
-            )}
-          </div>
-        </div>
+      <div className="flex flex-wrap items-start justify-center gap-8 mt-12">
+        {sponsors.map((sponsor, index) => ( // Loop through sponsors data here
+          <Card
+            key={index} // Don't forget the key!
+            item={sponsor} // Pass a single sponsor object as 'item' prop
+            descriptionLength={10000}
+            showReadMore={false}
+            showExternalLinks={true}
+            // titleKey, descriptionKey, etc. are implicitly 'title', 'description', etc.
+            // based on your sponsors data structure, so no need to pass if they match defaults.
+          />
+        ))}
       </div>
     </div>
-  ));
-
-  return <div className="flex flex-wrap justify-center gap-8">{pastSponsors}</div>;
+  );
 }

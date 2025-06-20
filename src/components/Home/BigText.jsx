@@ -1,61 +1,91 @@
-import React, {useState, useEffect, useRef} from "react"
-import gsap from "gsap"
-import {ScrollTrigger} from "gsap/all"
+import React, { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+import "../../style.css";
 
-gsap.registerPlugin(ScrollTrigger)
-import "../../style.css"
+gsap.registerPlugin(ScrollTrigger);
 
 export default function BigText() {
-
-  function getWindowDimensions() {
-    const {innerWidth: width} = window
-    return {
-      width,
-    }
-  }
-  const [windowDimensions, setWindowDimensions] = useState(
-    getWindowDimensions()
-  )
+  const getWindowWidth = () => window.innerWidth;
+  const [width, setWidth] = useState(getWindowWidth());
 
   useEffect(() => {
-    function handleResize() {
-      setWindowDimensions(getWindowDimensions())
-    }
+    const onResize = () => setWidth(getWindowWidth());
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [windowDimensions])
+  // Adjust translateX on small screens
+  const translateX = width > 1300 ? 0 : -200;
 
-  const textRef = useRef()
-
-  let translateX
-  if (windowDimensions.width > 1300 ) {
-    translateX = 0
-  } else {
-    translateX= -250
-  }
+  // Refs for SVG text and container
+  const textRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
-    gsap.to(textRef.current, {
+    const textEl = textRef.current;
+    if (!textEl) return;
+
+    // For <text>, use getComputedTextLength instead of getTotalLength
+    const length = textEl.getComputedTextLength();
+
+    gsap.set(textEl, {
+      strokeDasharray: length,
+      strokeDashoffset: length,
+      fill: "transparent",
+    });
+
+    const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: textRef.current, //start the animation when "text" enters the viewport
-        scrub: 0.5,
-        // markers: true, //This is for developers only
-        start: "top 60%",
-        end: "bottom 65%",
+        trigger: containerRef.current,
+        start: "top 80%",
+        end: "bottom 30%",
+        scrub: true,
       },
-      x: translateX,
+    });
+
+    tl.to(textEl, {
+      strokeDashoffset: 0,
+      ease: "power1.out",
     })
-  }, [])
+      .to(
+        textEl,
+        { fill: "currentColor", ease: "none" },
+        "<"
+      )
+      .to(
+        containerRef.current,
+        { x: translateX, ease: "none" },
+        "<"
+      );
+
+    return () => {
+      tl.scrollTrigger?.kill();
+      tl.kill();
+    };
+  }, [translateX]);
 
   return (
-    <div className="overflow-hidden text-secondary-15 ">
-      <h1
-        ref={textRef}
-        className="bigText translate-x-[30vw] whitespace-nowrap px-12 font-Yeseva sm:translate-x-[40vw] btwnMdAndLg:translate-x-[45vw] btwnMdAndLg:leading-[18rem] xl:leading-[15rem] text-center"
+    <div className="overflow-hidden text-secondary-15" ref={containerRef}>
+      <svg
+        className="bigText w-full"
+        viewBox="0 0 800 200"
+        preserveAspectRatio="xMidYMid meet"
       >
-        Anirveda
-      </h1>
+        <text
+          x="50%"
+          y="50%"
+          dominantBaseline="middle"
+          textAnchor="middle"
+          fontFamily="Yeseva"
+          fontSize="140"
+          strokeWidth="2"
+          stroke="currentColor"
+          ref={textRef}
+        >
+          Anirveda
+        </text>
+      </svg>
     </div>
-  )
+  );
 }
