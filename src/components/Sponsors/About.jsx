@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 export default function Main() {
-  const textToAnimate = "Empowering Innovation and Growth";
+  const textToAnimate = "Empowering Innovation and Growth...";
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [charIndex, setCharIndex] = useState(0);
