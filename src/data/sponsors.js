@@ -2,7 +2,7 @@ export const sponsors = [
     {
       id: 4,
       img: "images/sponsors/induslandBank.webp",
-      title: "Indusland Bank",
+      title: "IndusInd Bank",
       description:
         "IndusInd Bank is one of India's leading financial services brand. They are the preferred banking solutions provider and partner for approximately 41 million customers across the country, including individuals, large corporations, various government entities and PSUs. Their banking network spans 3040 branches/ banking outlets and 3011 ATMs spread across India, covering 1,61,000 villages, and we also have representative offices in London, Dubai and Abu Dhabi. ",
       website: "https://www.indusind.com/in/en/personal.html",
