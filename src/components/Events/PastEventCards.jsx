@@ -11,7 +11,7 @@ export default function PastEventCards() {
       <div className="w-full px-4 mb-10">
         <div className="flex justify-center items-center">
           <h1 className="font-bebas text-4xl text-primary sm:text-5xl">
-            Our Sponsors
+            Our Events
           </h1>
         </div>
   
