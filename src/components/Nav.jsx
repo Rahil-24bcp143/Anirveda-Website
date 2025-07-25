@@ -27,7 +27,8 @@ export default function Nav() {
     { id: 3, title: "gallery", url: "/gallery" },
     { id: 4, title: "committee", url: "/committee" },
     { id: 5, title: "sponsors", url: "/sponsors" },
-    { id: 6, title: "blogs", url: "/blogs" },
+   
+    { id: 6, title: "blogs", url: "https://anirveda-blogs.vercel.app/", external: true },
   ];
 
   const moreItems = [
@@ -65,9 +66,8 @@ export default function Nav() {
 
       {/* Main Navigation (Hidden on small screens, shown on large) */}
       <div className="hidden lg:flex items-center gap-3 rounded-2xl bg-secondary-opacity px-5 py-1 uppercase text-secondary md:gap-5 md:px-10 lg:px-12 lg:py-2 lg:text-lg xl:gap-7">
-        {navItems.map((item) => (
-          <Link to={item.url} key={item.id}>
-            {/* START: Split Underline animation for desktop nav items */}
+        {navItems.map((item) => {
+          const linkContent = (
             <h1
               className={`relative cursor-pointer overflow-hidden
                           before:absolute before:bottom-0 before:left-1/2 before:w-0 before:h-[1.8px] before:bg-secondary before:transition-all before:duration-300 before:ease-out before:transform before:-translate-x-full
@@ -82,9 +82,18 @@ export default function Nav() {
             >
               {item.title}
             </h1>
-            {/* END: Split Underline animation */}
-          </Link>
-        ))}
+          );
+
+          return item.external ? (
+            <a href={item.url} key={item.id} target="_blank" rel="noopener noreferrer">
+              {linkContent}
+            </a>
+          ) : (
+            <Link to={item.url} key={item.id}>
+              {linkContent}
+            </Link>
+          );
+        })}
         {/* Desktop "More" dropdown with sticking fix */}
         <div className="relative group">
           <div
@@ -149,9 +158,8 @@ export default function Nav() {
             </button>
           </div>
           <nav className="flex flex-col space-y-4 uppercase text-secondary">
-            {navItems.map((item) => (
-              <Link to={item.url} key={item.id} onClick={closeDrawer}>
-                {/* START: Split Underline animation for mobile drawer nav items */}
+            {navItems.map((item) => {
+              const linkContent = (
                 <h1
                   className={`block py-2 relative overflow-hidden
                               before:absolute before:bottom-0 before:left-1/2 before:w-0 before:h-[1.8px] before:bg-secondary before:transition-all before:duration-300 before:ease-out before:transform before:-translate-x-full
@@ -166,9 +174,18 @@ export default function Nav() {
                 >
                   {item.title}
                 </h1>
-                {/* END: Split Underline animation */}
-              </Link>
-            ))}
+              );
+
+              return item.external ? (
+                <a href={item.url} key={item.id} target="_blank" rel="noopener noreferrer" onClick={closeDrawer}>
+                  {linkContent}
+                </a>
+              ) : (
+                <Link to={item.url} key={item.id} onClick={closeDrawer}>
+                  {linkContent}
+                </Link>
+              );
+            })}
 
             {/* Collapsible "More" section in the drawer */}
             <div className="border-t border-secondary/30 pt-4 mt-4">
