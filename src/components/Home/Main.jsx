@@ -41,11 +41,11 @@ export default function Main() {
             Committee
           </button>
         </Link>
-        <a href="/upcomingevents">
+        <Link to="/events">
           <button className="rounded-3xl border border-primary px-7 pt-1 pb-[6px] text-lg text-primary hover:bg-primary hover:text-white hover:duration-300">
             Events
           </button>
-        </a>
+        </Link>
       </div>
 
       {/* New Button for Popup
