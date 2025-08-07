@@ -1,9 +1,15 @@
 const sponsorshipHeads = [
   {
     id: 1,
-    img_src: "sponsorship/pratham.webp",
-    name: "Pratham Agrawal",
-    linkedIn: "https://in.linkedin.com/in/pratham-agrawal-7a6a16190",
+    img_src: "",
+    name: "Arnav Jain",
+    linkedIn: "",
+  },
+  {
+    id: 2,
+    img_src: "",
+    name: "Utsav Kachadiya",
+    linkedIn: "",
   },
 ]
 
