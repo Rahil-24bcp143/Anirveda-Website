@@ -1,38 +1,38 @@
 const executives = [
   {
     id: 1,
-    img_src: "executives/aayushi.webp",
+    img_src: "",
     name: "Suhani Lakhera",
     position: "President",
-    linkedIn: "https://www.linkedin.com/in/aayushi-thakkar-4213842b6/",
+    linkedIn: "",
   },
   {
     id: 2,
-    img_src: "executives/sumer.webp",
+    img_src: "",
     name: "Gunraj Singh",
     position: "Vice President",
-    linkedIn: "https://www.linkedin.com/in/sumer-pandey-020896238/",
+    linkedIn: "",
   },
   {
     id: 3,
-    img_src: "executives/Rajat.webp",
+    img_src: "",
     name: "Shrey Mehta",
     position: "Treasurer",
-    linkedIn: "https://www.linkedin.com/in/rajat-agrawal-piyushkumar/",
+    linkedIn: "",
   },
   {
     id: 4,
-    img_src: "executives/shreya.webp",
+    img_src: "",
     name: "Shriya Pancholi",
     position: "General Secretary",
-    linkedIn: "https://www.linkedin.com/in/patel-shreya-168a17254/",
+    linkedIn: "",
   },
   {
     id: 5,
-    img_src: "executives/Aditya.webp",
+    img_src: "",
     name: "Khushal Shroff",
     position: "General Secretary",
-    linkedIn: "https://www.linkedin.com/in/aditya-asudani-652956251/",
+    linkedIn: "",
   },
 ]
 

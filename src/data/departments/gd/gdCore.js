@@ -7,7 +7,7 @@ const gdCore = [
   },
   {
     id: 2,
-    img_src: "gd/het.webp",
+    img_src: "",
     name: "Prisha Goswami",
     linkedIn: "",
   },

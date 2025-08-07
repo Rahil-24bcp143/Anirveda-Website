@@ -1,24 +1,24 @@
 const advisors = [
   {
     id: 1,
-    img_src: "advisors/Ritika.webp",
+    img_src: "",
     name: "Aayushi Thakkar",
     position: "Ex-President",
-    linkedIn: "https://www.linkedin.com/in/ritika-adhiya-44709a200/",
+    linkedIn: "",
   },
   {
     id: 2,
     img_src: "",
     name: "Sumer Pandey",
     position: "Ex-Vice President",
-    linkedIn: "https://www.linkedin.com/in/tanishpatel01/",
+    linkedIn: "",
   },
   {
     id: 3,
-    img_src: "advisors/GunGun.webp",
+    img_src: "",
     name: "Shreya Patel",
     position: "Ex-Chief Coordinator",
-    linkedIn: "https://www.linkedin.com/in/gungunkasera27/"
+    linkedIn: ""
   },
   {
     id: 4,
@@ -26,7 +26,7 @@ const advisors = [
     name: "Rajat Aggarwal",
     position: "Ex-Treasurer",
     // position: "Ex-Chief Coordinator",
-    linkedIn: "https://www.linkedin.com/in/hrishk/",
+    linkedIn: "",
   }
 ]
 
