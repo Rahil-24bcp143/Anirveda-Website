@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { sponsors } from "../../data/ecoSponsors";
 import { Icon } from "@iconify/react"; 
+import Card from "../Card/Card";
 
 export default function EcoSponsorCards() {
   const [expanded, setExpanded] = useState({});
@@ -10,8 +11,10 @@ export default function EcoSponsorCards() {
   };
 
   const pastSponsors = sponsors.map((sponsor, index) => (
-    <div key={index} className="p-4 sm:w-1/2 md:w-1/3 lg:w-1/4">
+    <div key={index} className="p-4 sm:w-1/2 md:w-1/3 lg:w-1/4"
+    >
       <div className="max-w-xs rounded-xl shadow-md bg-black text-gray-100 transition-transform duration-300 hover:scale-105 hover:shadow-[0_4px_20px_rgba(0,255,255,0.5)]">
+        
         <img
           src={sponsor.img}
           alt="content"
@@ -21,6 +24,7 @@ export default function EcoSponsorCards() {
           <div className="space-y-2">
             <h2 className="break-words text-3xl font-semibold tracking-wide text-primary">
               {sponsor.title}
+              
             </h2>
             <div
               className="break-words bg-black text-gray-300"
