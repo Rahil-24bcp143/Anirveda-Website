@@ -14,7 +14,7 @@ export default function ProfileCard(props) {
       <div className="relative mb-6">
         <div className="mx-auto h-36 w-36 rounded-full border-4 border-white overflow-hidden">
           <img
-            src={`./images/committee/${item.img_src}`}
+            src={item.img_src}
             className="h-full w-full object-cover object-center"
             alt={item.name}
           />

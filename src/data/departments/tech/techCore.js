@@ -1,9 +1,9 @@
 const techCore = [
   {
     id: 1,
-    img_src: "tech/anuj.webp",
-    name: "Anuj Sharma",
-    linkedIn: "https://www.linkedin.com/in/anuj-sharma-17a124275/",
+    img_src: "",
+    name: "Maan Desai",
+    linkedIn: "",
   },
 ]
 export default techCore

@@ -1,15 +1,15 @@
 const prHeads = [
   {
     id: 1,
-    img_src: "pr/shubham.webp",
-    name: "Shubham Kansara",
+    img_src: "",
+    name: "Hrishit Solanki",
     linkedIn: "",
   },
   {
     id: 2,
-    img_src: "pr/dhairya.webp",
-    name: "Dhairyasinh Parmar",
-    linkedIn: "http://linkedin.com/in/dhairyasinh-parmar-2697a5309",
+    img_src: "",
+    name: "Sneha Bardia",
+    linkedIn: "",
   },
 ]
 export default prHeads
