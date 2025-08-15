@@ -54,7 +54,7 @@ const StaggeredDropDown = () => {
   return (
     <div className=" mt-20 mb-20 bg-black px-4 relative" ref={wrapperRef}>
       {/* Sticky Button */}
-      <div className="sticky top-0 z-50  bg-black py-2">
+      <div className="top-0 z-50  bg-black py-2">
         <button
           ref={buttonRef}
           onClick={handleToggle}
