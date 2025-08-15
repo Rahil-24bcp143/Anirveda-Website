@@ -122,14 +122,21 @@ export default function Nav() {
         </div>
       </div>
 
-      {/* Contact Button */}
-      <div>
-        <a href="#contact">
-          <button className=" rounded-lg border-[2px] border-primary px-3 py-1 text-lg uppercase text-primary hover:border-secondary hover:bg-secondary-opacity hover:text-secondary ">
-            Contact
-          </button>
-        </a>
-      </div>
+      {/* Contact Button and Join Us*/}
+{/* Contact and Join Us buttons stacked */}
+<div className="flex flex-col items-center gap-2">
+  <a href="#contact">
+    <button className="rounded-lg border-[2px] border-primary px-3 py-1 text-lg uppercase text-primary hover:border-secondary hover:bg-secondary-opacity hover:text-secondary">
+      Contact
+    </button>
+  </a>
+  <a href="YOUR_GOOGLE_FORM_LINK"> {/* Insert the Google Form link */}
+    <button className="rounded-lg border-[2px] border-primary px-3 py-1 text-lg uppercase text-primary hover:border-secondary hover:bg-secondary-opacity hover:text-secondary">
+      Join Us
+    </button>
+  </a>
+</div>
+
 
       {/* Hamburger Icon for Mobile/Tablet */}
       <div className="lg:hidden">
