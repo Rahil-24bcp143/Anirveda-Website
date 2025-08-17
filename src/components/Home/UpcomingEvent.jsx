@@ -107,18 +107,18 @@ const UpcomingEventsTimeline = () => {
             {upcomingEvents.map((event, index) => (
               <motion.div
                 key={event.id}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{
-                  duration: 0.2,
-                  // delay: index * 0.1,
+                  duration: 0.5,
                   type: "spring",
-                  stiffness: 100
+                  stiffness: 80,
+                  damping: 15
                 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-100px" }}
                 className={`relative flex items-center ${
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                } flex-col md:flex-row`}
+                } flex-col md:flex-row will-change-transform`}
               >
                 {/* Timeline dot */}
                 <motion.div
@@ -140,12 +140,20 @@ const UpcomingEventsTimeline = () => {
                 <motion.div
                   whileHover={{
                     scale: 1.02,
-                    boxShadow: "0 25px 50px rgba(245, 158, 11, 0.15)",
-                    y: -8
+                    y: -5
+                  }}
+                  style={{
+                    willChange: "transform",
+                    backfaceVisibility: "hidden"
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 500,
+                    damping: 30
                   }}
                   className={`bg-gradient-to-br bg-tertiary rounded-3xl shadow-2xl ml-20 md:ml-0 md:w-5/12 ${
                     index % 2 === 0 ? 'md:mr-12' : 'md:ml-12'
-                  } relative border border-amber-600/30 backdrop-blur-sm overflow-hidden group`}
+                  } relative border border-amber-600/30 backdrop-blur-sm overflow-hidden group transform-gpu`}
                 >
                   {/* Glowing effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-amber-600/5 to-amber-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -160,11 +168,11 @@ const UpcomingEventsTimeline = () => {
 
                   {/* Event Image */}
                   <div className="relative h-48 overflow-hidden rounded-t-3xl">
-                    <motion.img
+                    <img
                       src={event.img}
                       alt={event.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      whileHover={{ scale: 1.1 }}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 transform-gpu"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                    
@@ -225,20 +233,46 @@ const UpcomingEventsTimeline = () => {
                     </motion.div>
 
 
-                    <motion.a
-                      href={event.registrationLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      initial={{ opacity: 0, scale: 0.2 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      // transition={{ delay: index * 0.1 + 0.7 }}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 to-amber-500 text-black px-6 py-3 rounded-full font-bold hover:from-amber-700 hover:to-amber-600 transition-all duration-300 shadow-lg hover:shadow-amber-600/25"
-                    >
-                      Register Now
-                      <ArrowRight className="w-4 h-4 text-black transition-transform group-hover:translate-x-1" />
-                    </motion.a>
+                    <motion.div className="relative">
+                      <motion.a
+                        href={event.registrationLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ 
+                          duration: 0.3,
+                          ease: "easeOut"
+                        }}
+                        whileHover={{ 
+                          scale: 1.05,
+                          transition: { 
+                            type: "spring", 
+                            stiffness: 400, 
+                            damping: 10 
+                          }
+                        }}
+                        whileTap={{ 
+                          scale: 0.95,
+                          transition: { duration: 0.1 }
+                        }}
+                        className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 to-amber-500 text-black px-6 py-3 rounded-full font-bold hover:shadow-[0_0_15px_rgba(245,158,11,0.5)] transition-all duration-300 shadow-lg transform-gpu"
+                      >
+                        Register Now
+                        <motion.span
+                          className="inline-block"
+                          animate={{ x: [0, 3, 0] }}
+                          transition={{
+                            duration: 1.5,
+                            ease: "easeInOut",
+                            repeat: Infinity,
+                            repeatDelay: 1
+                          }}
+                        >
+                          <ArrowRight className="w-4 h-4 text-black" />
+                        </motion.span>
+                      </motion.a>
+                    </motion.div>
                   </div>
                 </motion.div>
               </motion.div>

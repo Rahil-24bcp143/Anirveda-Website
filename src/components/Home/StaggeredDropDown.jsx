@@ -52,25 +52,32 @@ const StaggeredDropDown = () => {
   }, [open]);
 
   return (
-    <div className=" mt-20 mb-20 bg-black px-4 relative" ref={wrapperRef}>
+    <div className="mt-20 mb-20 bg-black px-4 relative" ref={wrapperRef}>
       {/* Sticky Button */}
-      <div className="top-0 z-50  bg-black py-2">
+      <div className="top-0 z-50 bg-black py-2 will-change-transform">
         <button
           ref={buttonRef}
           onClick={handleToggle}
-          className="flex  justify-center text-2xl items-center gap-2 px-4 py-5 rounded-2xl  transition duration-200 hover:bg-amber-500/10 hover:text-amber-300 w-full"
+          className="flex justify-center text-2xl items-center gap-2 px-4 py-5 rounded-2xl transition-all duration-300 hover:bg-amber-500/10 hover:text-amber-300 w-full"
           style={{ color: "rgb(201, 135, 43)" }}
         >
           <div className="flex items-center gap-2">
             <span className="font-medium text-2xl">Upcoming Events</span>
-            <motion.span animate={open ? { rotate: 180 } : { rotate: 0 }}>
+            <motion.span 
+              animate={open ? { rotate: 180 } : { rotate: 0 }}
+              transition={{ 
+                type: "spring", 
+                stiffness: 300, 
+                damping: 20 
+              }}
+            >
               <FiChevronDown />
             </motion.span>
           </div>
         </button>
       </div>
 
-      {/* Full-height dropdown with smooth collapse */}
+      {/* Full-height dropdown with hardware-accelerated smooth collapse */}
       <motion.div
         ref={dropdownRef}
         initial={false}
@@ -78,10 +85,24 @@ const StaggeredDropDown = () => {
           height: open ? "auto" : 0,
           opacity: open ? 1 : 0,
         }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
+        style={{
+          willChange: "height, opacity",
+          backfaceVisibility: "hidden",
+          WebkitFontSmoothing: "subpixel-antialiased"
+        }}
+        transition={{ 
+          height: {
+            duration: 0.4, 
+            ease: [0.16, 1, 0.3, 1] // Custom bezier curve for smoother motion
+          },
+          opacity: {
+            duration: 0.3,
+            ease: "easeOut"
+          }
+        }}
         className="overflow-hidden mt-4"
       >
-        <div className="pb-4">
+        <div className="pb-4 transform-gpu">
           <UpcomingEventsTimeline />
         </div>
       </motion.div>
