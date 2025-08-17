@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, MapPin, Clock } from "lucide-react";
+
 const UpcomingEventsTimeline = () => {
 
   // If want to alter with the appearancee of the Card while scrolling look for the delay keyword and change it however Required!
@@ -79,19 +80,37 @@ const UpcomingEventsTimeline = () => {
 
 
   return (
-    <section className="py-20 px-4 bg-black min-h-screen">
+    <section className="py-20 px-4 bg-black min-h-screen will-change-transform">
+      <style>
+        {`
+          @keyframes slideRight {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(3px); }
+          }
+        `}
+      </style>
       <div className="max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.2 }}
-          viewport={{ once: true }}
+          transition={{ 
+            duration: 0.4,
+            ease: [0.16, 1, 0.3, 1],
+            opacity: { duration: 0.6 },
+            staggerChildren: 0.1
+          }}
+          viewport={{ once: true, margin: "-5%" }}
           className="text-center mb-16"
+          style={{ 
+            willChange: "opacity, transform",
+            backfaceVisibility: "hidden",
+            transform: "translateZ(0)"
+          }}
         >
-          <h2 className="text-4xl md:text-6xl font-bold text-primary mb-6">
+          <h2 className="text-4xl md:text-6xl font-bold text-primary mb-6 transform-gpu">
             Upcoming Events
           </h2>
-          <p className="text-xl text-secondary max-w-2xl mx-auto">
+          <p className="text-xl text-secondary max-w-2xl mx-auto transform-gpu">
             Mark your calendar for these exciting events and join us in creating memorable experiences
           </p>
         </motion.div>
@@ -99,7 +118,14 @@ const UpcomingEventsTimeline = () => {
 
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-amber-600 via-amber-500 to-amber-400 transform md:-translate-x-0.5 rounded-full"></div>
+          <div 
+            className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-amber-600 via-amber-500 to-amber-400 transform md:-translate-x-0.5 rounded-full transform-gpu"
+            style={{ 
+              willChange: "transform",
+              backfaceVisibility: "hidden",
+              transform: "translateZ(0)"
+            }}
+          ></div>
 
 
           {/* Events */}
@@ -107,31 +133,62 @@ const UpcomingEventsTimeline = () => {
             {upcomingEvents.map((event, index) => (
               <motion.div
                 key={event.id}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{
-                  duration: 0.5,
-                  type: "spring",
-                  stiffness: 80,
-                  damping: 15
+                  x: {
+                    type: "spring",
+                    stiffness: 70,
+                    damping: 20,
+                    duration: 0.5
+                  },
+                  opacity: { 
+                    duration: 0.4, 
+                    ease: [0.16, 1, 0.3, 1]
+                  },
+                  staggerChildren: 0.1
                 }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: "-5%" }}
                 className={`relative flex items-center ${
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                } flex-col md:flex-row will-change-transform`}
+                } flex-col md:flex-row`}
+                style={{
+                  willChange: "opacity, transform",
+                  backfaceVisibility: "hidden",
+                  WebkitFontSmoothing: "subpixel-antialiased",
+                  transform: "translateZ(0)"
+                }}
               >
                 {/* Timeline dot */}
                 <motion.div
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
-                  transition={{/* delay: index * 0.1 + 0.5 */ type: "spring", stiffness: 200 }}
-                  viewport={{ once: true }}
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 150,
+                    damping: 15,
+                    duration: 0.4
+                  }}
+                  viewport={{ once: true, margin: "-15%" }}
                   className="absolute left-8 md:left-1/2 w-6 h-6 bg-black border-4 border-amber-600 rounded-full transform -translate-x-3 md:-translate-x-3 z-20"
+                  style={{ 
+                    willChange: "transform",
+                    transformStyle: "preserve-3d"
+                  }}
                 >
                   <motion.div
-                    animate={{ scale: [1, 1.3, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="w-full h-full bg-amber-600 rounded-full"
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ 
+                      duration: 3, 
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      times: [0, 0.5, 1],
+                      repeatDelay: 0.5
+                    }}
+                    className="w-full h-full bg-amber-600 rounded-full transform-gpu"
+                    style={{
+                      willChange: "transform"
+                    }}
                   />
                 </motion.div>
 
@@ -139,17 +196,21 @@ const UpcomingEventsTimeline = () => {
                 {/* Event Card */}
                 <motion.div
                   whileHover={{
-                    scale: 1.02,
-                    y: -5
-                  }}
-                  style={{
-                    willChange: "transform",
-                    backfaceVisibility: "hidden"
+                    scale: 1.01,
+                    y: -3
                   }}
                   transition={{
                     type: "spring",
-                    stiffness: 500,
-                    damping: 30
+                    stiffness: 300,
+                    damping: 25,
+                    mass: 0.8,
+                    duration: 0.2
+                  }}
+                  style={{
+                    willChange: "transform",
+                    backfaceVisibility: "hidden",
+                    transformStyle: "preserve-3d",
+                    transform: "translateZ(0)"
                   }}
                   className={`bg-gradient-to-br bg-tertiary rounded-3xl shadow-2xl ml-20 md:ml-0 md:w-5/12 ${
                     index % 2 === 0 ? 'md:mr-12' : 'md:ml-12'
@@ -195,8 +256,12 @@ const UpcomingEventsTimeline = () => {
                     <motion.h3
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      // transition={{ delay: index * 0.1 + 0.4 }}
-                      className="text-2xl font-bold text-primary mb-3 group-hover:text-amber-50 transition-colors"
+                      transition={{ 
+                        duration: 0.3,
+                        ease: [0.16, 1, 0.3, 1],
+                        staggerChildren: 0.1
+                      }}
+                      className="text-2xl font-bold text-primary mb-3 group-hover:text-amber-50 transition-colors transform-gpu"
                     >
                       {event.title}
                     </motion.h3>
@@ -205,18 +270,26 @@ const UpcomingEventsTimeline = () => {
                     <motion.p
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      // transition={{ delay: index * 0.1 + 0.5 }}
-                      className="text-secondary mb-6 line-clamp-3 leading-relaxed"
+                      transition={{ 
+                        duration: 0.3,
+                        ease: [0.16, 1, 0.3, 1],
+                        delay: 0.1
+                      }}
+                      className="text-secondary mb-6 line-clamp-3 leading-relaxed transform-gpu"
                     >
                       {event.description}
                     </motion.p>
 
 
                     <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      // transition={{ delay: index * 0.1 + 0.6 }}
-                      className="space-y-3 mb-6"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ 
+                        duration: 0.3,
+                        ease: [0.16, 1, 0.3, 1],
+                        delay: 0.2
+                      }}
+                      className="space-y-3 mb-6 transform-gpu"
                     >
                       <div className="flex items-center gap-3 text-sm text-primary">
                         <Calendar className="w-4 h-4 text-secondary" />
@@ -233,44 +306,46 @@ const UpcomingEventsTimeline = () => {
                     </motion.div>
 
 
-                    <motion.div className="relative">
+                    <motion.div 
+                      className="relative"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ 
+                        duration: 0.3,
+                        ease: "easeOut" 
+                      }}
+                    >
                       <motion.a
                         href={event.registrationLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ 
-                          duration: 0.3,
-                          ease: "easeOut"
-                        }}
                         whileHover={{ 
-                          scale: 1.05,
-                          transition: { 
-                            type: "spring", 
-                            stiffness: 400, 
-                            damping: 10 
-                          }
+                          scale: 1.03
                         }}
                         whileTap={{ 
-                          scale: 0.95,
-                          transition: { duration: 0.1 }
+                          scale: 0.97
                         }}
-                        className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 to-amber-500 text-black px-6 py-3 rounded-full font-bold hover:shadow-[0_0_15px_rgba(245,158,11,0.5)] transition-all duration-300 shadow-lg transform-gpu"
+                        transition={{ 
+                          type: "spring", 
+                          stiffness: 400, 
+                          damping: 15,
+                          duration: 0.001
+                        }}
+                        style={{
+                          willChange: "transform",
+                          backfaceVisibility: "hidden",
+                          transform: "translateZ(0)"
+                        }}
+                        className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 to-amber-500 text-black px-6 py-3 rounded-full font-bold shadow-lg transform-gpu"
                       >
                         Register Now
-                        <motion.span
-                          className="inline-block"
-                          animate={{ x: [0, 3, 0] }}
-                          transition={{
-                            duration: 1.5,
-                            ease: "easeInOut",
-                            repeat: Infinity,
-                            repeatDelay: 1
-                          }}
-                        >
-                          <ArrowRight className="w-4 h-4 text-black" />
-                        </motion.span>
+                        <span className="inline-block relative overflow-hidden w-4">
+                          <ArrowRight className="w-4 h-4 text-black absolute transform-gpu" 
+                            style={{ 
+                              animation: "slideRight 2s ease-in-out infinite"
+                            }} 
+                          />
+                        </span>
                       </motion.a>
                     </motion.div>
                   </div>
