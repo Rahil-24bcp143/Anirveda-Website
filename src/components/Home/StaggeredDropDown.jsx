@@ -10,28 +10,36 @@ const StaggeredDropDown = () => {
   const dropdownRef = useRef(null);
   const wrapperRef = useRef(null);
 
-  const handleToggle = () => {
-    if (open) {
-      if (buttonRef.current) {
-        const buttonTop = buttonRef.current.getBoundingClientRect().top;
-        const currentScroll = window.scrollY;
+  const handleToggle = (e) => {
+    // Prevent the default browser behavior
+    e.preventDefault();
+    
+    // If dropdown is currently open and user is scrolled down past the dropdown
+    if (open && buttonRef.current) {
+      const buttonRect = buttonRef.current.getBoundingClientRect();
+      const isButtonOffscreen = buttonRect.top < 0 || buttonRect.bottom > window.innerHeight;
+      
+      // Only scroll if the button is not fully visible in viewport
+      if (isButtonOffscreen) {
+        setIsScrolling(true);
+        // Scroll to a position where button is visible but don't go all the way to top
+        const scrollTarget = Math.max(0, window.scrollY + buttonRect.top - 100);
+        
+        window.scrollTo({
+          top: scrollTarget,
+          behavior: "smooth",
+        });
 
-        if (currentScroll > buttonTop + 100) {
-          setIsScrolling(true);
-          window.scrollTo({
-            top: buttonRef.current.offsetTop - 20,
-            behavior: "smooth",
-          });
-
-          setTimeout(() => {
-            setIsScrolling(false);
-            setOpen(false);
-          }, 400);
-          return;
-        }
+        // Wait for the scroll to complete before toggling
+        setTimeout(() => {
+          setIsScrolling(false);
+          setOpen(false);
+        }, 400);
+        return;
       }
     }
 
+    // Toggle the dropdown state
     setOpen((prev) => !prev);
   };
 
@@ -57,9 +65,10 @@ const StaggeredDropDown = () => {
       <div className="top-0 z-50 bg-black py-2 will-change-transform">
         <button
           ref={buttonRef}
-          onClick={handleToggle}
+          onClick={(e) => handleToggle(e)}
           className="flex justify-center text-2xl items-center gap-2 px-4 py-5 rounded-2xl transition-all duration-300 hover:bg-amber-500/10 hover:text-amber-300 w-full"
           style={{ color: "rgb(201, 135, 43)" }}
+          type="button" /* Explicitly set button type to prevent form submission behavior */
         >
           <div className="flex items-center gap-2">
             <span className="font-medium text-2xl">Upcoming Events</span>
