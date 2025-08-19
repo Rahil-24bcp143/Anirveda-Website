@@ -1,5 +1,5 @@
 import { Renderer, Camera, Transform, Geometry, Program, Mesh, Texture } from 'ogl';
-import { useEffect, useRef } from 'react';
+import React,{ useEffect, useRef } from 'react';
 
 const ImageStrip = ({ images }) => {
   const canvasRef = useRef(null);

@@ -2,6 +2,7 @@ import { FiChevronDown } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import UpcomingEventsTimeline from "./UpcomingEvent";
+import React from "react";
 
 const StaggeredDropDown = () => {
   const [open, setOpen] = useState(true);

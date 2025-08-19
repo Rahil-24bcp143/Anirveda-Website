@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import React,  { useState, useEffect, useRef, useCallback } from 'react';
 import { useSprings, animated } from '@react-spring/web';
 
 // BlurText component for the animated text

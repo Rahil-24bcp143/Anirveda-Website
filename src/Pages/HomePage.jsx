@@ -1,4 +1,4 @@
-
+import React from 'react'
 import Navbar from "../components/Navbar"
 import Main from "../components/Home/Main"
 import BigText from "../components/Home/BigText"

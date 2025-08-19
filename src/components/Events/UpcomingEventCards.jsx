@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import React from "react";
 import { ArrowRight, Calendar, MapPin, Clock } from "lucide-react";
 const UpcomingEventsTimeline = () => {
   const upcomingEvents = [
