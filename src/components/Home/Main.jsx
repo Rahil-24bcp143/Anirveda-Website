@@ -23,6 +23,7 @@ export default function Main() {
           <TypingText
             text="The Techno-Economics Club"
             typingSpeed="50"
+            delay="8000"
           />
         </h2>
         <p className="mx-auto mt-2 w-4/5 text-justify font-Abel text-base text-secondary btwnMdAndLg:mx-0 btwnMdAndLg:text-xl xl:w-3/5 xl:text-2xl">

@@ -7,7 +7,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean"
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.0.1",

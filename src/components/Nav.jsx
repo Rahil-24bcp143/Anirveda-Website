@@ -1,9 +1,26 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import { motion } from "framer-motion";
+import { HoveredLink, Menu, MenuItem } from "./ui/navbar-menu";
+import { HoverBorderGradient } from "./ui/hover-border-gradient";
+import { cn } from "../lib/utils";
+
+// Organization Logo Component
+const OrgLogo = () => {
+  return (
+    <img 
+      src="/images/logos/logo_white.webp"
+      alt="Anirveda Logo"
+      className="h-5 w-5 object-contain"
+    />
+  );
+};
+
 
 export default function Nav() {
   const location = useLocation();
+  const [active, setActive] = useState(null);
 
   // State for controlling the mobile drawer visibility
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -16,24 +33,22 @@ export default function Nav() {
 
   const closeDrawer = () => {
     setIsDrawerOpen(false);
-    // Optionally close the "More" section in drawer when drawer itself closes
-    // setIsMoreClickedInDrawer(false);
+    
   };
 
   const navItems = [
     { id: 0, title: "home", url: "/" },
-    { id: 1, title: "economania", url: "/economania" },
-    { id: 2, title: "events", url: "/events" },
-    { id: 3, title: "gallery", url: "/gallery" },
-    { id: 4, title: "committee", url: "/committee" },
-    { id: 5, title: "sponsors", url: "/sponsors" },
-   
-    { id: 6, title: "blogs", url: "https://anirveda-blogs.vercel.app/", external: true },
+    { id: 1, title: "events", url: "/events" },
+    { id: 2, title: "gallery", url: "/gallery" },
+    { id: 3, title: "committee", url: "/committee" },
+    { id: 4, title: "sponsors", url: "/sponsors" },
+    { id: 5, title: "blogs", url: "https://anirveda-blogs.vercel.app/", external: true },
   ];
 
   const moreItems = [
-    { id: 7, title: "Mock RBI", url: "/mockrbi" },
-    { id: 8, title: "GalaxEcon", url: "/galaxecon" },
+    { id: 6, title: "Mock RBI", url: "/mockrbi" },
+    { id: 7, title: "Economania", url: "/economania" },
+    { id: 8, title: "GalaxEcon", url: "/galaxecon" }
   ];
 
   const isActiveLink = (url) => {
@@ -64,79 +79,72 @@ export default function Nav() {
         </Link>
       </div>
 
-      {/* Main Navigation (Hidden on small screens, shown on large) */}
-      <div className="hidden lg:flex items-center gap-3 rounded-2xl bg-secondary-opacity px-5 py-1 uppercase text-secondary md:gap-5 md:px-10 lg:px-12 lg:py-2 lg:text-lg xl:gap-7">
-        {navItems.map((item) => {
-          const linkContent = (
-            <h1
-              className={`relative cursor-pointer overflow-hidden
-                          before:absolute before:bottom-0 before:left-1/2 before:w-0 before:h-[1.8px] before:bg-secondary before:transition-all before:duration-300 before:ease-out before:transform before:-translate-x-full
-                          after:absolute after:bottom-0 after:right-1/2 after:w-0 after:h-[1.8px] after:bg-secondary after:transition-all after:duration-300 after:ease-out after:transform after:translate-x-full
-                          hover:before:w-1/2 hover:before:translate-x-0
-                          hover:after:w-1/2 hover:after:translate-x-0
-                          ${
-                            isActiveLink(item.url)
-                              ? "font-bold" // Removed underline classes from active state
-                              : ""
-                          }`}
-            >
-              {item.title}
-            </h1>
-          );
-
-          return item.external ? (
-            <a href={item.url} key={item.id} target="_blank" rel="noopener noreferrer">
-              {linkContent}
-            </a>
-          ) : (
-            <Link to={item.url} key={item.id}>
-              {linkContent}
-            </Link>
-          );
-        })}
-        {/* Desktop "More" dropdown with sticking fix */}
-        <div className="relative group">
-          <div
-            className="flex cursor-pointer items-center gap-1 py-1"
-          >
-            <h1>More</h1>
-            <Icon
-              icon="carbon:chevron-down"
-              color="#B69575"
-              className="text-2xl transition-transform group-hover:rotate-180"
-            />
-          </div>
-          <div
-            className="absolute left-1/2 -translate-x-1/2 top-full mt-0 pt-2
-                       w-fit bg-secondary-opacity p-3 text-secondary rounded-lg shadow-lg
-                       opacity-0 invisible group-hover:opacity-100 group-hover:visible
-                       transition-all duration-350 ease-out
-                       pointer-events-none group-hover:pointer-events-auto"
-          >
-            {moreItems.map((item) => (
-              <Link to={item.url} key={item.id} className="block whitespace-nowrap py-1 px-2 hover:bg-secondary/20 rounded transition-colors duration-200">
-                <h1>{item.title}</h1>
-              </Link>
-            ))}
-          </div>
-        </div>
+      {/* Main Navigation (Hidden on small screens, shown on large) - NEW ANIMATED VERSION */}
+      <div className="hidden lg:block">
+        <Menu setActive={setActive}>
+          {navItems.map((item) => (
+            <div key={item.id} className="relative px-2">
+              {item.external ? (
+                <a 
+                  href={item.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-[#B69575] hover:text-[#C9872B] transition-colors"
+                >
+                  {item.title.toUpperCase()}
+                </a>
+              ) : (
+                <Link 
+                  to={item.url}
+                  className={cn(
+                    "text-[#B69575] hover:text-[#C9872B] transition-colors",
+                    isActiveLink(item.url) ? "font-bold text-[#C9872B]" : ""
+                  )}
+                >
+                  {item.title.toUpperCase()}
+                </Link>
+              )}
+            </div>
+          ))}
+          
+          {/* More dropdown in animated menu */}
+          <MenuItem setActive={setActive} active={active} item="MORE">
+            <div className="flex flex-col space-y-2 p-2">
+              {moreItems.map((item) => (
+                <Link 
+                  key={item.id}
+                  to={item.url}
+                  className={cn(
+                    "text-[#8F7252] dark:text-[#B69575] hover:text-[#C9872B] transition-colors px-3 py-2 rounded-md",
+                    isActiveLink(item.url) ? "font-bold text-[#C9872B]" : ""
+                  )}
+                  onClick={() => setActive(null)}
+                >
+                  {item.title}
+                </Link>
+              ))}
+            </div>
+          </MenuItem>
+        </Menu>
       </div>
 
-      {/* Contact Button and Join Us*/}
-{/* Contact and Join Us buttons stacked */}
-<div className="flex flex-col items-center gap-2">
-  <a href="#contact">
-    <button className="rounded-lg border-[2px] border-primary px-3 py-1 text-lg uppercase text-primary hover:border-secondary hover:bg-secondary-opacity hover:text-secondary">
-      Contact
-    </button>
-  </a>
-  <a href="YOUR_GOOGLE_FORM_LINK"> {/* Insert the Google Form link */}
-    <button className="rounded-lg border-[2px] border-primary px-3 py-1 text-lg uppercase text-primary hover:border-secondary hover:bg-secondary-opacity hover:text-secondary">
-      Join Us
-    </button>
-  </a>
-</div>
-
+      {/* Contact Button and Join Us */}
+      <div className="hidden lg:flex items-center gap-3">
+        {/* <a href="#contact">
+          <button className="rounded-lg border-[2px] border-primary px-3 py-1 text-lg uppercase text-primary hover:border-secondary hover:bg-secondary-opacity hover:text-secondary">
+            Contact
+          </button>
+        </a> */}
+        <a href="blank"> {/*Google Form link!!! */}
+          <HoverBorderGradient
+            containerClassName="rounded-full"
+            className="bg-[#0F0F0F] text-[#B69575] flex items-center space-x-2"
+          >
+            <OrgLogo />
+            <span className="text-lg uppercase">Join Us</span>
+          </HoverBorderGradient>
+        </a>
+      </div>
 
       {/* Hamburger Icon for Mobile/Tablet */}
       <div className="lg:hidden">
@@ -218,6 +226,24 @@ export default function Nav() {
                   </Link>
                 ))}
               </div>
+            </div>
+            
+            {/* Mobile Contact and Join Us buttons */}
+            <div className="border-t border-secondary/30 pt-4 mt-4 flex flex-col gap-2">
+              {/* <a href="#contact" onClick={closeDrawer}>
+                <button className="w-full rounded-lg border-[2px] border-primary px-3 py-1 text-lg uppercase text-primary hover:border-secondary hover:bg-secondary-opacity hover:text-secondary">
+                  Contact
+                </button>
+              </a> */}
+              <a href="blank" onClick={closeDrawer}> {/* Insert the Google Form link */}
+                <HoverBorderGradient
+                  containerClassName="rounded-full w-full"
+                  className="bg-[#0F0F0F] text-[#B69575] flex items-center justify-center space-x-2 w-full"
+                >
+                  <OrgLogo />
+                  <span className="text-lg uppercase">Join Us</span>
+                </HoverBorderGradient>
+              </a>
             </div>
           </nav>
         </div>

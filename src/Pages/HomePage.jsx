@@ -6,7 +6,7 @@ import About from "../components/Home/About"
 import ContactUs from "../components/ContactUs"
 import Testimonial from "../components/Home/Testimonial"
 
-import StaggeredDropDown from "../components/Home/staggereddropdown";
+import StaggeredDropDown from "../components/Home/StaggeredDropDown";
 
 
 const HomePage = () => { 

@@ -26,7 +26,7 @@ export default function HamburgerNav() {
               className="w-1/4"
             />
           </Link>
-        </div>
+        </div>h
         <div className="cursor-pointer">
           <Icon
             icon="charm:menu-hamburger"
