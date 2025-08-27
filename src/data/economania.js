@@ -1,7 +1,7 @@
 export const economaniaEvents = [
   {
     id: 3,
-    img: "/images/economania/CoverPage.png",
+    img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756113471/breach2025_igls9m.png",
     title: "Breach 2025",
     registrationLink: "https://unstop.com/o/4Qfa2F9?lb=VpYCae40&utm_medium=Share&utm_source=shortUrl",
     date: "March 21-23, 2025",
@@ -12,9 +12,9 @@ export const economaniaEvents = [
   },
   {
     id: 2,
-    img: "/images/logos/logo.webp",
+    img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756113490/takeLoan_t4p9ie.png",
     title: "Mock RBI",
-    registrationLink: "https://forms.gle/SSJp2jH1xKAUJvEMA",
+    registrationLink: "",
     date: "March 22, 2025",
     timing: "4 PM - 6 PM",
     venue: "TBA",
@@ -25,7 +25,7 @@ export const economaniaEvents = [
     id: 4,
     img: "/images/logos/logo.webp",
     title: "Speaker Session",
-    registrationLink: "https://docs.google.com/forms/d/1qmwO1sETLGyDnkCt15wHWAb-J74KSHvy8mhs3_WBNPM/viewform",
+    registrationLink: "",
     date: "March 23, 2025",
     timing: "2 PM - 5 PM",
     venue: "TBA",
@@ -35,9 +35,9 @@ export const economaniaEvents = [
   
   {
     id: 5,
-    img: "/images/logos/logo.webp",
+    img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756305210/ParallelParadigm_vvd0un.jpg",
     title: "Parallel Paradigm",
-    registrationLink: "https://forms.gle/h4NrxBKVwPQfGoTE6",
+    registrationLink: "",
     date: "March 21, 2025",
     timing: "4 PM - 6 PM",
     venue: "TBA",
@@ -46,9 +46,9 @@ export const economaniaEvents = [
   },
   {
     id: 6,
-    img: "/images/logos/logo.webp",
+    img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756305205/GalaxEcon_phj22e.jpg",
     title: "GalaxEcon",
-    registrationLink: "https://forms.gle/yKKP6zawAsZR5yBD9",
+    registrationLink: "",
     date: "March 22, 2025",
     timing: "10 AM - 2 PM",
     venue: "TBA",

@@ -29,7 +29,7 @@ const images = [
       <section 
         className="relative h-screen flex items-center justify-center bg-cover bg-center bg-fixed"
         style={{ 
-          backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('/images/economania/CoverPage.png')"
+          backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('https://res.cloudinary.com/duygdcgj3/image/upload/v1756113471/breach2025_igls9m.png')"
         }}
       >
         <div className="relative text-center px-4 animate-fade-in-up">
