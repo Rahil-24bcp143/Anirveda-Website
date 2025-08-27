@@ -17,7 +17,6 @@ const OrgLogo = () => {
   );
 };
 
-
 export default function Nav() {
   const location = useLocation();
   const [active, setActive] = useState(null);
@@ -33,7 +32,6 @@ export default function Nav() {
 
   const closeDrawer = () => {
     setIsDrawerOpen(false);
-    
   };
 
   const navItems = [
@@ -52,7 +50,6 @@ export default function Nav() {
   ];
 
   const isActiveLink = (url) => {
-    // Check for exact match or specific committee sub-routes
     return (
       location.pathname === url ||
       (url === "/committee" &&
@@ -79,7 +76,7 @@ export default function Nav() {
         </Link>
       </div>
 
-      {/* Main Navigation (Hidden on small screens, shown on large) - NEW ANIMATED VERSION */}
+      {/* Main Navigation (Hidden on small screens, shown on large) */}
       <div className="hidden lg:block">
         <Menu setActive={setActive}>
           {navItems.map((item) => (
@@ -130,12 +127,11 @@ export default function Nav() {
 
       {/* Contact Button and Join Us */}
       <div className="hidden lg:flex items-center gap-3">
-        {/* <a href="#contact">
-          <button className="rounded-lg border-[2px] border-primary px-3 py-1 text-lg uppercase text-primary hover:border-secondary hover:bg-secondary-opacity hover:text-secondary">
-            Contact
-          </button>
-        </a> */}
-        <a href="blank"> {/*Google Form link!!! */}
+        <a 
+          href="https://docs.google.com/forms/d/e/1FAIpQLSfeI3Bi013_xIiV8P3sNSc6wa46X52Qy3gCDdDjCfDD3MfnNw/viewform"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <HoverBorderGradient
             containerClassName="rounded-full"
             className="bg-[#0F0F0F] text-[#B69575] flex items-center space-x-2"
@@ -181,11 +177,7 @@ export default function Nav() {
                               after:absolute after:bottom-0 after:right-1/2 after:w-0 after:h-[1.8px] after:bg-secondary after:transition-all after:duration-300 after:ease-out after:transform after:translate-x-full
                               hover:before:w-1/2 hover:before:translate-x-0
                               hover:after:w-1/2 hover:after:translate-x-0
-                              ${
-                                isActiveLink(item.url)
-                                  ? "font-bold"
-                                  : ""
-                              }`}
+                              ${isActiveLink(item.url) ? "font-bold" : ""}`}
                 >
                   {item.title}
                 </h1>
@@ -228,14 +220,14 @@ export default function Nav() {
               </div>
             </div>
             
-            {/* Mobile Contact and Join Us buttons */}
+            {/* Mobile Join Us button */}
             <div className="border-t border-secondary/30 pt-4 mt-4 flex flex-col gap-2">
-              {/* <a href="#contact" onClick={closeDrawer}>
-                <button className="w-full rounded-lg border-[2px] border-primary px-3 py-1 text-lg uppercase text-primary hover:border-secondary hover:bg-secondary-opacity hover:text-secondary">
-                  Contact
-                </button>
-              </a> */}
-              <a href="blank" onClick={closeDrawer}> {/* Insert the Google Form link */}
+              <a 
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfeI3Bi013_xIiV8P3sNSc6wa46X52Qy3gCDdDjCfDD3MfnNw/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={closeDrawer}
+              >
                 <HoverBorderGradient
                   containerClassName="rounded-full w-full"
                   className="bg-[#0F0F0F] text-[#B69575] flex items-center justify-center space-x-2 w-full"

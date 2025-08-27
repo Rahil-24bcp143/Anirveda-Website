@@ -81,7 +81,7 @@ export const pastEvents = [
   },
   {
     id: 6,
-    img: "https://res.cloudinary.com/duygdcgj3/image/upload/w_300,f_auto,q_autov/1756113507/anirvedaXtedx_g5pzv1.webp",
+    img: "https://res.cloudinary.com/duygdcgj3/image/upload/w_300,f_auto,q_auto/v1756113507/anirvedaXtedx_g5pzv1.webp",
     title: "Diving in the Tank",
     description:
       "The event ‘Diving in the Tank’ is about hearing the untold stories and struggles a startup faces while it starts its journey and reaches a peak point. We will be having a Shark Tank Season 2 participant Soham from AU, who will share his experiences with the audience and then we will have a case study competition where the participants will be given problem statements based on some crisis. They have to find an appropriate solution and present them.",

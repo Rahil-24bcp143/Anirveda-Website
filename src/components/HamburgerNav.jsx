@@ -1,18 +1,29 @@
-import React, {useState} from "react"
-import {Icon} from "@iconify/react"
-import {Link} from "react-router-dom"
+import React, { useState } from "react";
+import { Icon } from "@iconify/react";
+import { Link } from "react-router-dom";
+
+// Reusable logo (optional, for consistency)
+const OrgLogo = () => {
+  return (
+    <img
+      src="./images/logos/logo_white.webp"
+      alt="Anirveda Logo"
+      className="h-5 w-5 object-contain"
+    />
+  );
+};
 
 export default function HamburgerNav() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [isMoreClicked, setIsMoreClicked] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [isMoreClicked, setIsMoreClicked] = useState(false);
 
   const handleHamburgerClick = () => {
-    setIsOpen(!isOpen)
-  }
+    setIsOpen(!isOpen);
+  };
 
   const handleMoreClick = () => {
-    setIsMoreClicked(!isMoreClicked)
-  }
+    setIsMoreClicked(!isMoreClicked);
+  };
 
   return (
     <div>
@@ -26,7 +37,7 @@ export default function HamburgerNav() {
               className="w-1/4"
             />
           </Link>
-        </div>h
+        </div>
         <div className="cursor-pointer">
           <Icon
             icon="charm:menu-hamburger"
@@ -39,11 +50,10 @@ export default function HamburgerNav() {
 
       {/* Hamburger bar items */}
       <div
-        className={`absolute top-0 z-10 h-full w-full bg-secondary-opacity px-5 pt-3 font-Lato text-secondary transition-transform duration-300 ease-in  ${
-          isOpen ? "translate-x-0" : "translate-x-[-100%]"
-        } `}
+        className={`absolute top-0 z-10 h-full w-full bg-secondary-opacity px-5 pt-3 font-Lato text-secondary transition-transform duration-300 ease-in  
+          ${isOpen ? "translate-x-0" : "translate-x-[-100%]"}`}
       >
-        {/* Top Bar */}
+        {/* Top Bar inside drawer */}
         <div className="flex items-center justify-between">
           <div>
             <img
@@ -62,94 +72,71 @@ export default function HamburgerNav() {
           </div>
         </div>
 
+        {/* Links */}
         <div className="mt-4 text-center text-2xl">
-          <Link to="/">
-            <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">
-              Home
-            </h1>
+          <Link to="/" onClick={handleHamburgerClick}>
+            <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">Home</h1>
           </Link>
-          <Link to="/economania">
-            <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">
-              Economania
-            </h1>
+          <Link to="/economania" onClick={handleHamburgerClick}>
+            <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">Economania</h1>
           </Link>
-          {/* <h1 className="cursor-pointer">About</h1> */}
-          <Link to="/events">
-            <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">
-              Events
-            </h1>
+          <Link to="/events" onClick={handleHamburgerClick}>
+            <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">Events</h1>
           </Link>
-          <Link to="/gallery">
-            <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">
-              Gallery
-            </h1>
+          <Link to="/gallery" onClick={handleHamburgerClick}>
+            <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">Gallery</h1>
           </Link>
-          <Link to="/committee">
-            <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">
-              Committee
-            </h1>
+          <Link to="/committee" onClick={handleHamburgerClick}>
+            <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">Committee</h1>
           </Link>
-          <Link to="/sponsors">
-            <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">
-              Sponsors
-            </h1>
+          <Link to="/sponsors" onClick={handleHamburgerClick}>
+            <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">Sponsors</h1>
           </Link>
-          <Link to="/blogs">
-            <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">
-              Blogs
-            </h1>
+          <Link to="/blogs" onClick={handleHamburgerClick}>
+            <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">Blogs</h1>
           </Link>
-          {/* <Link to="/cityscapes">
-          <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">
-              Cityscapes
-            </h1>
-          </Link> */}
-          <a href="#contact">
-            <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">
-              Contact
-            </h1>
+          <a href="#contact" onClick={handleHamburgerClick}>
+            <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">Contact</h1>
           </a>
+
+          {/* Collapsible More */}
           <div
             className="flex cursor-pointer items-center justify-center gap-1 hover:text-primary"
             onClick={handleMoreClick}
           >
-            <h1 className="mt-3  uppercase ">More</h1>
-
+            <h1 className="mt-3 uppercase">More</h1>
             {isMoreClicked ? (
-              <Icon
-                icon="carbon:chevron-up"
-                color="#B69575"
-                className="mt-3 text-3xl"
-              />
+              <Icon icon="carbon:chevron-up" color="#B69575" className="mt-3 text-3xl" />
             ) : (
-              <Icon
-                icon="carbon:chevron-down"
-                color="#B69575"
-                className="mt-3 text-3xl"
-              />
+              <Icon icon="carbon:chevron-down" color="#B69575" className="mt-3 text-3xl" />
             )}
           </div>
           {isMoreClicked && (
             <div>
-              <Link to={"/mockrbi"}>
-                <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">
-                  mockrbi
-                </h1>
+              <Link to={"/mockrbi"} onClick={handleHamburgerClick}>
+                <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">MockRBI</h1>
               </Link>
-              <Link to={"/galaxecon"}>
-                <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">
-                  galaxecon
-                </h1>
+              <Link to={"/galaxecon"} onClick={handleHamburgerClick}>
+                <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">GalaxEcon</h1>
               </Link>
-              {/* <Link to={"/cityscapes"}>
-                <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">
-                  cityscapes
-                </h1>
-              </Link> */}
             </div>
           )}
+
+          {/* ✅ Join Us Button */}
+          <div className="mt-6 flex justify-center">
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSfeI3Bi013_xIiV8P3sNSc6wa46X52Qy3gCDdDjCfDD3MfnNw/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-full bg-[#0F0F0F] px-6 py-3 text-lg uppercase text-[#B69575] shadow-md transition hover:scale-105 hover:text-[#C9872B]"
+              onClick={handleHamburgerClick}
+            >
+              <OrgLogo />
+              Join Us
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

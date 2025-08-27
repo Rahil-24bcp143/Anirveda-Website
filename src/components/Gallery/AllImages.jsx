@@ -16,6 +16,7 @@ export default function AllImages() {
         key={image.id}
         row={image.row}
         src={image.src}
+        loading="lazy"
         alt={image.alt}
       />
     )

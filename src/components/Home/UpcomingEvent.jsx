@@ -1,357 +1,125 @@
-import React from "react";
 import { motion } from "framer-motion";
+import React from "react";
 import { ArrowRight, Calendar, MapPin, Clock } from "lucide-react";
 
 const UpcomingEventsTimeline = () => {
-
-  // If want to alter with the appearancee of the Card while scrolling look for the delay keyword and change it however Required!
-
   const upcomingEvents = [
     {
-      id: 3,
-      img: "/images/upcomingEvents/breach.jpg",
-      title: "Breach 2025",
-      registrationLink: "https://unstop.com/o/4Qfa2F9?lb=VpYCae40&utm_medium=Share&utm_source=shortUrl",
+      id: 1,
+      img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756301783/TBA-Soon_watubc.png",
+      title: "Breach 2026",
+      registrationLink: "#",
       date: "March 21-23, 2025",
       timing: "9 AM - 6 PM",
       venue: "TBA",
-      description:
-        "Breach 2025 is an exhilarating 3-day coding event based on the theme- 'Driving innovation in financial technology.' Participants will brainstorm, design and develop tools to provide solutions for pre-defined problem statements in the field of digital transactions, personal finance, investment & loans and other financial products.",
-      type: "Hackathon"
+      description: "Stay Connected to know more...",
+      type: "Hackathon",
+      isActive: false,
     },
     {
       id: 2,
-      img: "/images/logos/logo.webp",
+      img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756301783/TBA-Soon_watubc.png",
       title: "Mock RBI",
       registrationLink: "#",
       date: "March 22, 2025",
       timing: "4 PM - 6 PM",
       venue: "TBA",
       description:
-        "Mock RBI is Anirveda's flagship event that simulates the working of the Reserve Bank of India. Participants will make crucial saving or investing decisions and draft monetary policies while navigating through challenges to ensure economic stability and financial regulation.",
-      type: "Simulation"
+        "Mock RBI is Anirveda's flagship event that simulates the working of the Reserve Bank of India.",
+      type: "Simulation",
+      isActive: false,
     },
-    {
-      id: 4,
-      img: "/images/logos/logo.webp",
-      title: "Speaker Session",
-      registrationLink: "https://docs.google.com/forms/d/1qmwO1sETLGyDnkCt15wHWAb-J74KSHvy8mhs3_WBNPM/viewform",
-      date: "March 23, 2025",
-      timing: "2 PM - 5 PM",
-      venue: "TBA",
-      description:
-        "An enlightening session featuring a prominent industrialist and visionary leader. Gain firsthand insights into industry trends, leadership strategies, and career advancement from the expert himself/herself!",
-      type: "Workshop"
-    },
-    {
-      id: 5,
-      img: "/images/logos/logo.webp",
-      title: "Space Odyssey",
-      registrationLink: "#",
-      date: "March 21-23, 2025",
-      timing: "9 AM - 6 PM",
-      venue: "TBA",
-      description:
-        "A life-sized, monopoly-inspired event where participants navigate a game board, each assigned an equal base budget & profession from a randomized deck of cards. Every dice roll determines their next move, unveiling new challenges & scenarios.",
-      type: "Game"
-    },
-    {
-      id: 6,
-      img: "/images/logos/logo.webp",
-      title: "Parallel Paradigm",
-      registrationLink: "#",
-      date: "March 21, 2025",
-      timing: "4 PM - 6 PM",
-      venue: "TBA",
-      description: "Anirveda X Mind Ripple - A collaborative event exploring parallel thinking and innovative paradigms.",
-      type: "Collaboration"
-    },
-    {
-      id: 7,
-      img: "/images/logos/logo.webp",
-      title: "GalaxEcon",
-      registrationLink: "#",
-      date: "March 22, 2025",
-      timing: "10 AM - 2 PM",
-      venue: "TBA",
-      description: "Anirveda X Bramhand - An interstellar economics challenge that combines space exploration with financial strategy.",
-      type: "Competition"
-    }
   ];
 
-
   return (
-    <section className="py-20 px-4 bg-black min-h-screen will-change-transform">
-      <style>
-        {`
-          @keyframes slideRight {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(3px); }
-          }
-        `}
-      </style>
+    <section className="py-10 px-4 bg-black min-h-screen">
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ 
-            duration: 0.4,
-            ease: [0.16, 1, 0.3, 1],
-            opacity: { duration: 0.6 },
-            staggerChildren: 0.1
-          }}
-          viewport={{ once: true, margin: "-5%" }}
-          className="text-center mb-16"
-          style={{ 
-            willChange: "opacity, transform",
-            backfaceVisibility: "hidden",
-            transform: "translateZ(0)"
-          }}
-        >
-          <h2 className="text-4xl md:text-6xl font-bold text-primary mb-6 transform-gpu">
+        {/* Section Heading */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-6xl font-bold text-primary mb-4">
             Upcoming Events
           </h2>
-          <p className="text-xl text-secondary max-w-2xl mx-auto transform-gpu">
-            Mark your calendar for these exciting events and join us in creating memorable experiences
+          <p className="text-xl text-secondary max-w-2xl mx-auto">
+            Mark your calendar for these exciting events
           </p>
-        </motion.div>
-
+        </div>
 
         <div className="relative">
           {/* Timeline line */}
-          <div 
-            className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-amber-600 via-amber-500 to-amber-400 transform md:-translate-x-0.5 rounded-full transform-gpu"
-            style={{ 
-              willChange: "transform",
-              backfaceVisibility: "hidden",
-              transform: "translateZ(0)"
-            }}
-          ></div>
+          <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-amber-600 via-amber-500 to-amber-400 transform -translate-x-1/2"></div>
 
-
-          {/* Events */}
-          <div className="space-y-16">
+          {/* Events Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
             {upcomingEvents.map((event, index) => (
-              <motion.div
+              <div
                 key={event.id}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{
-                  x: {
-                    type: "spring",
-                    stiffness: 70,
-                    damping: 20,
-                    duration: 0.5
-                  },
-                  opacity: { 
-                    duration: 0.4, 
-                    ease: [0.16, 1, 0.3, 1]
-                  },
-                  staggerChildren: 0.1
-                }}
-                viewport={{ once: true, margin: "-5%" }}
-                className={`relative flex items-center ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                } flex-col md:flex-row`}
-                style={{
-                  willChange: "opacity, transform",
-                  backfaceVisibility: "hidden",
-                  WebkitFontSmoothing: "subpixel-antialiased",
-                  transform: "translateZ(0)"
-                }}
+                className={`relative flex ${
+                  index % 2 === 0
+                    ? "md:justify-end md:pr-12"
+                    : "md:justify-start md:pl-12"
+                }`}
               >
-                {/* Timeline dot */}
-                <motion.div
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  transition={{ 
-                    type: "spring", 
-                    stiffness: 150,
-                    damping: 15,
-                    duration: 0.4
-                  }}
-                  viewport={{ once: true, margin: "-15%" }}
-                  className="absolute left-8 md:left-1/2 w-6 h-6 bg-black border-4 border-amber-600 rounded-full transform -translate-x-3 md:-translate-x-3 z-20"
-                  style={{ 
-                    willChange: "transform",
-                    transformStyle: "preserve-3d"
-                  }}
-                >
-                  <motion.div
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ 
-                      duration: 3, 
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      times: [0, 0.5, 1],
-                      repeatDelay: 0.5
-                    }}
-                    className="w-full h-full bg-amber-600 rounded-full transform-gpu"
-                    style={{
-                      willChange: "transform"
-                    }}
-                  />
-                </motion.div>
+                {/* Dot */}
+                <div className="absolute left-1/2 top-6 transform -translate-x-1/2 w-6 h-6 bg-black border-4 border-amber-600 rounded-full z-20">
+                  <div className="w-full h-full bg-amber-600 rounded-full animate-pulse"></div>
+                </div>
 
-
-                {/* Event Card */}
-                <motion.div
-                  whileHover={{
-                    scale: 1.01,
-                    y: -3
-                  }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 25,
-                    mass: 0.8,
-                    duration: 0.2
-                  }}
-                  style={{
-                    willChange: "transform",
-                    backfaceVisibility: "hidden",
-                    transformStyle: "preserve-3d",
-                    transform: "translateZ(0)"
-                  }}
-                  className={`bg-gradient-to-br bg-tertiary rounded-3xl shadow-2xl ml-20 md:ml-0 md:w-5/12 ${
-                    index % 2 === 0 ? 'md:mr-12' : 'md:ml-12'
-                  } relative border border-amber-600/30 backdrop-blur-sm overflow-hidden group transform-gpu`}
-                >
-                  {/* Glowing effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-amber-600/5 to-amber-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                 
-                  {/* Arrow pointing to timeline */}
-                  <div className={`absolute top-8 w-0 h-0 ${
-                    index % 2 === 0
-                      ? 'md:right-[-12px] border-l-12 border-l-gray-900'
-                      : 'md:left-[-12px] border-r-12 border-r-gray-900'
-                  } border-t-12 border-b-12 border-t-transparent border-b-transparent hidden md:block z-10`}></div>
-
-
-                  {/* Event Image */}
-                  <div className="relative h-48 overflow-hidden rounded-t-3xl">
+                {/* Card */}
+                <div className="bg-tertiary rounded-3xl shadow-2xl w-full md:w-10/12 relative border border-amber-600/30 overflow-hidden">
+                  {/* Image */}
+                  <div className="h-48 overflow-hidden rounded-t-3xl">
                     <img
                       src={event.img}
                       alt={event.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 transform-gpu"
-                      loading="lazy"
+                      className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                   
-                    {/* Event Type Badge */}
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.2 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      // transition={{ delay: index * 0.1 + 0.3 }}
-                      className="absolute top-4 left-4"
-                    >
-                      <span className="text-xs text-black font-bold px-3 py-1.5 bg-amber-600 rounded-full shadow-lg">
-                        {event.type}
-                      </span>
-                    </motion.div>
                   </div>
 
-
-                  {/* Card Content */}
+                  {/* Content */}
                   <div className="p-6">
-                    <motion.h3
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ 
-                        duration: 0.3,
-                        ease: [0.16, 1, 0.3, 1],
-                        staggerChildren: 0.1
-                      }}
-                      className="text-2xl font-bold text-primary mb-3 group-hover:text-amber-50 transition-colors transform-gpu"
-                    >
+                    <h3 className="text-2xl font-bold text-primary mb-3">
                       {event.title}
-                    </motion.h3>
-
-
-                    <motion.p
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ 
-                        duration: 0.3,
-                        ease: [0.16, 1, 0.3, 1],
-                        delay: 0.1
-                      }}
-                      className="text-secondary mb-6 line-clamp-3 leading-relaxed transform-gpu"
-                    >
+                    </h3>
+                    <p className="text-secondary mb-6 line-clamp-3">
                       {event.description}
-                    </motion.p>
+                    </p>
 
-
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ 
-                        duration: 0.3,
-                        ease: [0.16, 1, 0.3, 1],
-                        delay: 0.2
-                      }}
-                      className="space-y-3 mb-6 transform-gpu"
-                    >
-                      <div className="flex items-center gap-3 text-sm text-primary">
+                    <div className="space-y-2 mb-6 text-sm text-primary">
+                      <div className="flex items-center gap-2">
                         <Calendar className="w-4 h-4 text-secondary" />
-                        <span>{event.date}</span>
+                        {event.date}
                       </div>
-                      <div className="flex items-center gap-3 text-sm text-primary">
+                      <div className="flex items-center gap-2">
                         <Clock className="w-4 h-4 text-secondary" />
-                        <span>{event.timing}</span>
+                        {event.timing}
                       </div>
-                      <div className="flex items-center gap-3 text-sm text-primary">
+                      <div className="flex items-center gap-2">
                         <MapPin className="w-4 h-4 text-secondary" />
-                        <span>{event.venue}</span>
+                        {event.venue}
                       </div>
-                    </motion.div>
+                    </div>
 
-
-                    <motion.div 
-                      className="relative"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ 
-                        duration: 0.3,
-                        ease: "easeOut" 
-                      }}
-                    >
-                      <motion.a
+                    {event.isActive ? (
+                      <a
                         href={event.registrationLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        whileHover={{ 
-                          scale: 1.03
-                        }}
-                        whileTap={{ 
-                          scale: 0.97
-                        }}
-                        transition={{ 
-                          type: "spring", 
-                          stiffness: 400, 
-                          damping: 15,
-                          duration: 0.001
-                        }}
-                        style={{
-                          willChange: "transform",
-                          backfaceVisibility: "hidden",
-                          transform: "translateZ(0)"
-                        }}
-                        className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 to-amber-500 text-black px-6 py-3 rounded-full font-bold shadow-lg transform-gpu"
+                        className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 to-amber-500 text-black px-6 py-3 rounded-full font-bold shadow-lg"
                       >
                         Register Now
-                        <span className="inline-block relative overflow-hidden w-4">
-                          <ArrowRight className="w-4 h-4 text-black absolute transform-gpu" 
-                            style={{ 
-                              animation: "slideRight 2s ease-in-out infinite"
-                            }} 
-                          />
-                        </span>
-                      </motion.a>
-                    </motion.div>
+                        <ArrowRight className="w-4 h-4" />
+                      </a>
+                    ) : (
+                      <button
+                        disabled
+                        className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 to-amber-500 text-black px-6 py-3 rounded-full font-bold cursor-not-allowed shadow-lg"
+                      >
+                        Coming Soon...
+                      </button>
+                    )}
                   </div>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -360,6 +128,4 @@ const UpcomingEventsTimeline = () => {
   );
 };
 
-
 export default UpcomingEventsTimeline;
-

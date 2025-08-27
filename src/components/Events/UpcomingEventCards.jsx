@@ -5,19 +5,20 @@ const UpcomingEventsTimeline = () => {
   const upcomingEvents = [
     {
       id: 3,
-      img: "/images/upcomingEvents/breach.jpg",
-      title: "Breach 2025",
+      img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756301783/TBA-Soon_watubc.png",
+      title: "Breach 2026",
       registrationLink: "https://unstop.com/o/4Qfa2F9?lb=VpYCae40&utm_medium=Share&utm_source=shortUrl",
       date: "March 21-23, 2025",
       timing: "9 AM - 6 PM",
       venue: "TBA",
       description:
-        "Breach 2025 is an exhilarating 3-day coding event based on the theme- 'Driving innovation in financial technology.' Participants will brainstorm, design and develop tools to provide solutions for pre-defined problem statements in the field of digital transactions, personal finance, investment & loans and other financial products.",
-      type: "Hackathon"
+        "Stay Connected to know more...",
+      type: "Hackathon",
+      isActive : false
     },
     {
       id: 2,
-      img: "/images/logos/logo.webp",
+      img: "https://unstop.com/o/4Qfa2F9?lb=VpYCae40",
       title: "Mock RBI",
       registrationLink: "#",
       date: "March 22, 2025",
@@ -25,11 +26,12 @@ const UpcomingEventsTimeline = () => {
       venue: "TBA",
       description:
         "Mock RBI is Anirveda's flagship event that simulates the working of the Reserve Bank of India. Participants will make crucial saving or investing decisions and draft monetary policies while navigating through challenges to ensure economic stability and financial regulation.",
-      type: "Simulation"
+      type: "Simulation",
+      isActive: false
     },
     {
       id: 4,
-      img: "/images/logos/logo.webp",
+      img: "https://unstop.com/o/4Qfa2F9?lb=VpYCae40&utm_medium=Share&utm_source=shortUrl",
       title: "Speaker Session",
       registrationLink: "https://docs.google.com/forms/d/1qmwO1sETLGyDnkCt15wHWAb-J74KSHvy8mhs3_WBNPM/viewform",
       date: "March 23, 2025",
@@ -37,11 +39,12 @@ const UpcomingEventsTimeline = () => {
       venue: "TBA",
       description:
         "An enlightening session featuring a prominent industrialist and visionary leader. Gain firsthand insights into industry trends, leadership strategies, and career advancement from the expert himself/herself!",
-      type: "Workshop"
+      type: "Workshop",
+      isActive: false
     },
     {
       id: 5,
-      img: "/images/logos/logo.webp",
+      img: "https://unstop.com/o/4Qfa2F9?lb=VpYCae40&utm_medium=Share&utm_source=shortUrl",
       title: "Space Odyssey",
       registrationLink: "#",
       date: "March 21-23, 2025",
@@ -49,29 +52,32 @@ const UpcomingEventsTimeline = () => {
       venue: "TBA",
       description:
         "A life-sized, monopoly-inspired event where participants navigate a game board, each assigned an equal base budget & profession from a randomized deck of cards. Every dice roll determines their next move, unveiling new challenges & scenarios.",
-      type: "Game"
+      type: "Game",
+      isActive: false
     },
     {
       id: 6,
-      img: "/images/logos/logo.webp",
+      img: "https://unstop.com/o/4Qfa2F9?lb=VpYCae40&utm_medium=Share&utm_source=shortUrl",
       title: "Parallel Paradigm",
       registrationLink: "#",
       date: "March 21, 2025",
       timing: "4 PM - 6 PM",
       venue: "TBA",
       description: "Anirveda X Mind Ripple - A collaborative event exploring parallel thinking and innovative paradigms.",
-      type: "Collaboration"
+      type: "Collaboration",
+      isActive: false
     },
     {
       id: 7,
-      img: "/images/logos/logo.webp",
+      img: "",
       title: "GalaxEcon",
       registrationLink: "#",
       date: "March 22, 2025",
       timing: "10 AM - 2 PM",
       venue: "TBA",
       description: "Anirveda X Bramhand - An interstellar economics challenge that combines space exploration with financial strategy.",
-      type: "Competition"
+      type: "Competition",
+      isActive: false
     }
   ];
 
@@ -213,7 +219,7 @@ const UpcomingEventsTimeline = () => {
                         <span>{event.venue}</span>
                       </div>
                     </motion.div>
-
+                    { event.isActive ? (
                     <motion.a
                       href={event.registrationLink}
                       target="_blank"
@@ -227,7 +233,15 @@ const UpcomingEventsTimeline = () => {
                     >
                       Register Now 
                       <ArrowRight className="w-4 h-4 text-black transition-transform group-hover:translate-x-1" />
-                    </motion.a>
+                    </motion.a>) : (
+                        <button
+    disabled
+    className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 to-amber-500 text-black px-6 py-3  hover:from-amber-700 hover:to-amber-600 transition-all duration-300 shadow-lg hover:shadow-amber-600/25 rounded-full font-bold cursor-not-allowed"
+  >
+    Coming Soon...
+  </button>
+                    )
+}
                   </div>
                 </motion.div>
               </motion.div>
