@@ -40,7 +40,7 @@ export default function Nav() {
     { id: 2, title: "gallery", url: "/gallery" },
     { id: 3, title: "committee", url: "/committee" },
     { id: 4, title: "sponsors", url: "/sponsors" },
-    { id: 5, title: "blogs", url: "https://anirveda-blogs.vercel.app/", external: true },
+    { id: 5, title: "blogs", url: "/blogs" },
   ];
 
   const moreItems = [

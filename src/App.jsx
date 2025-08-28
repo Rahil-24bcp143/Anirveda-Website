@@ -10,6 +10,7 @@ import DepartmentPage from "./Pages/DepartmentPage";
 import Registration from "./Pages/Registration";
 import Sponsors from "./Pages/Sponsors";
 import Blogs from "./Pages/Blogs";
+import ComingSoonBlogs from "./components/comingsoonblogs";
 
 // Data of all the departments (shortened for clarity)
 import emLogisticsHead from "./data/departments/emNlogistics/emLogisticsHead";
@@ -75,7 +76,7 @@ const App = () => {
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/registration" element={<Registration />} />
               <Route path="/sponsors" element={<Sponsors />} />
-              <Route path="/blogs" element={<Blogs />} />
+              <Route path="/blogs" element={<ComingSoonBlogs />} />
               <Route path='/blogs/:id' element={<BlogDetails/>} />
               <Route path="/cityscapes" element={<Cityscapes />} />
               

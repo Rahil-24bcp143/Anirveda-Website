@@ -9,7 +9,7 @@ const techHeads = [
     id: 2,
     img_src:"https://res.cloudinary.com/duygdcgj3/image/upload/w_300,f_auto,q_auto/v1755525539/Rahil_Tech_Photo2_-_Rahil_Doshi_hdxg4u.jpg",
     name: "Rahil Doshi",
-    linkedIn: "",
+    linkedIn: "https://www.linkedin.com/in/rahil-d20-m02/",
   },
 ]
 
