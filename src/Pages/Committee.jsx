@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
+import AnnouncementBar from "../components/AnnouncementBar";
 import ProfileCard from "../components/Committee/ProfileCard";
 import advisors from "../data/committee/advisors";
 import executives from "../data/committee/executives";
@@ -9,6 +10,7 @@ import ContactUs from "../components/ContactUs";
 export default function Committee() {
   return (
     <div className="bg-black font-Lato">
+      <AnnouncementBar />
       <Navbar />
 
       {/* Hero Section */}
