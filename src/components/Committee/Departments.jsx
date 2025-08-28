@@ -40,7 +40,7 @@ export default function Departments() {
   return (
     <div className="px-4 bg-black text-primary">
       {/* Dropdown Toggle Button */}
-      <div className="sticky top-0 z-50 bg-black py-2">
+      <div className="sticky top-0 z-100 bg-black py-2">
         <button
           onClick={() => setOpen((prev) => !prev)}
           className="flex justify-center items-center gap-2 w-full px-4 rounded-2xl  transition duration-300"
