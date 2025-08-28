@@ -19,25 +19,24 @@ const images = [
   "/images/sponsors/zionSalon.webp",,
 ];
 
-
-
-
-
   return (
     <div className="bg-black font-Lato">
-      <Navbar />
+      <Navbar className = ""/>
       <section 
-        className="relative h-screen flex items-center justify-center bg-cover bg-center bg-fixed"
+        className="relative flex min-h-screen items-center justify-center bg-cover bg-center  bg-no-repeat"
         style={{ 
-          backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('https://res.cloudinary.com/duygdcgj3/image/upload/v1756113471/breach2025_igls9m.png')"
+          backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://res.cloudinary.com/duygdcgj3/image/upload/v1756113471/breach2025_igls9m.png')"
         }}
       >
         <div className="relative text-center px-4 animate-fade-in-up">
           <h1 className="text-5xl md:text-7xl font-bold mb-4 text-primary animate-slide-in-left">
-            <span className="text-secondary bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">ECONOMANIA 2025</span>
+            <span className="text-secondary bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">ECONOMANIA 2026</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-secondary animate-slide-in-right">
             Bigger Than Ever!
+          </p>
+          <p className="text-xl md:text-2xl mb-8 text-secondary animate-slide-in-right">
+          Stay Connected to be a part of Once in a year Event
           </p>
         </div>
       </section>

@@ -1,7 +1,6 @@
 import React from "react";
 import PastEventsCards from "./PastEventCards";
-import UpcomingEventCards from "./UpcomingEventCards";
-// import Timeline from "./Timeline";
+import UpcomingEventsTimeline from "./UpcomingEventCards.jsx";
 
 export default function EventsSection(){
   return (
@@ -13,7 +12,7 @@ export default function EventsSection(){
           </h2>
           <Timeline events={events} />
         </div> */}
-        <UpcomingEventCards />
+      <UpcomingEventsTimeline />
       </div>
       <div className="container mx-auto px-5">
         <div className="mb-10 flex w-full lg lg:mb-0 lg:w-1/2 2xl:pl-4"></div>

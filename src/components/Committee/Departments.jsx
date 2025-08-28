@@ -45,7 +45,7 @@ export default function Departments() {
           onClick={() => setOpen((prev) => !prev)}
           className="flex justify-center items-center gap-2 w-full px-4 rounded-2xl  transition duration-300"
         >
-          <h1 class="bg-black text-center font-Bebas text-[5rem] text-8xl font-light uppercase text-primary">Departments</h1>
+          <h1 className="bg-black text-center font-Bebas text-[5rem] text-8xl font-light uppercase text-primary">Departments</h1>
           <motion.span animate={open ? { rotate: 180 } : { rotate: 0 }}>
             <FiChevronDown size={24} />
           </motion.span>

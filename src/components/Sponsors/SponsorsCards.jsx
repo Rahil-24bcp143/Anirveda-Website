@@ -7,7 +7,7 @@ export default function SponsorsCards() {
     <div className="w-full px-4 mb-10">
       <div className="flex justify-center items-center">
         <h1 className="font-bebas text-4xl text-primary sm:text-5xl">
-          Our Sponsors
+          Our Past Sponsors
         </h1>
       </div>
 
