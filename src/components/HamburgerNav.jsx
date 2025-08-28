@@ -49,10 +49,10 @@ export default function HamburgerNav() {
       </div>
 
       {/* Hamburger bar items */}
-      <div
-        className={`absolute top-0 z-10 h-full w-full bg-secondary-opacity px-5 pt-3 font-Lato text-secondary transition-transform duration-300 ease-in  
-          ${isOpen ? "translate-x-0" : "translate-x-[-100%]"}`}
-      >
+<div
+  className={`fixed inset-0 z-50 h-full w-full bg-secondary-opacity px-5 pt-3 font-Lato text-secondary transition-transform duration-300 ease-in  
+    ${isOpen ? "translate-x-0" : "translate-x-[-100%]"}`}
+>
         {/* Top Bar inside drawer */}
         <div className="flex items-center justify-between">
           <div>
