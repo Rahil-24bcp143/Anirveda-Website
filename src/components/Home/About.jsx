@@ -11,7 +11,7 @@ export default function About() {
           <>
             <h1 className="text-center font-Bebas text-5xl uppercase text-primary sm:text-6xl xl:text-7xl">
               About <br />
-              <span className="text-5xl md:text-[6rem] font-bold mt-2 leading-none text-primary block mt-4">
+              <span className="text-5xl md:text-[6rem] font-bold mt-2 leading-none text-primary block">
                 Anirveda
               </span>
             </h1>
