@@ -2,11 +2,14 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import SpinWheel from "../components/GalaxEcon/SpinWheel";
 import ContactUs from "../components/ContactUs";
+import AnnouncementBar from '../components/AnnouncementBar';
+
 
 const GalaxEcon = () => {
   return (
     <div className="bg-black text-white min-h-screen font-Lato">
       {/* Navbar */}
+      <AnnouncementBar />
       <Navbar />
 
       {/* Header Section */}

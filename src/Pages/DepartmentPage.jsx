@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar"
 import ProfileCard from "../components/Committee/ProfileCard"
 import Departments from "../components/Committee/Departments"
 import ContactUs from "../components/ContactUs"
+import AnnouncementBar from '../components/AnnouncementBar';
 
 export default function DepartmentPage(props) {
   let { heading, heads, core } = props
@@ -17,6 +18,7 @@ export default function DepartmentPage(props) {
   return (
     <div className="bg-black font-Lato">
       <div className="flex min-h-[80vh] flex-col bg-black">
+        <AnnouncementBar />
         <Navbar />
         <div
           className={`

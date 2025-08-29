@@ -4,11 +4,13 @@ import ContactUs from "../components/ContactUs"
 import About from "../components/Sponsors/About";
 import PastSponsors from "../components/Sponsors/PastSponsors";
 // import Policies from "../components/Sponsors/Policies";
+import AnnouncementBar from '../components/AnnouncementBar';
 
 const Sponsors = ()=>{
     return (
       <div className="bg-black font-Lato">
       <section>
+        <AnnouncementBar />
         <Navbar />
         <About />
       </section>

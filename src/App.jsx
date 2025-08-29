@@ -9,7 +9,6 @@ import Gallery from "./Pages/Gallery";
 import DepartmentPage from "./Pages/DepartmentPage";
 import Registration from "./Pages/Registration";
 import Sponsors from "./Pages/Sponsors";
-import Blogs from "./Pages/Blogs";
 import ComingSoonBlogs from "./components/comingsoonblogs";
 
 // Data of all the departments (shortened for clarity)

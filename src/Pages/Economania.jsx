@@ -7,6 +7,7 @@ import TapGame from "../components/Economania/TapGame";
 import ImageStrip from "../components/Economania/ImageStrip";
 
 import EcoSponsors from "../components/Economania/EcoSponsors";
+import AnnouncementBar from '../components/AnnouncementBar';
 const Economania = () => {
   const [gameStarted, setGameStarted] = useState(false);
 
@@ -21,6 +22,7 @@ const images = [
 
   return (
     <div className="bg-black font-Lato">
+      <AnnouncementBar />
       <Navbar className = ""/>
       <section 
         className="relative flex min-h-screen items-center justify-center bg-cover bg-center  bg-no-repeat"
