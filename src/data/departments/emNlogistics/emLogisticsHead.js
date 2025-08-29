@@ -7,13 +7,13 @@ const emLogisticsHead = [
   },
   {
     id: 2,
-    img_src: "https://res.cloudinary.com/duygdcgj3/image/w_300,f_auto,q_auto/upload/v1755525654/Harsh_EM_Photo1_-_Harsh_Thacker_ckbaa2.jpg",
+    img_src: "https://res.cloudinary.com/duygdcgj3/image/upload/w_300,f_auto,q_auto/v1755525654/Harsh_EM_Photo1_-_Harsh_Thacker_ckbaa2.jpg",
     name: "Harsh Thacker",
     linkedIn: "https://www.linkedin.com/in/harsh-thacker-2161b1242?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
   },
   {
     id: 3,
-    img_src: "https://res.cloudinary.com/duygdcgj3/image/w_300,f_auto,q_auto/upload/v1755525658/IMG_6288_-_Shlok_Gajjar_c8pkdz.jpg",
+    img_src: "https://res.cloudinary.com/duygdcgj3/image/upload/w_300,f_auto,q_auto/v1755525658/IMG_6288_-_Shlok_Gajjar_c8pkdz.jpg",
     name: "Shlok Gajjar",
     linkedIn: "",
   },
