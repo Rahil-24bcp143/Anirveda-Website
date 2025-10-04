@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoadingScreen from "./LoadingScreen"; 
 
-
 import HomePage from "./Pages/HomePage";
 import Committee from "./Pages/Committee";
 import Events from "./Pages/Events";
@@ -10,7 +9,7 @@ import Gallery from "./Pages/Gallery";
 import DepartmentPage from "./Pages/DepartmentPage";
 import Registration from "./Pages/Registration";
 import Sponsors from "./Pages/Sponsors";
-import ComingSoonBlogs from "./components/comingsoonblogs";
+import Blogs from "./Pages/Blogs";
 
 // Data of all the departments (shortened for clarity)
 import emLogisticsHead from "./data/departments/emNlogistics/emLogisticsHead";
@@ -31,19 +30,16 @@ import sponsorshipCore from "./data/departments/sponsorship/sponsorshipCore"
 
 import ScrollToTop from "./ScrollToTop";
 
-// Mock RBI
-
-import AdminLogin from './Pages/MockRBI/AdminLogin'
-import AdminPanel from './Pages/MockRBI/AdminPanel'
-
-import { SituationProvider } from "./Context/SituationProvider";
-// import SupplyDemandG from "./Pages/MockRBI/SupplyDemandG"
-
-import Unauthorized from "./Pages/utils/Unauthorized"
 import BlogDetails from "./Pages/BlogDetails";
 import Cityscapes from "./Pages/CityScapes";
 import Economania from "./Pages/Economania";
 import GalaxEcon from "./Pages/GalaxEcon";
+
+import AdminLogin from "./Pages/MockRBI/AdminLogin";
+import AdminPanel from "./Pages/MockRBI/AdminPanel";
+import PlayerLogin from "./Pages/MockRBI/PlayerLogin";
+import PlayerPanel from "./Pages/MockRBI/PlayerPanel";
+import LeaderBoard from "./Pages/MockRBI/LeaderBoard";
 
 
 
@@ -66,7 +62,6 @@ const App = () => {
       {isLoading ? (
         <LoadingScreen symbols={symbols} heading={heading} />
       ) : (
-        <SituationProvider>
           <BrowserRouter>
             <ScrollToTop />
             <Routes>
@@ -76,11 +71,10 @@ const App = () => {
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/registration" element={<Registration />} />
               <Route path="/sponsors" element={<Sponsors />} />
-              <Route path="/blogs" element={<ComingSoonBlogs />} />
+              <Route path="/blogs" element={<Blogs />} />
               <Route path='/blogs/:id' element={<BlogDetails/>} />
               <Route path="/cityscapes" element={<Cityscapes />} />
-              <Route path = "/adminlogin" element={<AdminLogin />}/>
-
+              
               <Route path="/economania" element={<Economania/>} />
               <Route
                 path="/em-logs"
@@ -132,7 +126,10 @@ const App = () => {
                 />
               }
             />
-
+            {/* <Route
+              path="/cr"
+              element={<DepartmentPage heading="Creative" heads={veHeads} />}
+            /> */}
             <Route
               path="/gd"
               element={
@@ -153,19 +150,17 @@ const App = () => {
                 />
               }
             />
-              {/* Mock RBI Simulation */}
-        <Route path="/adminlogin" element={<AdminLogin />} />
-        <Route path="/adminpanel" element={<AdminPanel />} />
-        
-            {/* Utilty routes */}
-            <Route path="/unauthorized" element={<Unauthorized />} />
+            <Route path="/galaxecon" element={<GalaxEcon />} />
+            
+            <Route path="/mockrbi/admin-login" element={<AdminLogin />} />
+            <Route path="/mockrbi/admin-panel" element={<AdminPanel />} />
+            <Route path="/mockrbi/player-login" element={<PlayerLogin />} />
+            <Route path="/mockrbi/player-panel" element={<PlayerPanel />} />
+            <Route path="/mockrbi/leaderboard" element={<LeaderBoard />} />
+            
+            
             </Routes>
-
-
-
-
           </BrowserRouter>
-        </SituationProvider>
       )}
     </div>
   );

@@ -13,7 +13,7 @@ const AdminLogin = () => {
     const token = localStorage.getItem("adminToken");
     if (token === "anirveda-admin-token") {
       setIsLoggedIn(true);
-      navigate("/adminpanel");
+      navigate("/mockrbi/admin-panel");
     }
   }, [navigate]);
 
@@ -29,7 +29,7 @@ const AdminLogin = () => {
       localStorage.setItem("adminToken", "anirveda-admin-token");
       setIsLoggedIn(true);
       toast.success("Login Successful");
-      navigate("/adminpanel");
+      navigate("/mockrbi/admin-panel");
     } else {
       toast.error("Invalid Credentials");
     }
