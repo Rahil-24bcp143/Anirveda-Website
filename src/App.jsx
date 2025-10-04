@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoadingScreen from "./LoadingScreen"; 
 
+
 import HomePage from "./Pages/HomePage";
 import Committee from "./Pages/Committee";
 import Events from "./Pages/Events";
@@ -31,19 +32,19 @@ import sponsorshipCore from "./data/departments/sponsorship/sponsorshipCore"
 import ScrollToTop from "./ScrollToTop";
 
 // Mock RBI
-import Home from "./Pages/MockRBI/Home"
-import Play from "./Pages/MockRBI/Play"
-import Situations from "./Pages/MockRBI/Situations"
-import Login from "./Pages/Admin/Login"
+
+import AdminLogin from './Pages/MockRBI/AdminLogin'
+import AdminPanel from './Pages/MockRBI/AdminPanel'
+
 import { SituationProvider } from "./Context/SituationProvider";
 // import SupplyDemandG from "./Pages/MockRBI/SupplyDemandG"
-import CurrentSituation from "./Pages/MockRBI/CurrentSituation"
+
 import Unauthorized from "./Pages/utils/Unauthorized"
 import BlogDetails from "./Pages/BlogDetails";
 import Cityscapes from "./Pages/CityScapes";
 import Economania from "./Pages/Economania";
-import Leaderboard from "./Pages/MockRBI/LeaderBoard";
 import GalaxEcon from "./Pages/GalaxEcon";
+
 
 
 const App = () => {
@@ -78,7 +79,8 @@ const App = () => {
               <Route path="/blogs" element={<ComingSoonBlogs />} />
               <Route path='/blogs/:id' element={<BlogDetails/>} />
               <Route path="/cityscapes" element={<Cityscapes />} />
-              
+              <Route path = "/adminlogin" element={<AdminLogin />}/>
+
               <Route path="/economania" element={<Economania/>} />
               <Route
                 path="/em-logs"
@@ -130,10 +132,7 @@ const App = () => {
                 />
               }
             />
-            {/* <Route
-              path="/cr"
-              element={<DepartmentPage heading="Creative" heads={veHeads} />}
-            /> */}
+
             <Route
               path="/gd"
               element={
@@ -154,30 +153,17 @@ const App = () => {
                 />
               }
             />
-            <Route path="/galaxecon" element={<GalaxEcon />} />
-            <Route path="/mockrbi" element={<Home />} />
-            <Route path="/mockrbi/play" element={<Play />} />
-            {/* <Route path="/mockrbi/supply" element={<SupplyDemandG />} /> */}
-            <Route path="/mockrbi/admin/situations" element={<Situations />} />
-            <Route path="/mockrbi/situation" element={<CurrentSituation />} />
-            <Route path="/mockrbi/leaderboard" element={<Leaderboard/>} />
-            <Route
-              path="/mockrbi/admin/login"
-              element={<Login redirectTo="/mockrbi/situation" />}
-              // This will redirect to current situation page, which will be shown on projector if needed
-            />
-            <Route
-              path="/mockrbi/admin/leaderboard"
-              element={<Login redirectTo="/mockrbi/leaderboard" />}
-              // This will redirect to current situation page, which will be shown on projector if needed
-            />
-            <Route
-              path="/admin/login"
-              element={<Login redirectTo="/mockrbi/admin/situations" />}
-            />
+              {/* Mock RBI Simulation */}
+        <Route path="/adminlogin" element={<AdminLogin />} />
+        <Route path="/adminpanel" element={<AdminPanel />} />
+        
             {/* Utilty routes */}
             <Route path="/unauthorized" element={<Unauthorized />} />
             </Routes>
+
+
+
+
           </BrowserRouter>
         </SituationProvider>
       )}
