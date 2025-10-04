@@ -35,6 +35,7 @@ import Cityscapes from "./Pages/CityScapes";
 import Economania from "./Pages/Economania";
 import GalaxEcon from "./Pages/GalaxEcon";
 
+import Home from './Pages/MockRBI/Home';
 import AdminLogin from "./Pages/MockRBI/AdminLogin";
 import AdminPanel from "./Pages/MockRBI/AdminPanel";
 import PlayerLogin from "./Pages/MockRBI/PlayerLogin";
@@ -151,12 +152,12 @@ const App = () => {
               }
             />
             <Route path="/galaxecon" element={<GalaxEcon />} />
-            
-            <Route path="/mockrbi/admin-login" element={<AdminLogin />} />
-            <Route path="/mockrbi/admin-panel" element={<AdminPanel />} />
-            <Route path="/mockrbi/player-login" element={<PlayerLogin />} />
-            <Route path="/mockrbi/player-panel" element={<PlayerPanel />} />
-            <Route path="/mockrbi/leaderboard" element={<LeaderBoard />} />
+              {/* Mock RBI Simulation */}
+        <Route path="/mock-rbi" element={<Home />} />
+        <Route path="/mock-rbi/adminlogin" element={<AdminLogin />} />
+        <Route path="/mock-rbi/adminpanel" element={<AdminPanel />} />
+        <Route path="/mock-rbi/playerlogin" element={<PlayerLogin />} />
+        <Route path="/mock-rbi/playerpanel" element={<PlayerPanel />} />
             
             
             </Routes>

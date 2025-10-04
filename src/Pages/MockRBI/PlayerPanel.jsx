@@ -24,6 +24,7 @@ export default function PlayerPanel() {
     fetchActiveSituation(JSON.parse(savedTeam));
   }, [navigate]);
 
+
   const fetchActiveSituation = async (currentTeam) => {
     try {
       const response = await databases.listDocuments(
@@ -91,14 +92,32 @@ export default function PlayerPanel() {
       team.Score = updatedScore;
       localStorage.setItem("mockrbi-team", JSON.stringify(team));
       setSubmitted(true);
+      
     } catch (err) {
       setError("Failed to submit: " + err.message);
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      // Update team login status in database
+      if (team && team.$id) {
+        await databases.updateDocument(
+          DATABASE_ID,
+          TEAMS_COLLECTION_ID,
+          team.$id,
+          {
+            isLoggedIn: false,
+          }
+        );
+      }
+    } catch (err) {
+      console.error("Error updating login status on logout:", err);
+    }
+    
+    // Clear local storage
     localStorage.removeItem("mockrbi-team");
-    navigate("/mockrbi/player-login");
+    navigate("/mock-rbi/home");
   };
 
   if (loading) {
@@ -106,6 +125,7 @@ export default function PlayerPanel() {
   }
 
   return (
+    <div className = "min-h-screen w-full bg-black flex items-center justify-center p-4">
     <div className="container mx-auto py-8 px-4">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
         <div>
@@ -143,6 +163,7 @@ export default function PlayerPanel() {
           </div>
         )}
       </div>
+    </div>
     </div>
   );
 }

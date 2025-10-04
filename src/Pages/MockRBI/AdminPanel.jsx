@@ -10,7 +10,7 @@ export default function AdminPanel() {
     useEffect(() => {
         const token = localStorage.getItem("adminToken");
         if (token !== "anirveda-admin-token") {
-            navigate("/mockrbi/admin-login");
+            navigate("/mock-rbi/adminlogin");
         } else {
             setIsAdmin(true);
         }
@@ -18,7 +18,7 @@ export default function AdminPanel() {
 
     const handleLogout = () => {
         localStorage.removeItem("adminToken");
-        navigate("/mockrbi/admin-login");
+        navigate("/mock-rbi/adminlogin");
     };
 
     if (!isAdmin) return <p>Checking authentication...</p>;

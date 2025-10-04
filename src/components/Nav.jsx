@@ -44,7 +44,7 @@ export default function Nav() {
   ];
 
   const moreItems = [
-    { id: 6, title: "Mock RBI", url: "/mockrbi" },
+    { id: 6, title: "Mock RBI", url: "/mock-rbi" },
     { id: 7, title: "Economania", url: "/economania" },
     { id: 8, title: "GalaxEcon", url: "/galaxecon" }
   ];
