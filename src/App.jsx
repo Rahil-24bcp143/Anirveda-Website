@@ -158,6 +158,7 @@ const App = () => {
         <Route path="/mock-rbi/adminpanel" element={<AdminPanel />} />
         <Route path="/mock-rbi/playerlogin" element={<PlayerLogin />} />
         <Route path="/mock-rbi/playerpanel" element={<PlayerPanel />} />
+        <Route path="/mock-rbi/leaderboard" element={<LeaderBoard />} />
             
             
             </Routes>

@@ -117,7 +117,7 @@ export default function PlayerPanel() {
     
     // Clear local storage
     localStorage.removeItem("mockrbi-team");
-    navigate("/mock-rbi/home");
+    navigate("/mock-rbi/");
   };
 
   if (loading) {
