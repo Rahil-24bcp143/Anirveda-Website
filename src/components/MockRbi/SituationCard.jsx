@@ -1,4 +1,4 @@
-export default function SituationCard({ situation, selectedOption, setSelectedOption, submitted, handleSubmit }) {
+export default function SituationCard({ situation, shuffledOptions, selectedOption, setSelectedOption, submitted, handleSubmit }) {
   return (
     <div className="bg-secondary/10 p-5 rounded-lg">
       <div className="mb-4">
@@ -11,18 +11,18 @@ export default function SituationCard({ situation, selectedOption, setSelectedOp
       {submitted ? (
         <div className="space-y-3">
           <p className="text-secondary font-medium mb-2">Your selection:</p>
-          {situation.option.map((opt, idx) => (
+          {shuffledOptions.map((opt, idx) => (
             <div
               key={idx}
               className={`p-3 rounded-md border ${
                 idx === selectedOption ? "border-primary bg-primary/10 text-primary" : "border-secondary/30 text-secondary/70"
               }`}
             >
-              {opt}
+              {opt.text}
               {idx === selectedOption && (
                 <span className="ml-2 font-bold">
-                  ({situation.weight[idx] > 0 ? "+" : ""}
-                  {situation.weight[idx]})
+                  ({opt.weight > 0 ? "+" : ""}
+                  {opt.weight})
                 </span>
               )}
             </div>
@@ -32,7 +32,7 @@ export default function SituationCard({ situation, selectedOption, setSelectedOp
       ) : (
         <div className="space-y-3">
           <p className="text-secondary font-medium mb-2">Select an option:</p>
-          {situation.option.map((opt, idx) => (
+          {shuffledOptions.map((opt, idx) => (
             <button
               key={idx}
               className={`w-full p-3 text-left rounded-md border ${
@@ -42,7 +42,7 @@ export default function SituationCard({ situation, selectedOption, setSelectedOp
               }`}
               onClick={() => setSelectedOption(idx)}
             >
-              {opt}
+              {opt.text}
             </button>
           ))}
 

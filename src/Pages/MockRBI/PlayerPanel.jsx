@@ -8,11 +8,22 @@ import ScoreDisplay from "../../components/MockRbi/ScoreDisplay";
 export default function PlayerPanel() {
   const [team, setTeam] = useState(null);
   const [activeSituation, setActiveSituation] = useState(null);
+  const [shuffledOptions, setShuffledOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  // Fisher-Yates shuffle algorithm
+  const shuffleArray = (array) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
 
   useEffect(() => {
     const savedTeam = localStorage.getItem("mockrbi-team");
@@ -36,6 +47,16 @@ export default function PlayerPanel() {
       );
       if (response.documents.length > 0) {
         const situation = response.documents[0];
+        
+        // Create shuffled options with original indices
+        const optionsWithIndices = situation.option.map((opt, index) => ({
+          text: opt,
+          originalIndex: index,
+          weight: situation.weight[index]
+        }));
+        const shuffled = shuffleArray(optionsWithIndices);
+        setShuffledOptions(shuffled);
+        
         const responses = await databases.listDocuments(
           DATABASE_ID,
           RESPONSES_COLLECTION_ID,
@@ -46,7 +67,10 @@ export default function PlayerPanel() {
         );
         if (responses.documents.length > 0) {
           setSubmitted(true);
-          setSelectedOption(responses.documents[0].selectedOption);
+          // Find the shuffled index that matches the original selected index
+          const originalSelectedIndex = responses.documents[0].selectedOption;
+          const shuffledIndex = shuffled.findIndex(opt => opt.originalIndex === originalSelectedIndex);
+          setSelectedOption(shuffledIndex);
         } else {
           setSubmitted(false);
           setSelectedOption(null);
@@ -54,6 +78,7 @@ export default function PlayerPanel() {
         setActiveSituation(situation);
       } else {
         setActiveSituation(null);
+        setShuffledOptions([]);
       }
       setLoading(false);
     } catch (err) {
@@ -68,7 +93,10 @@ export default function PlayerPanel() {
       return;
     }
     try {
-      const scoreAwarded = activeSituation.weight[selectedOption];
+      // Get the original index from the shuffled option
+      const originalIndex = shuffledOptions[selectedOption].originalIndex;
+      const scoreAwarded = shuffledOptions[selectedOption].weight;
+      
       await databases.createDocument(
         DATABASE_ID,
         RESPONSES_COLLECTION_ID,
@@ -76,7 +104,7 @@ export default function PlayerPanel() {
         {
           teamId: team.$id,
           situationId: activeSituation.$id,
-          selectedOption,
+          selectedOption: originalIndex,
           scoreAwarded,
         }
       );
@@ -151,6 +179,7 @@ export default function PlayerPanel() {
         {activeSituation ? (
           <SituationCard
             situation={activeSituation}
+            shuffledOptions={shuffledOptions}
             selectedOption={selectedOption}
             setSelectedOption={setSelectedOption}
             submitted={submitted}
