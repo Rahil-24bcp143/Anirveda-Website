@@ -2,10 +2,11 @@
   "projectId": "68e0e6c70006bba52ef3",
   "projectName": "Anirveda Website",
   "settings": {
-    "buildCommand": "npm install && npm run build",
+    "buildCommand": "npm ci --prefer-offline --no-audit && npm run build",
     "outputDirectory": "dist",
-    "installCommand": "npm install",
-    "rootDirectory": "."
+    "installCommand": "npm ci --prefer-offline --no-audit",
+    "rootDirectory": ".",
+    "buildTimeout": 600
   },
   "hosting": {
     "rewrites": [

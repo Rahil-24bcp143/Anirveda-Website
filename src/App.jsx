@@ -49,7 +49,12 @@ const AppContent = ({ symbols, heading }) => {
   const location = useLocation();
   
   // Check if current route is a Mock RBI route
-  const isMockRBIRoute = location.pathname.startsWith('/mock-rbi');
+  const isMockRBIRoute = location.pathname.startsWith('/mock-rbi') || 
+                         location.pathname.startsWith('/adminlogin') ||
+                         location.pathname.startsWith('/adminpanel') ||
+                         location.pathname.startsWith('/playerlogin') ||
+                         location.pathname.startsWith('/playerpanel') ||
+                         location.pathname.startsWith('/leaderboard');
 
   useEffect(() => {
     // Skip loading screen for Mock RBI routes
@@ -63,7 +68,7 @@ const AppContent = ({ symbols, heading }) => {
     }, 4000); //time to change after which the loading page ends
 
     return () => clearTimeout(timer); 
-  }, [isMockRBIRoute]);
+  }, [location.pathname, isMockRBIRoute]);
 
   return (
     <>

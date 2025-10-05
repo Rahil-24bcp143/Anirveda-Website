@@ -12,14 +12,17 @@ export default defineConfig({
   },
   // Optimize build for production
   build: {
-    minify: 'terser',
+    minify: 'esbuild', // Faster than terser
     cssMinify: true,
+    chunkSizeWarningLimit: 1000,
+    sourcemap: false, // Disable sourcemaps to speed up build
     rollupOptions: {
       output: {
         manualChunks: {
           // Separate vendor chunks for better caching
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'animation-vendor': ['framer-motion', 'gsap'],
+          'animation-vendor': ['framer-motion', 'gsap', '@react-spring/web'],
+          'appwrite': ['appwrite'],
         },
       },
     },
