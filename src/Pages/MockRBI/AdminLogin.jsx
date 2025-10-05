@@ -25,7 +25,7 @@ const AdminLogin = () => {
       return;
     }
 
-    if (username === "anirveda-admin" && password === "anirveda-admin-123") {
+    if (username === "anirveda" && password === "admin") {
       localStorage.setItem("adminToken", "anirveda-admin-token");
       setIsLoggedIn(true);
       toast.success("Login Successful");

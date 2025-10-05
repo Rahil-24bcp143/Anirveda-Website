@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import LoadingScreen from "./LoadingScreen"; 
 
 import HomePage from "./Pages/HomePage";
@@ -44,126 +44,146 @@ import LeaderBoard from "./Pages/MockRBI/LeaderBoard";
 
 
 
-const App = () => {
+const AppContent = ({ symbols, heading }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
   
-  const symbols = ['$', '€', '#', '</>', '¥', '&', '%', '&','💸','🚀','🌟','⚖️','💡','💹']; 
-  const heading = "Hey World! This is ANIRVEDA"; //must be changed from LoadingScreen.jsx
+  // Check if current route is a Mock RBI route
+  const isMockRBIRoute = location.pathname.startsWith('/mock-rbi');
 
   useEffect(() => {
+    // Skip loading screen for Mock RBI routes
+    if (isMockRBIRoute) {
+      setIsLoading(false);
+      return;
+    }
+
     const timer = setTimeout(() => {
       setIsLoading(false); 
     }, 4000); //time to change after which the loading page ends
 
     return () => clearTimeout(timer); 
-  }, []);
+  }, [isMockRBIRoute]);
+
+  return (
+    <>
+      {isLoading && !isMockRBIRoute ? (
+        <LoadingScreen symbols={symbols} heading={heading} />
+      ) : (
+        <>
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/committee" element={<Committee />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/registration" element={<Registration />} />
+            <Route path="/sponsors" element={<Sponsors />} />
+            <Route path="/blogs" element={<Blogs />} />
+            <Route path='/blogs/:id' element={<BlogDetails/>} />
+            <Route path="/cityscapes" element={<Cityscapes />} />
+            
+            <Route path="/economania" element={<Economania/>} />
+            <Route
+              path="/em-logs"
+              element={
+                <DepartmentPage
+                  heading="Event Management & Creative"
+                  heads={emLogisticsHead}
+                  core={emLogisticsCore}
+                />
+              }
+            />
+            <Route
+              path="/dm"
+              element={
+                <DepartmentPage
+                  heading="Digital Marketing"
+                  heads={dmHeads}
+                  core={dmCore}
+                />
+              }
+            />
+            <Route
+            path="/pr"
+            element={
+              <DepartmentPage
+                heading="Public Relations"
+                heads={prHeads}
+                core={prCore}
+              />
+            }
+          />
+          <Route
+            path="/cnd"
+            element={
+              <DepartmentPage
+                heading="Content & Documentation"
+                heads={cndHeads}
+                core={cndCore}
+              />
+            }
+          />
+          <Route
+            path="/tech"
+            element={
+              <DepartmentPage
+                heading="Technical"
+                heads={techHeads}
+                core={techCore}
+              />
+            }
+          />
+          {/* <Route
+            path="/cr"
+            element={<DepartmentPage heading="Creative" heads={veHeads} />}
+          /> */}
+          <Route
+            path="/gd"
+            element={
+              <DepartmentPage
+                heading="Graphics Design & Video Editing"
+                heads={gdHeads}
+                core={gdCore}
+              />
+            }
+          />
+          <Route
+            path="/sponsorship"
+            element={
+              <DepartmentPage
+                heading="Sponsorship"
+                heads={sponsorshipHeads}
+                core={sponsorshipCore}
+              />
+            }
+          />
+          <Route path="/galaxecon" element={<GalaxEcon />} />
+            {/* Mock RBI Simulation */}
+      <Route path="/mock-rbi" element={<Home />} />
+      <Route path="/mock-rbi/adminlogin" element={<AdminLogin />} />
+      <Route path="/mock-rbi/adminpanel" element={<AdminPanel />} />
+      <Route path="/mock-rbi/playerlogin" element={<PlayerLogin />} />
+      <Route path="/mock-rbi/playerpanel" element={<PlayerPanel />} />
+      <Route path="/mock-rbi/leaderboard" element={<LeaderBoard />} />
+          
+          
+          </Routes>
+        </>
+      )}
+    </>
+  );
+};
+
+const App = () => {
+  const symbols = ['$', '€', '#', '</>', '¥', '&', '%', '&','💸','🚀','🌟','⚖️','💡','💹']; 
+  const heading = "Hey World! This is ANIRVEDA"; //must be changed from LoadingScreen.jsx
 
   return (
     <div>
-      {isLoading ? (
-        <LoadingScreen symbols={symbols} heading={heading} />
-      ) : (
-          <BrowserRouter>
-            <ScrollToTop />
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/committee" element={<Committee />} />
-              <Route path="/events" element={<Events />} />
-              <Route path="/gallery" element={<Gallery />} />
-              <Route path="/registration" element={<Registration />} />
-              <Route path="/sponsors" element={<Sponsors />} />
-              <Route path="/blogs" element={<Blogs />} />
-              <Route path='/blogs/:id' element={<BlogDetails/>} />
-              <Route path="/cityscapes" element={<Cityscapes />} />
-              
-              <Route path="/economania" element={<Economania/>} />
-              <Route
-                path="/em-logs"
-                element={
-                  <DepartmentPage
-                    heading="Event Management & Creative"
-                    heads={emLogisticsHead}
-                    core={emLogisticsCore}
-                  />
-                }
-              />
-              <Route
-                path="/dm"
-                element={
-                  <DepartmentPage
-                    heading="Digital Marketing"
-                    heads={dmHeads}
-                    core={dmCore}
-                  />
-                }
-              />
-              <Route
-              path="/pr"
-              element={
-                <DepartmentPage
-                  heading="Public Relations"
-                  heads={prHeads}
-                  core={prCore}
-                />
-              }
-            />
-            <Route
-              path="/cnd"
-              element={
-                <DepartmentPage
-                  heading="Content & Documentation"
-                  heads={cndHeads}
-                  core={cndCore}
-                />
-              }
-            />
-            <Route
-              path="/tech"
-              element={
-                <DepartmentPage
-                  heading="Technical"
-                  heads={techHeads}
-                  core={techCore}
-                />
-              }
-            />
-            {/* <Route
-              path="/cr"
-              element={<DepartmentPage heading="Creative" heads={veHeads} />}
-            /> */}
-            <Route
-              path="/gd"
-              element={
-                <DepartmentPage
-                  heading="Graphics Design & Video Editing"
-                  heads={gdHeads}
-                  core={gdCore}
-                />
-              }
-            />
-            <Route
-              path="/sponsorship"
-              element={
-                <DepartmentPage
-                  heading="Sponsorship"
-                  heads={sponsorshipHeads}
-                  core={sponsorshipCore}
-                />
-              }
-            />
-            <Route path="/galaxecon" element={<GalaxEcon />} />
-              {/* Mock RBI Simulation */}
-        <Route path="/mock-rbi" element={<Home />} />
-        <Route path="/mock-rbi/adminlogin" element={<AdminLogin />} />
-        <Route path="/mock-rbi/adminpanel" element={<AdminPanel />} />
-        <Route path="/mock-rbi/playerlogin" element={<PlayerLogin />} />
-        <Route path="/mock-rbi/playerpanel" element={<PlayerPanel />} />
-        <Route path="/mock-rbi/leaderboard" element={<LeaderBoard />} />
-            
-            
-            </Routes>
-          </BrowserRouter>
-      )}
+      <BrowserRouter>
+        <AppContent symbols={symbols} heading={heading} />
+      </BrowserRouter>
     </div>
   );
 };

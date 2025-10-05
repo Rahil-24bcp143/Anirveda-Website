@@ -220,6 +220,8 @@ export default function PlayerPanel() {
 
   const handleAutoSubmit = async () => {
     try {
+      // Use 0 as selectedOption for timeout (or any valid index 0-3)
+      // scoreAwarded being 0 will indicate it's a timeout
       await databases.createDocument(
         DATABASE_ID,
         RESPONSES_COLLECTION_ID,
@@ -227,17 +229,19 @@ export default function PlayerPanel() {
         {
           teamId: team.$id,
           situationId: activeSituation.$id,
-          selectedOption: -1,
+          selectedOption: 0, // Use valid range value, but with 0 score to indicate timeout
           scoreAwarded: 0,
         }
       );
       setSubmitted(true);
+      setTimerActive(false);
+      setSelectedOption(null); // Set to null to show no selection was made
       sessionStorage.removeItem("mockrbi-timer");
       sessionStorage.removeItem("mockrbi-situation-id");
-      setError("Time's up! No points awarded.");
       fetchLeaderboard();
     } catch (err) {
       console.error("Auto-submit failed:", err);
+      setError("Failed to process timeout: " + err.message);
     }
   };
 
@@ -359,7 +363,72 @@ export default function PlayerPanel() {
             </div>
           </div>
 
-          {/* Leaderboard column stays unchanged */}
+          {/* Mini Leaderboard - Takes 1 column on large screens */}
+          <div className="lg:col-span-1">
+            <div className="bg-tertiary p-6 rounded-lg shadow-md sticky top-4">
+              <h3 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M11.954 6.221c.394-.141.65-.54.65-.972 0-.623-.418-1.132-1.025-1.132-.503 0-.89.31-1.003.738a.98.98 0 00-.715-.316c-.607 0-1.025.509-1.025 1.132 0 .432.256.831.65 1.053L5 14h10l-4.046-7.779zM5.5 15a.5.5 0 00-.5.5v2a.5.5 0 00.5.5h9a.5.5 0 00.5-.5v-2a.5.5 0 00-.5-.5h-9z"></path>
+                </svg>
+                Top 5 Teams
+              </h3>
+              <div className="space-y-3">
+                {allTeams.length === 0 ? (
+                  <p className="text-secondary/70 text-sm">No teams yet</p>
+                ) : (
+                  allTeams.map((t, index) => {
+                    const isCurrentTeam = t.$id === team.$id;
+                    return (
+                      <div
+                        key={t.$id}
+                        className={`flex items-center justify-between p-3 rounded-md ${
+                          isCurrentTeam
+                            ? "bg-primary/20 border border-primary/40"
+                            : "bg-secondary/10"
+                        }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <span
+                            className={`text-lg font-bold ${
+                              index === 0
+                                ? "text-yellow-500"
+                                : index === 1
+                                ? "text-gray-400"
+                                : index === 2
+                                ? "text-orange-600"
+                                : "text-secondary"
+                            }`}
+                          >
+                            {index + 1}
+                          </span>
+                          <span
+                            className={`font-medium ${
+                              isCurrentTeam ? "text-primary" : "text-secondary"
+                            } truncate max-w-[120px]`}
+                          >
+                            {t.teamName}
+                          </span>
+                        </div>
+                        <span
+                          className={`font-bold ${
+                            isCurrentTeam ? "text-primary" : "text-secondary"
+                          }`}
+                        >
+                          {t.Score}
+                        </span>
+                      </div>
+                    );
+                  })
+                )}
+              </div>
+              <button
+                onClick={() => window.open("/mock-rbi/leaderboard", "_blank")}
+                className="w-full mt-4 px-4 py-2 bg-primary/20 text-primary rounded-md hover:bg-primary/30 text-sm font-medium"
+              >
+                View Full Leaderboard
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

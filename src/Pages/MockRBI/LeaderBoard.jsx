@@ -7,7 +7,7 @@ export default function LeaderBoard() {
 
   useEffect(() => {
     fetchTeams();
-    const interval = setInterval(fetchTeams, 5000);
+    const interval = setInterval(fetchTeams, 30000);
     return () => clearInterval(interval);
   }, []);
 
