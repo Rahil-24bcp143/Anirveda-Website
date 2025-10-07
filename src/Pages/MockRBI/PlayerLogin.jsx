@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { databases, DATABASE_ID, TEAMS_COLLECTION_ID, ID } from "../../config/appwrite";
 import { Query } from "appwrite";
+import { Button } from "../../components/ui/moving-border";
 
 export default function PlayerLogin() {
   const [teamName, setTeamName] = useState("");
@@ -76,7 +77,7 @@ export default function PlayerLogin() {
     <div className="min-h-screen w-full bg-black flex items-center justify-center p-4">
       <div className="container mx-auto max-w-lg">
         {/* Title Section: Made more prominent and spaced */}
-        <h1 className="text-6xl font-extrabold text-primary mb-16 text-center tracking-wider drop-shadow-lg animate-fadeInDown">
+        <h1 className="text-4xl font-extrabold text-primary mb-16 text-center tracking-wider drop-shadow-lg animate-fadeInDown">
           Mock RBI Challenge
         </h1>
 
@@ -127,19 +128,23 @@ export default function PlayerLogin() {
               />
             </div>
             
-            {/* Submit Button: Made it a strong, eye-catching action button */}
-            <button
-              type="submit"
-              className="w-full bg-primary text-black font-extrabold text-lg py-3 rounded-lg shadow-lg transition duration-300 ease-in-out transform mt-8 uppercase tracking-wider"
-            >
-              {isRegistering ? "Register Team & Proceed" : "Login & Start Challenge"}
-            </button>
-            
-            {/* Toggle Button: Subtler link below the main action */}
+            {/* Submit Button: Correctly styled with proper animation */}
+            <div className="mt-8">
+              <Button
+                type="submit"
+                borderClassName="bg-[radial-gradient(#C9872B_40%,transparent_60%)]"
+                containerClassName="w-full h-12"
+                className="w-full bg-primary text-white font-bold text-base rounded-md"
+                duration={2000}
+                borderRadius="0.375rem"
+              >
+                {isRegistering ? "Register Team & Proceed" : "Login & Start Challenge"}
+              </Button>
+            </div>
             <div className="pt-4 text-center">
               <button
                 type="button"
-                className="text-secondary/70 text-sm transition duration-200 underline-offset-4"
+                className="text-secondary/70 text-sm transition-all duration-200 hover:text-primary hover:underline underline-offset-4"
                 onClick={() => setIsRegistering(!isRegistering)}
               >
                 {isRegistering ? "Already have a team? Log in here." : "New to the challenge? Create a team."}
