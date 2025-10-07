@@ -220,8 +220,7 @@ export default function PlayerPanel() {
 
   const handleAutoSubmit = async () => {
     try {
-      // Use 0 as selectedOption for timeout (or any valid index 0-3)
-      // scoreAwarded being 0 will indicate it's a timeout
+      
       await databases.createDocument(
         DATABASE_ID,
         RESPONSES_COLLECTION_ID,

@@ -1,20 +1,43 @@
+import { useState, useEffect } from 'react';
+
 export default function SituationCard({ situation, shuffledOptions, selectedOption, setSelectedOption, submitted, handleSubmit, timeLeft }) {
+ 
+  const [renderedData, setRenderedData] = useState({ situation, shuffledOptions });
+
+  useEffect(() => {
+    
+    if (!submitted) {
+      setRenderedData({ situation, shuffledOptions });
+    }
+  }, [situation, shuffledOptions, submitted]);
+ 
+  if (!renderedData.situation) {
+    return (
+        <div className="space-y-6 text-center p-8">
+            <p className="text-secondary/70">Loading Situation...</p>
+        </div>
+    );
+  }
+ 
+
+
   const isTimeUp = timeLeft === 0;
+  const option_ready = renderedData.shuffledOptions && renderedData.shuffledOptions.length > 0;
 
   return (
     <div className="space-y-6">
-      {/* Situation Header */}
+
       <div className="space-y-3">
         <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary/20 to-secondary/20 px-4 py-2 rounded-full border border-primary/30">
           <svg className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
             <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" />
           </svg>
           <span className="text-sm font-semibold text-primary uppercase tracking-wider">
-            Round {situation.round}
+            Round {renderedData.situation.round}
           </span>
         </div>
         <h3 className="text-xl lg:text-2xl font-semibold text-secondary/95 leading-relaxed">
-          {situation.question}
+          {renderedData.situation.question}
         </h3>
       </div>
 
@@ -38,7 +61,7 @@ export default function SituationCard({ situation, shuffledOptions, selectedOpti
             </div>
           ) : (
             <div className="space-y-2.5">
-              {shuffledOptions.map((opt, idx) => (
+              {option_ready && renderedData.shuffledOptions.map((opt, idx) => (
                 <div
                   key={idx}
                   className={`p-4 rounded-xl border transition-all duration-200 ${
@@ -93,7 +116,7 @@ export default function SituationCard({ situation, shuffledOptions, selectedOpti
               </div>
               
               <div className="space-y-2.5">
-                {shuffledOptions.map((opt, idx) => (
+                {option_ready && renderedData.shuffledOptions.map((opt, idx) => (
                   <button
                     key={idx}
                     className={`w-full p-4 text-left rounded-xl border transition-all duration-200 ${
