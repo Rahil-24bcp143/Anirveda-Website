@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function SituationCard({ situation, shuffledOptions, selectedOption, setSelectedOption, submitted, handleSubmit, timeLeft }) {
+export default function SituationCard({ situation, shuffledOptions, selectedOption, setSelectedOption, submitted, handleSubmit, timeLeft, responseTime }) {
  
   const [renderedData, setRenderedData] = useState({ situation, shuffledOptions });
 
@@ -86,6 +86,34 @@ export default function SituationCard({ situation, shuffledOptions, selectedOpti
                   </div>
                 </div>
               ))}
+            </div>
+          )}
+          
+          {/* Response Time Display */}
+          {responseTime && (
+            <div className="mt-4 mb-2 p-3 bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 rounded-xl">
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span className="text-secondary/80 text-sm font-medium">Response Time:</span>
+                </div>
+                <div className="text-primary font-bold">
+                  {responseTime === 90000 ? (
+                    "Time Expired" // Max time reached
+                  ) : (
+                    <>
+                      {(responseTime / 1000).toFixed(2)}s
+                      <span className="ml-1 text-xs text-secondary/60">
+                        {responseTime < 10000 ? " (Excellent)" : 
+                         responseTime < 30000 ? " (Good)" : 
+                         responseTime < 60000 ? " (Average)" : " (Slow)"}
+                      </span>
+                    </>
+                  )}
+                </div>
+              </div>
             </div>
           )}
           

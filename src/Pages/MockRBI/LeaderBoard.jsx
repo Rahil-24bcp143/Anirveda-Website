@@ -15,13 +15,27 @@ export default function LeaderBoard() {
 
   const fetchTeams = async () => {
     try {
+      // Fetch all teams from the database
       const response = await databases.listDocuments(
         DATABASE_ID,
         TEAMS_COLLECTION_ID,
         [Query.orderDesc("Score")]
       );
       
-      const newTeams = response.documents;
+      // Sort teams based on score first, then by response time for tiebreakers
+      const newTeams = [...response.documents].sort((a, b) => {
+        // First, sort by score (higher scores first)
+        if (b.Score !== a.Score) {
+          return b.Score - a.Score;
+        }
+        
+        // For teams with the same score, sort by average response time (lower is better)
+        // If no response time is recorded, place them below teams with response times
+        const aTime = a.averageResponseTime !== undefined ? a.averageResponseTime : Number.MAX_SAFE_INTEGER;
+        const bTime = b.averageResponseTime !== undefined ? b.averageResponseTime : Number.MAX_SAFE_INTEGER;
+        
+        return aTime - bTime;
+      });
       
       const changes = {};
       const newRanks = {};
@@ -127,6 +141,14 @@ export default function LeaderBoard() {
                 </h1>
             </div>
             <p className="text-secondary mt-3 text-lg">Real-time rankings based on scores</p>
+            <p className="text-secondary/60 text-sm mt-1">
+              <span className="inline-flex items-center">
+                <svg className="w-3.5 h-3.5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                Equal scores are ranked by fastest average response time
+              </span>
+            </p>
         </header>
 
         {/* Podium Section for Top 3 */}
@@ -140,6 +162,14 @@ export default function LeaderBoard() {
                   <div className="w-20 h-20 rounded-full border-4 flex items-center justify-center font-bold text-2xl my-3" style={{borderColor: '#C0C0C0', backgroundColor: '#0F0F0F', color: '#C0C0C0'}}>{getAvatarInitials(topThree[1].teamName)}</div>
                   <p className="font-bold text-lg text-gray-200 truncate w-full">{topThree[1].teamName}</p>
                   <p className="text-primary text-xl font-semibold mt-1">{topThree[1].Score}</p>
+                  {topThree[1].averageResponseTime !== undefined && (
+                    <div className="mt-2 flex items-center justify-center gap-1 text-gray-400 text-sm">
+                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span>{(topThree[1].averageResponseTime / 1000).toFixed(1)}s</span>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -152,6 +182,14 @@ export default function LeaderBoard() {
                   <div className="w-24 h-24 rounded-full border-4 border-primary flex items-center justify-center font-bold text-3xl my-4" style={{backgroundColor: '#0F0F0F', color: '#C9872B'}}>{getAvatarInitials(topThree[0].teamName)}</div>
                   <p className="font-bold text-2xl text-white truncate w-full">{topThree[0].teamName}</p>
                   <p className="text-primary text-3xl font-bold mt-2">{topThree[0].Score}</p>
+                  {topThree[0].averageResponseTime !== undefined && (
+                    <div className="mt-2 flex items-center justify-center gap-1.5 bg-primary/20 px-3 py-1 rounded-full border border-primary/30 text-primary">
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className="font-medium">{(topThree[0].averageResponseTime / 1000).toFixed(1)}s</span>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -163,6 +201,14 @@ export default function LeaderBoard() {
                   <div className="w-20 h-20 rounded-full border-4 flex items-center justify-center font-bold text-2xl my-3" style={{borderColor: '#CD7F32', backgroundColor: '#0F0F0F', color: '#CD7F32'}}>{getAvatarInitials(topThree[2].teamName)}</div>
                   <p className="font-bold text-lg text-gray-200 truncate w-full">{topThree[2].teamName}</p>
                   <p className="text-primary text-xl font-semibold mt-1">{topThree[2].Score}</p>
+                  {topThree[2].averageResponseTime !== undefined && (
+                    <div className="mt-2 flex items-center justify-center gap-1 text-gray-400 text-sm">
+                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span>{(topThree[2].averageResponseTime / 1000).toFixed(1)}s</span>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -172,9 +218,10 @@ export default function LeaderBoard() {
         {/* Main Ranking List */}
         <main style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border-color)' }} className="backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden border">
           <div className="grid grid-cols-12 gap-4 px-6 py-4 border-b text-secondary font-semibold uppercase text-sm" style={{ borderColor: 'var(--border-color)' }}>
-            <div className="col-span-2">Rank</div>
-            <div className="col-span-6">Team</div>
-            <div className="col-span-4 text-right">Score</div>
+            <div className="col-span-1">Rank</div>
+            <div className="col-span-5">Team</div>
+            <div className="col-span-3 text-right">Score</div>
+            <div className="col-span-3 text-right">Avg. Response</div>
           </div>
           <div className="max-h-[45vh] overflow-y-auto leaderboard-scroll space-y-1 p-2">
             {teams.length === 0 ? (
@@ -193,16 +240,33 @@ export default function LeaderBoard() {
                     className={`grid grid-cols-12 gap-4 items-center px-4 py-3 rounded-lg transition-colors hover:bg-white/5 ${animationClass}`}
                     style={{ animationDelay: `${index * 50}ms`, opacity: 0, animation: `fadeIn 0.5s ease-out forwards ${index * 50}ms`}}
                   >
-                    <div className="col-span-2 flex items-center">
-                      <span className="text-lg font-bold text-secondary opacity-80 w-8 text-center">{rank}</span>
-                      {rankChange === 'up' && <svg className="w-5 h-5 text-green-400 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 17a.75.75 0 01-.75-.75V5.612L5.29 9.77a.75.75 0 01-1.08-1.04l5.25-5.5a.75.75 0 011.08 0l5.25 5.5a.75.75 0 11-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0110 17z" clipRule="evenodd" /></svg>}
-                      {rankChange === 'down' && <svg className="w-5 h-5 text-red-400 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 3a.75.75 0 01.75.75v10.638l3.96-4.158a.75.75 0 111.08 1.04l-5.25 5.5a.75.75 0 01-1.08 0l-5.25-5.5a.75.75 0 111.08-1.04l3.96 4.158V3.75A.75.75 0 0110 3z" clipRule="evenodd" /></svg>}
+                    <div className="col-span-1 flex items-center">
+                      <span className="text-lg font-bold text-secondary opacity-80 w-6 text-center">{rank}</span>
+                      {rankChange === 'up' && <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 17a.75.75 0 01-.75-.75V5.612L5.29 9.77a.75.75 0 01-1.08-1.04l5.25-5.5a.75.75 0 011.08 0l5.25 5.5a.75.75 0 11-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0110 17z" clipRule="evenodd" /></svg>}
+                      {rankChange === 'down' && <svg className="w-5 h-5 text-red-400" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 3a.75.75 0 01.75.75v10.638l3.96-4.158a.75.75 0 111.08 1.04l-5.25 5.5a.75.75 0 01-1.08 0l-5.25-5.5a.75.75 0 111.08-1.04l3.96 4.158V3.75A.75.75 0 0110 3z" clipRule="evenodd" /></svg>}
                     </div>
-                    <div className="col-span-6 flex items-center gap-4">
-                      <div className="w-9 h-9 rounded-full border-2 border-secondary/50 flex items-center justify-center font-bold text-xs" style={{backgroundColor: '#0F0F0F', color: '#B69575'}}>{getAvatarInitials(team.teamName)}</div>
-                      <span className="font-medium text-gray-300">{team.teamName}</span>
+                    <div className="col-span-5 flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full border-2 border-secondary/50 flex items-center justify-center font-bold text-xs" style={{backgroundColor: '#0F0F0F', color: '#B69575'}}>{getAvatarInitials(team.teamName)}</div>
+                      <span className="font-medium text-gray-300 truncate">{team.teamName}</span>
                     </div>
-                    <div className="col-span-4 text-right font-semibold text-lg text-secondary">{team.Score}</div>
+                    <div className="col-span-3 text-right font-semibold text-lg text-secondary">{team.Score}</div>
+                    <div className="col-span-3 text-right">
+                      {team.averageResponseTime !== undefined ? (
+                        <div className={`inline-flex items-center justify-end px-2 py-1 rounded text-xs font-medium ${
+                          team.averageResponseTime < 15000 ? "bg-green-500/20 text-green-400" : 
+                          team.averageResponseTime < 30000 ? "bg-lime-500/20 text-lime-400" : 
+                          team.averageResponseTime < 60000 ? "bg-amber-500/20 text-amber-400" : 
+                          "bg-rose-500/20 text-rose-400"
+                        }`}>
+                          <svg className="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          {(team.averageResponseTime / 1000).toFixed(1)}s
+                        </div>
+                      ) : (
+                        <span className="text-gray-500 text-sm">—</span>
+                      )}
+                    </div>
                   </div>
                 );
               })

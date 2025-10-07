@@ -67,6 +67,7 @@ export default function AdminSituationForm() {
         option,
         weight,
         isActive: true,
+        publishedAt: new Date().toISOString(), // Add timestamp when the situation is published
       });
 
       setSituations([...situations, newSituation]);

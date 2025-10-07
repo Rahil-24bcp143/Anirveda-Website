@@ -24,6 +24,8 @@ export default function PlayerPanel() {
   const [timerActive, setTimerActive] = useState(false);
   const [allTeams, setAllTeams] = useState([]);
   const [canFetchNew, setCanFetchNew] = useState(false);
+  const [situationStartTime, setSituationStartTime] = useState(null); // Track when the situation was shown
+  const [responseTime, setResponseTime] = useState(null); // Track response time in ms
 
   const navigate = useNavigate();
 
@@ -39,12 +41,30 @@ export default function PlayerPanel() {
 
   const fetchLeaderboard = async () => {
     try {
+      // Fetch teams sorted by score
       const response = await databases.listDocuments(
         DATABASE_ID,
         TEAMS_COLLECTION_ID,
         [Query.orderDesc("Score")]
       );
-      setAllTeams(response.documents.slice(0, 5));
+      
+      // Sort teams with the same score by average response time
+      const sortedTeams = [...response.documents].sort((a, b) => {
+        // First, sort by score (higher scores first)
+        if (b.Score !== a.Score) {
+          return b.Score - a.Score;
+        }
+        
+        // For teams with the same score, sort by average response time (lower is better)
+        // If no response time is recorded, place them below teams with response times
+        const aTime = a.averageResponseTime !== undefined ? a.averageResponseTime : Number.MAX_SAFE_INTEGER;
+        const bTime = b.averageResponseTime !== undefined ? b.averageResponseTime : Number.MAX_SAFE_INTEGER;
+        
+        return aTime - bTime;
+      });
+      
+      // Set the top 5 teams
+      setAllTeams(sortedTeams.slice(0, 5));
     } catch (error) {
       console.error("Error fetching leaderboard:", error);
     }
@@ -144,6 +164,11 @@ export default function PlayerPanel() {
           }
           setTimerActive(true);
           setCanFetchNew(false);
+          
+          // Track when this situation is presented to the user for response time calculation
+          const currentTime = new Date().getTime(); // We keep this as timestamp for easy calculations
+          setSituationStartTime(currentTime);
+          sessionStorage.setItem("mockrbi-situation-start", currentTime.toString());
         }
         setActiveSituation(situation);
       } else {
@@ -152,7 +177,9 @@ export default function PlayerPanel() {
         setTimerActive(false);
         sessionStorage.removeItem("mockrbi-timer");
         sessionStorage.removeItem("mockrbi-situation-id");
+        sessionStorage.removeItem("mockrbi-situation-start");
         setCanFetchNew(false);
+        setSituationStartTime(null);
       }
       setLoading(false);
     } catch (err) {
@@ -187,7 +214,21 @@ export default function PlayerPanel() {
     try {
       const originalIndex = shuffledOptions[selectedOption].originalIndex;
       const scoreAwarded = shuffledOptions[selectedOption].weight;
-
+      
+      // Calculate response time in milliseconds
+      const now = new Date();
+      const respondedAt = now;
+      let calculatedResponseTime = 0;
+      
+      // Use the stored situation start time or the current session's start time
+      const startTimeStr = sessionStorage.getItem("mockrbi-situation-start");
+      if (startTimeStr && situationStartTime) {
+        const startTime = parseInt(startTimeStr, 10);
+        calculatedResponseTime = now.getTime() - startTime;
+        setResponseTime(calculatedResponseTime);
+      }
+      
+      // Create response document with timing information
       await databases.createDocument(
         DATABASE_ID,
         RESPONSES_COLLECTION_ID,
@@ -197,21 +238,49 @@ export default function PlayerPanel() {
           situationId: activeSituation.$id,
           selectedOption: originalIndex,
           scoreAwarded,
+          responseTime: calculatedResponseTime, // Store response time in milliseconds
+          respondedAt: respondedAt,
         }
       );
+      
+      // Update team document with score and timing information
       const updatedScore = team.Score + scoreAwarded;
+      
+      // Update the team's total response time for tiebreaker purposes
+      const currentTotalResponseTime = team.totalResponseTime || 0;
+      const updatedTotalResponseTime = currentTotalResponseTime + calculatedResponseTime;
+      
+      // Update team document with both score and timing data
       await databases.updateDocument(
         DATABASE_ID,
         TEAMS_COLLECTION_ID,
         team.$id,
-        { Score: updatedScore }
+        { 
+          Score: updatedScore,
+          totalResponseTime: updatedTotalResponseTime,
+          // Store the average response time for easier display in leaderboard
+          averageResponseTime: team.responseCount ? 
+            Math.round((updatedTotalResponseTime) / (team.responseCount + 1)) : 
+            calculatedResponseTime,
+          responseCount: (team.responseCount || 0) + 1
+        }
       );
+      
+      // Update local team data with new score and timing
       team.Score = updatedScore;
+      team.totalResponseTime = updatedTotalResponseTime;
+      team.responseCount = (team.responseCount || 0) + 1;
+      team.averageResponseTime = team.responseCount ? 
+        Math.round(team.totalResponseTime / team.responseCount) : 
+        calculatedResponseTime;
+        
       localStorage.setItem("mockrbi-team", JSON.stringify(team));
+      
       setSubmitted(true);
       setTimerActive(false);
       sessionStorage.removeItem("mockrbi-timer");
       sessionStorage.removeItem("mockrbi-situation-id");
+      sessionStorage.removeItem("mockrbi-situation-start");
       fetchLeaderboard();
     } catch (err) {
       setError("Failed to submit: " + err.message);
@@ -220,6 +289,9 @@ export default function PlayerPanel() {
 
   const handleAutoSubmit = async () => {
     try {
+      // For auto-submit (timeout), use the maximum response time (full 90 seconds)
+      const maxResponseTime = 90 * 1000; // 90 seconds in milliseconds
+      const respondedAt = new Date();
       
       await databases.createDocument(
         DATABASE_ID,
@@ -230,13 +302,45 @@ export default function PlayerPanel() {
           situationId: activeSituation.$id,
           selectedOption: 0, // Use valid range value, but with 0 score to indicate timeout
           scoreAwarded: 0,
+          responseTime: maxResponseTime, // Max response time for timeouts
+          respondedAt: respondedAt,
         }
       );
+      
+      // Update the team's total response time for tiebreaker purposes
+      const currentTotalResponseTime = team.totalResponseTime || 0;
+      const updatedTotalResponseTime = currentTotalResponseTime + maxResponseTime;
+      
+      // Update team document with timing data
+      await databases.updateDocument(
+        DATABASE_ID,
+        TEAMS_COLLECTION_ID,
+        team.$id,
+        { 
+          totalResponseTime: updatedTotalResponseTime,
+          averageResponseTime: team.responseCount ? 
+            Math.round((updatedTotalResponseTime) / (team.responseCount + 1)) : 
+            maxResponseTime,
+          responseCount: (team.responseCount || 0) + 1
+        }
+      );
+      
+      // Update local team data
+      team.totalResponseTime = updatedTotalResponseTime;
+      team.responseCount = (team.responseCount || 0) + 1;
+      team.averageResponseTime = team.responseCount ? 
+        Math.round(team.totalResponseTime / team.responseCount) : 
+        maxResponseTime;
+        
+      localStorage.setItem("mockrbi-team", JSON.stringify(team));
+      
       setSubmitted(true);
       setTimerActive(false);
       setSelectedOption(null); // Set to null to show no selection was made
+      setResponseTime(maxResponseTime);
       sessionStorage.removeItem("mockrbi-timer");
       sessionStorage.removeItem("mockrbi-situation-id");
+      sessionStorage.removeItem("mockrbi-situation-start");
       fetchLeaderboard();
     } catch (err) {
       console.error("Auto-submit failed:", err);
@@ -250,6 +354,12 @@ export default function PlayerPanel() {
       setTimeLeft(90);
       setTimerActive(true);
       setCanFetchNew(false);
+      setResponseTime(null);
+      
+      // Reset situation start time for new situation
+      const currentTime = new Date().getTime(); // Keep as timestamp for calculations
+      setSituationStartTime(currentTime);
+      sessionStorage.setItem("mockrbi-situation-start", currentTime.toString());
     }
   };
 
@@ -383,6 +493,7 @@ export default function PlayerPanel() {
                       submitted={submitted}
                       handleSubmit={handleSubmit}
                       timeLeft={timeLeft}
+                      responseTime={responseTime}
                     />
                   </div>
 
