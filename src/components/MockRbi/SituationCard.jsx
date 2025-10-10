@@ -101,7 +101,7 @@ export default function SituationCard({ situation, shuffledOptions, selectedOpti
                 </div>
                 <div className="text-primary font-bold">
                   {responseTime === 90000 ? (
-                    "Time Expired" // Max time reached
+                    "Time Expired! No response Recorded" // Max time reached
                   ) : (
                     <>
                       {(responseTime / 1000).toFixed(2)}s
