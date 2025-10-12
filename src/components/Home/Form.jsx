@@ -42,10 +42,10 @@ export default function Form(props) {
 
       emailjs
         .sendForm(
-          "service_b1udhff",
-          "template_ljeybx6",
+          "service_sw8ehgj",
+          "template_ls82fgr",
           form.current,
-          "6TsDXqZKcdkjk8gMS"
+          "8ZriNqr0I8M9ftNbI"
         )
         .then(
           () => {
