@@ -116,7 +116,7 @@ export default function HamburgerNav() {
               <Link to={"/galaxecon"} onClick={handleHamburgerClick}>
                 <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">GalaxEcon</h1>
               </Link>
-              <Link to={"/mockrbi"} onClick={handleHamburgerClick}>
+              <Link to={"/mock-rbi"} onClick={handleHamburgerClick}>
                 <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">MockRBI</h1>
               </Link>
             </div>

@@ -13,7 +13,7 @@ export default function Testimonial() {
       quote: "Being a part of Anirveda, the tech-economics club of my college, has been an incredible journey of growth and learning over the past four years. Starting as an associate and progressing to the role of Chief Coordinator, I had the opportunity to develop my leadership and people management skills in ways I never imagined.",
       name: "Hrishikesh Kalola",
       designation: "AI Engineer - Paperchase",
-      src: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756113539/hrishikesh_bzohsb.webp",
+      src: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756452188/HrishikeshBhai_aio2jr.jpg",
     },
     {
       quote: "Anirveda is one of the places where I truly connected with people and realized how such a niche intersection holds so much knowledge. It is truly one of the best places to explore the worlds of economics and technology, which couldn't have been more well-integrated anywhere else.",

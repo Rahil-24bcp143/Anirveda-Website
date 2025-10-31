@@ -1,34 +1,27 @@
-import React from "react"
-import {Link} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import { Button } from "../../components/ui/moving-border";
 
-import Navbar from "../../components/MockRBI/Navbar"
-
-// Auth0
-import {useAuth0} from "@auth0/auth0-react"
-
-export default function Home() {
-  // const windowSize = useRef(window.innerHeight)
-  // const reducedHeight = windowSize.current - 113
-  // console.log(reducedHeight);
-  // const height = `h-[${reducedHeight}px]`
-
-  const {loginWithRedirect} = useAuth0()
+const Home = () => {
+  const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-black px-10 py-8">
-      <Navbar />
-
-      <div className={`mt-56 flex flex-col items-center md:mt-44`}>
-        <h1 className="font-Bebas text-7xl uppercase text-primary xs:text-8xl lg:text-9xl">
-          mock rbi
-        </h1>
-        <button
-          className="mt-4 rounded-md border-[2px] border-secondary px-6 pt-1 pb-2 text-xl text-secondary transition-colors duration-300 hover:bg-secondary hover:text-white"
-          onClick={() => loginWithRedirect()}
-        >
-          Login
-        </button>
-      </div>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-black">
+      <h1 className="text-9xl font-extrabold mb-10 text-[#C9872B]">
+        MOCK-RBI
+        
+      </h1>
+      <h3 className="text-3xl font-extrabold mb-10 text-[#C9872B]">By Anirveda</h3>
+      <Button
+        onClick={() => navigate("/mock-rbi/playerlogin")}
+        className="font-bold text-white text-lg bg-[#C9872B] hover:bg-[#b07625] border-[#C9872B]/50"
+        borderClassName="bg-[radial-gradient(#C9872B_40%,transparent_60%)]"
+        containerClassName="w-48"
+        duration={2000}
+      >
+        Team Login
+      </Button>
     </div>
-  )
-}
+  );
+};
+
+export default Home;

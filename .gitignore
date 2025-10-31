@@ -12,6 +12,13 @@ dist
 dist-ssr
 *.local
 .env
+.env.local
+.env.development
+.env.production
+.env.appwrite
+
+# Appwrite
+.appwrite/
 
 # Editor directories and files
 .vscode/*
