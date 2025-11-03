@@ -10,15 +10,16 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
-*.local
-.env
-.env.local
-.env.development
-.env.production
-.env.appwrite
+
 
 # Appwrite
-.appwrite/
+.appwriterc
+appwrite.json
+
+
+# Environment files
+*.env
+*.env.*
 
 # Editor directories and files
 .vscode/*
