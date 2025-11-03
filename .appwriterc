@@ -1,8 +1,0 @@
-{
-  "$schema": "https://appwrite.io/schemas/appwrite.json",
-  "projectId": "68e0e6c70006bba52ef3",
-  "projectName": "Anirveda Website",
-  "buildCommand": "npm install && npm run build",
-  "outputDirectory": "dist",
-  "rootDirectory": "."
-}
