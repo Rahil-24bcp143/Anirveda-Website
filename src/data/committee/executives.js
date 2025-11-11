@@ -30,8 +30,8 @@ const executives = [
   {
     id: 5,
     img_src: "https://res.cloudinary.com/duygdcgj3/image/upload/w_300,f_auto,q_auto/v1755525759/Khushal_Exec_Photo_1_-_23BCP137_KhushalR_zj6u32.heic",
-    name: "Chief Co-ordinator",
-    position: "General Secretary",
+    name: "Khushal Shroff",
+    position: "Chief Co-ordinator",
     linkedIn: "https://www.linkedin.com/in/khushal-shroff-64720a294/",
   },
 ]
