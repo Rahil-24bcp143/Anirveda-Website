@@ -29,7 +29,7 @@ This project is now optimized for deployment on Appwrite Sites:
 2. **Push to GitHub**: Commit and push your changes
 3. **Deploy**: Go to [Appwrite Console](https://cloud.appwrite.io) → Sites → Create Site
 4. **Configure**: Connect your GitHub repository and deploy
-5. **Custom Domain**: Configure `osailpdeu.in` in the Domains section
+5. **Custom Domain**: Configure `YOUR_DOMAIN` in the Domains section
 
 For detailed instructions, see [DEPLOYMENT_APPWRITE.md](./DEPLOYMENT_APPWRITE.md)
 
@@ -49,7 +49,7 @@ Required environment variables for production:
 
 ```bash
 VITE_APPWRITE_ENDPOINT=https://fra.cloud.appwrite.io/v1
-VITE_APPWRITE_PROJECT_ID=68e0e6c70006bba52ef3
+VITE_APPWRITE_PROJECT_ID="YOUR_PROJECT_ID"
 ```
 
 ### Steps

@@ -1,6 +1,6 @@
 export const sponsors = [
     {
-      id: 4,
+      id: 1,
       img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756113269/induslandBank_qkphuy.webp",
       title: "IndusInd Bank",
       description:
@@ -9,7 +9,7 @@ export const sponsors = [
       instagram:"https://www.instagram.com/indusind_bank/",
     },
     {
-      id: 18,
+      id: 2,
       img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756113271/zionSalon_g8qtze.webp",
       title: "Zion Salons",
       description:
@@ -19,7 +19,7 @@ export const sponsors = [
            
     },
     {
-      id: 5,
+      id: 3,
       img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756113268/beyondTemptations_ygfa3w.webp",
       title: "Beyond Temptations",
       description:
@@ -28,7 +28,7 @@ export const sponsors = [
         instagram:"https://www.instagram.com/beyond_temptation_india/?hl=en",
       },
       {
-        id: 17,
+        id: 4,
         img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756113272/literatureCoffee_wjoelx.webp",
         title: "Literature Coffee",
         description:
@@ -38,13 +38,40 @@ export const sponsors = [
              
       },
     {
-      id: 15,
+      id: 5,
       img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756113269/miInfocom_rgeggh.webp",
       title: "MI Infocom",
       description:
         "At Mi Infocom, customers are assured of expert repairs for a wide range of electronic devices. With a team of skilled technicians and advanced tools, the company ensures prompt and accurate solutions. They specialize in Laptop Repair & Services-Toshiba. Whether it's a minor fault or a major issue, Mi Infocom is equipped to restore your appliances to optimal functionality efficiently.",
         website: "",
         instagram:"",
+    },
+     {
+      id: 6,
+      img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756113277/GVFL_bdcwab.png",
+      title: "GVFL Limited",
+      description:
+        "GVFL transforms visionary ideas into world-changing realities. As India's first venture capital firm, we've been fueling the nation's entrepreneurial spirit for over three decades. ",
+    //   website: "https://www.indusind.com/in/en/personal.html",
+    //   instagram:"https://www.instagram.com/indusind_bank/",
+    },
+    {
+      id: 7,
+      img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756113275/pdeuiic_ynnqct.png",
+      title: "PDEU-IIC",
+      description:
+        "The PDEU Innovation and Incubation Centre, an incubator established by Pandit Deendayal Energy University back in 2014. PDEU IIC has emerged as one of the leading forces in fostering innovation and nurturing entrepreneurship. ",
+    //   website: "https://www.indusind.com/in/en/personal.html",
+    //   instagram:"https://www.instagram.com/indusind_bank/",
+    },
+    {
+      id: 8,
+      img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756113270/whitecarbon_tuhgd6.png",
+      title: "White Carbon",
+      description:
+        "Founded in 2020, White Carbon Motors is putting energy into things that matter. With a mission to deliver consumer innovations that will improve how the world’s most populated cities distribute and utilize energy, the company is enabling the transformation of mega cities into smart cities.",
+    //   website: "https://www.indusind.com/in/en/personal.html",
+    //   instagram:"https://www.instagram.com/indusind_bank/",
     },
 ]
   

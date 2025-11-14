@@ -4,7 +4,7 @@ import { i } from "framer-motion/client";
 import Card from "../Card/Card";
 
 export default function PastEventCards() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [expandedIndex, setExpandedIndex] = useState(null); // Not directly used in this component, but kept as per your original.
 
   const toggleDrawer = () => {

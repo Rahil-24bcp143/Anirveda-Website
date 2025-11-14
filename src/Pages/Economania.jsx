@@ -11,14 +11,6 @@ import AnnouncementBar from '../components/AnnouncementBar';
 const Economania = () => {
   const [gameStarted, setGameStarted] = useState(false);
 
-const images = [
-  "/images/sponsors/zionSalon.webp",
-  "/images/sponsors/zionSalon.webp",
-  "/images/sponsors/zionSalon.webp",
-  "/images/sponsors/zionSalon.webp",
-  "/images/sponsors/zionSalon.webp",
-  "/images/sponsors/zionSalon.webp",,
-];
 
   return (
     <div className="bg-black font-Lato">

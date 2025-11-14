@@ -19,6 +19,8 @@ dist-ssr
 
 # Appwrite
 .appwrite/
+.appwriterc
+.
 
 # Editor directories and files
 .vscode/*
