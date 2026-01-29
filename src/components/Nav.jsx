@@ -9,7 +9,7 @@ import { cn } from "../lib/utils";
 // Organization Logo Component
 const OrgLogo = () => {
   return (
-    <img 
+    <img
       src="/images/logos/logo_white.webp"
       alt="Anirveda Logo"
       className="h-5 w-5 object-contain"
@@ -44,7 +44,7 @@ export default function Nav() {
   ];
 
   const moreItems = [
-    { id: 6, title: "Mock RBI", url: "/mock-rbi" },
+    { id: 6, title: "IPL", url: "/ipl" },
     { id: 7, title: "Economania", url: "/economania" },
     { id: 8, title: "GalaxEcon", url: "/galaxecon" }
   ];
@@ -82,16 +82,16 @@ export default function Nav() {
           {navItems.map((item) => (
             <div key={item.id} className="relative px-2">
               {item.external ? (
-                <a 
-                  href={item.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-[#B69575] hover:text-[#C9872B] transition-colors"
                 >
                   {item.title.toUpperCase()}
                 </a>
               ) : (
-                <Link 
+                <Link
                   to={item.url}
                   className={cn(
                     "text-[#B69575] hover:text-[#C9872B] transition-colors",
@@ -103,12 +103,12 @@ export default function Nav() {
               )}
             </div>
           ))}
-          
+
           {/* More dropdown in animated menu */}
           <MenuItem setActive={setActive} active={active} item="MORE">
             <div className="flex flex-col space-y-2 p-2">
               {moreItems.map((item) => (
-                <Link 
+                <Link
                   key={item.id}
                   to={item.url}
                   className={cn(
@@ -127,7 +127,7 @@ export default function Nav() {
 
       {/* Contact Button and Join Us */}
       <div className="hidden lg:flex items-center gap-3">
-        <a 
+        <a
           href="https://docs.google.com/forms/d/e/1FAIpQLSfeI3Bi013_xIiV8P3sNSc6wa46X52Qy3gCDdDjCfDD3MfnNw/viewform"
           target="_blank"
           rel="noopener noreferrer"
@@ -219,10 +219,10 @@ export default function Nav() {
                 ))}
               </div>
             </div>
-            
+
             {/* Mobile Join Us button */}
             <div className="border-t border-secondary/30 pt-4 mt-4 flex flex-col gap-2">
-              <a 
+              <a
                 href="https://docs.google.com/forms/d/e/1FAIpQLSfeI3Bi013_xIiV8P3sNSc6wa46X52Qy3gCDdDjCfDD3MfnNw/viewform"
                 target="_blank"
                 rel="noopener noreferrer"

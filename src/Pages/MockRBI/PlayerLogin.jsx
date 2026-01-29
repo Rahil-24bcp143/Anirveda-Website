@@ -9,13 +9,19 @@ export default function PlayerLogin() {
   const [password, setPassword] = useState("");
   const [isRegistering, setIsRegistering] = useState(false);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Prevent multiple submissions
+    if (isLoading) return;
+
     setError("");
+    setIsLoading(true);
     console.log("Attempting to register/login with:", { teamName, isRegistering });
-    
+
     try {
       if (isRegistering) {
         console.log("Checking if team exists...");
@@ -27,12 +33,13 @@ export default function PlayerLogin() {
           ]
         );
         console.log("Found teams:", teams);
-        
+
         if (teams.documents.length > 0) {
           setError("Team name already exists");
+          setIsLoading(false);
           return;
         }
-        
+
         console.log("Creating new team...");
         const team = await databases.createDocument(
           DATABASE_ID,
@@ -46,7 +53,8 @@ export default function PlayerLogin() {
         );
         console.log("Team created:", team);
         localStorage.setItem("mockrbi-team", JSON.stringify(team));
-        navigate("/mock-rbi/playerpanel");
+        setIsLoading(false);
+        navigate("/ipl/playerpanel");
       } else {
         const teams = await databases.listDocuments(
           DATABASE_ID,
@@ -57,19 +65,23 @@ export default function PlayerLogin() {
         );
         if (teams.documents.length === 0) {
           setError("Team not found");
+          setIsLoading(false);
           return;
         }
         const team = teams.documents[0];
         if (team.password !== password) {
           setError("Incorrect password");
+          setIsLoading(false);
           return;
         }
         localStorage.setItem("mockrbi-team", JSON.stringify(team));
-        navigate("/mock-rbi/playerpanel");
+        setIsLoading(false);
+        navigate("/ipl/playerpanel");
       }
     } catch (err) {
       console.error("Error during registration/login:", err);
       setError("An error occurred: " + err.message);
+      setIsLoading(false);
     }
   };
 
@@ -78,12 +90,12 @@ export default function PlayerLogin() {
       <div className="container mx-auto max-w-lg">
         {/* Title Section: Made more prominent and spaced */}
         <h1 className="text-4xl font-extrabold text-primary mb-16 text-center tracking-wider drop-shadow-lg animate-fadeInDown">
-          Mock RBI Challenge
+          IPL Challenge
         </h1>
 
         {/* Card Container: Added a subtle glow and more rounded corners */}
         <div className="bg-tertiary/90 p-8 sm:p-10 rounded-xl shadow-2xl border border-primary/20 backdrop-blur-sm transform transition duration-500 hover:shadow-primary/50">
-          
+
           {/* Form Header */}
           <h2 className="text-3xl font-bold text-secondary mb-8 text-center border-b pb-4 border-primary/50">
             {isRegistering ? "Secure Team Registration" : "Team Access Portal"}
@@ -95,9 +107,9 @@ export default function PlayerLogin() {
               <span className="font-bold mr-2">Error:</span> {error}
             </div>
           )}
-          
+
           <form onSubmit={handleSubmit} className="space-y-6">
-            
+
             {/* Team Name Input */}
             <div>
               <label className="block text-sm font-semibold text-secondary mb-2 uppercase tracking-wider">
@@ -112,7 +124,7 @@ export default function PlayerLogin() {
                 placeholder="Enter your unique team name"
               />
             </div>
-            
+
             {/* Password Input */}
             <div>
               <label className="block text-sm font-semibold text-secondary mb-2 uppercase tracking-wider">
@@ -127,18 +139,29 @@ export default function PlayerLogin() {
                 placeholder="Secure password"
               />
             </div>
-            
+
             {/* Submit Button: Correctly styled with proper animation */}
             <div className="mt-8">
               <Button
                 type="submit"
                 borderClassName="bg-[radial-gradient(#C9872B_40%,transparent_60%)]"
                 containerClassName="w-full h-12"
-                className="w-full bg-primary text-white font-bold text-base rounded-md"
+                className={`w-full bg-primary text-white font-bold text-base rounded-md ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
                 duration={2000}
                 borderRadius="0.375rem"
+                disabled={isLoading}
               >
-                {isRegistering ? "Register Team & Proceed" : "Login & Start Challenge"}
+                {isLoading ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Processing...
+                  </span>
+                ) : (
+                  isRegistering ? "Register Team & Proceed" : "Login & Start Challenge"
+                )}
               </Button>
             </div>
             <div className="pt-4 text-center">

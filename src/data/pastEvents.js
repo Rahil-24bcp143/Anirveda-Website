@@ -19,16 +19,16 @@ export const pastEvents = [
     img: "https://res.cloudinary.com/duygdcgj3/image/upload/w_300,f_auto,q_auto/v1756308677/ipl_lq8n8a.jpg",
     title: "IPL",
     description:
-         " Assemble your team of cricket enthusiasts, polish your auctioneer skills, and prepare for rollercoaste ride of bidding wars, unexpected twists, and stratergic maneuvers",
-         
+      " Assemble your team of cricket enthusiasts, polish your auctioneer skills, and prepare for rollercoaste ride of bidding wars, unexpected twists, and stratergic maneuvers",
+
   },
   {
     id: 18,
     img: "https://res.cloudinary.com/duygdcgj3/image/upload/w_300,f_auto,q_auto/v1756113513/getsetsupply_uzgnip.webp",
     title: "Get!Set!Supply!!!",
     description:
-         " Dive into action-packed levels where build a solid supply chain to tackle real-world challenges.Teams manages a virtual supply chain 🛒, making decisions on sourcing, production, and distribution.",
-         
+      " Dive into action-packed levels where build a solid supply chain to tackle real-world challenges.Teams manages a virtual supply chain 🛒, making decisions on sourcing, production, and distribution.",
+
   },
   {
     id: 5,
@@ -56,7 +56,8 @@ export const pastEvents = [
     img: "https://res.cloudinary.com/duygdcgj3/image/upload/w_300,f_auto,q_auto/v1756113515/introvia_cxm5kw.jpg",
     title: "Introvia",
     description:
-         "We are thrilled to officially invite you to our world of technology and economics🤑 , a combination that you've probably never heard of before, intrigued yet👀? If you want to know more, join us in our introductory event: Introvia ‘24",  },
+      "We are thrilled to officially invite you to our world of technology and economics🤑 , a combination that you've probably never heard of before, intrigued yet👀? If you want to know more, join us in our introductory event: Introvia ‘24",
+  },
   {
     id: 15,
     img: "https://res.cloudinary.com/duygdcgj3/image/upload/w_300,f_auto,q_auto/v1756113511/datanomics_qzhhde.jpg",
@@ -75,9 +76,9 @@ export const pastEvents = [
   {
     id: 5,
     img: "https://res.cloudinary.com/duygdcgj3/image/upload/w_300,f_auto,q_auto/v1756113527/mock23_kudkxc.jpg",
-    title: "Mock RBI",
+    title: "IPL",
     description:
-      "It’s a Mock RBI to know the implications of real-life changes made by RBI through various graphs and situations. One part of the event includes a simplified explanation of monetary policy tools, the banking system, RBI-commercial bank functioning, short-term liquidity crisis, etc. The second part of the event is a simulated discussion where real-life situations will be provided to a mock MPC committee, and accordingly, rates will be changed. The participants will now decide among three options: Save, Invest, or Borrow, and according to the decisions taken, their respective impact will be seen on their balance.",
+      "It's a IPL to know the implications of real-life changes made by RBI through various graphs and situations. One part of the event includes a simplified explanation of monetary policy tools, the banking system, RBI-commercial bank functioning, short-term liquidity crisis, etc. The second part of the event is a simulated discussion where real-life situations will be provided to a mock MPC committee, and accordingly, rates will be changed. The participants will now decide among three options: Save, Invest, or Borrow, and according to the decisions taken, their respective impact will be seen on their balance.",
   },
   {
     id: 6,

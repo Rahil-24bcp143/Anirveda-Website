@@ -78,7 +78,7 @@ To configure:
 ## Post-Deployment Checklist
 
 - [ ] Verify all pages load correctly
-- [ ] Test MockRBI functionality (login, situations, leaderboard)
+- [ ] Test IPL functionality (login, situations, leaderboard)
 - [ ] Check Appwrite database connections
 - [ ] Test on mobile devices
 - [ ] Verify custom domain works (if configured)
@@ -134,4 +134,4 @@ If you encounter issues:
 ---
 
 **Last Updated**: October 2025
-**Project**: Anirveda Website - MockRBI Quiz Platform
+**Project**: Anirveda Website - IPL Quiz Platform

@@ -10,7 +10,7 @@ export default function AdminPanel() {
     useEffect(() => {
         const token = localStorage.getItem("adminToken");
         if (token !== "anirveda-admin-token") {
-            navigate("/mock-rbi/adminlogin");
+            navigate("/ipl/adminlogin");
         } else {
             setIsAdmin(true);
         }
@@ -18,7 +18,7 @@ export default function AdminPanel() {
 
     const handleLogout = () => {
         localStorage.removeItem("adminToken");
-        navigate("/mock-rbi/adminlogin");
+        navigate("/ipl/adminlogin");
     };
 
     if (!isAdmin) return <p>Checking authentication...</p>;
@@ -26,7 +26,7 @@ export default function AdminPanel() {
     return (
         <div className="container mx-auto py-8 px-4">
             <div className="flex justify-between items-center mb-8">
-                <h1 className="text-3xl font-bold text-primary">Mock RBI Admin Panel</h1>
+                <h1 className="text-3xl font-bold text-primary">IPL Admin Panel</h1>
                 <button
                     onClick={handleLogout}
                     className="px-4 py-2 bg-red-600 text-white rounded-md"

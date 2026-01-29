@@ -3,7 +3,7 @@ import React from "react";
 import { ArrowRight, Calendar, MapPin, Clock } from "lucide-react";
 
 const UpcomingEventsTimeline = () => {
-const upcomingEvents = [
+  const upcomingEvents = [
     {
       id: 3,
       img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756301783/TBA-Soon_watubc.png",
@@ -19,7 +19,7 @@ const upcomingEvents = [
     {
       id: 2,
       img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756301783/TBA-Soon_watubc.png",
-      title: "Mock RBI",
+      title: "IPL",
       registrationLink: "#",
       date: "TBA",
       timing: "TBA",
@@ -99,11 +99,10 @@ const upcomingEvents = [
             {upcomingEvents.map((event, index) => (
               <div
                 key={event.id}
-                className={`relative flex ${
-                  index % 2 === 0
+                className={`relative flex ${index % 2 === 0
                     ? "md:justify-end md:pr-12"
                     : "md:justify-start md:pl-12"
-                }`}
+                  }`}
               >
                 {/* Card */}
                 <div className="bg-tertiary rounded-3xl shadow-2xl w-full md:w-10/12 relative border border-amber-600/30 overflow-hidden">

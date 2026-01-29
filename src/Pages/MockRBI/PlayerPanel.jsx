@@ -26,6 +26,7 @@ export default function PlayerPanel() {
   const [canFetchNew, setCanFetchNew] = useState(false);
   const [situationStartTime, setSituationStartTime] = useState(null); // Track when the situation was shown
   const [responseTime, setResponseTime] = useState(null); // Track response time in ms
+  const [hasAutoSubmitted, setHasAutoSubmitted] = useState(false); // Prevent multiple auto-submits
 
   const navigate = useNavigate();
 
@@ -47,22 +48,22 @@ export default function PlayerPanel() {
         TEAMS_COLLECTION_ID,
         [Query.orderDesc("Score")]
       );
-      
+
       // Sort teams with the same score by average response time
       const sortedTeams = [...response.documents].sort((a, b) => {
         // First, sort by score (higher scores first)
         if (b.Score !== a.Score) {
           return b.Score - a.Score;
         }
-        
+
         // For teams with the same score, sort by average response time (lower is better)
         // If no response time is recorded, place them below teams with response times
         const aTime = a.averageResponseTime !== undefined ? a.averageResponseTime : Number.MAX_SAFE_INTEGER;
         const bTime = b.averageResponseTime !== undefined ? b.averageResponseTime : Number.MAX_SAFE_INTEGER;
-        
+
         return aTime - bTime;
       });
-      
+
       // Set the top 5 teams
       setAllTeams(sortedTeams.slice(0, 5));
     } catch (error) {
@@ -73,7 +74,7 @@ export default function PlayerPanel() {
   useEffect(() => {
     const savedTeam = localStorage.getItem("mockrbi-team");
     if (!savedTeam) {
-      navigate("/mockrbi/player-login");
+      navigate("/ipl/playerlogin");
       return;
     }
     const teamObj = JSON.parse(savedTeam);
@@ -81,7 +82,7 @@ export default function PlayerPanel() {
     fetchActiveSituation(teamObj);
     fetchLeaderboard();
 
-    
+
 
     const leaderboardInterval = setInterval(fetchLeaderboard, 5000);
     return () => clearInterval(leaderboardInterval);
@@ -96,12 +97,15 @@ export default function PlayerPanel() {
         sessionStorage.setItem("mockrbi-timer", newTime.toString());
       }, 1000);
       return () => clearTimeout(timer);
-    } else if (timeLeft === 0) {
+    } else if (timeLeft === 0 && !hasAutoSubmitted) {
       setTimerActive(false);
-      if (!submitted) handleAutoSubmit();
+      if (!submitted) {
+        setHasAutoSubmitted(true); // Set flag before calling auto-submit
+        handleAutoSubmit();
+      }
       checkIfNewSituationAvailable(); // enable button only if admin pushed new
     }
-  }, [timerActive, timeLeft, submitted]);
+  }, [timerActive, timeLeft, submitted, hasAutoSubmitted]);
 
   useEffect(() => {
     // Poll for new situation only when waiting for admin (button disabled, not timing)
@@ -164,7 +168,7 @@ export default function PlayerPanel() {
           }
           setTimerActive(true);
           setCanFetchNew(false);
-          
+
           // Track when this situation is presented to the user for response time calculation
           const currentTime = new Date().getTime(); // We keep this as timestamp for easy calculations
           setSituationStartTime(currentTime);
@@ -214,12 +218,12 @@ export default function PlayerPanel() {
     try {
       const originalIndex = shuffledOptions[selectedOption].originalIndex;
       const scoreAwarded = shuffledOptions[selectedOption].weight;
-      
+
       // Calculate response time in milliseconds
       const now = new Date();
       const respondedAt = now;
       let calculatedResponseTime = 0;
-      
+
       // Use the stored situation start time or the current session's start time
       const startTimeStr = sessionStorage.getItem("mockrbi-situation-start");
       if (startTimeStr && situationStartTime) {
@@ -227,7 +231,7 @@ export default function PlayerPanel() {
         calculatedResponseTime = now.getTime() - startTime;
         setResponseTime(calculatedResponseTime);
       }
-      
+
       // Create response document with timing information
       await databases.createDocument(
         DATABASE_ID,
@@ -242,40 +246,40 @@ export default function PlayerPanel() {
           respondedAt: respondedAt,
         }
       );
-      
+
       // Update team document with score and timing information
       const updatedScore = team.Score + scoreAwarded;
-      
+
       // Update the team's total response time for tiebreaker purposes
       const currentTotalResponseTime = team.totalResponseTime || 0;
       const updatedTotalResponseTime = currentTotalResponseTime + calculatedResponseTime;
-      
+
       // Update team document with both score and timing data
       await databases.updateDocument(
         DATABASE_ID,
         TEAMS_COLLECTION_ID,
         team.$id,
-        { 
+        {
           Score: updatedScore,
           totalResponseTime: updatedTotalResponseTime,
           // Store the average response time for easier display in leaderboard
-          averageResponseTime: team.responseCount ? 
-            Math.round((updatedTotalResponseTime) / (team.responseCount + 1)) : 
+          averageResponseTime: team.responseCount ?
+            Math.round((updatedTotalResponseTime) / (team.responseCount + 1)) :
             calculatedResponseTime,
           responseCount: (team.responseCount || 0) + 1
         }
       );
-      
+
       // Update local team data with new score and timing
       team.Score = updatedScore;
       team.totalResponseTime = updatedTotalResponseTime;
       team.responseCount = (team.responseCount || 0) + 1;
-      team.averageResponseTime = team.responseCount ? 
-        Math.round(team.totalResponseTime / team.responseCount) : 
+      team.averageResponseTime = team.responseCount ?
+        Math.round(team.totalResponseTime / team.responseCount) :
         calculatedResponseTime;
-        
+
       localStorage.setItem("mockrbi-team", JSON.stringify(team));
-      
+
       setSubmitted(true);
       setTimerActive(false);
       sessionStorage.removeItem("mockrbi-timer");
@@ -292,7 +296,7 @@ export default function PlayerPanel() {
       // For auto-submit (timeout), use the maximum response time (full 90 seconds)
       const maxResponseTime = 90 * 1000; // 90 seconds in milliseconds
       const respondedAt = new Date();
-      
+
       await databases.createDocument(
         DATABASE_ID,
         RESPONSES_COLLECTION_ID,
@@ -306,34 +310,34 @@ export default function PlayerPanel() {
           respondedAt: respondedAt,
         }
       );
-      
+
       // Update the team's total response time for tiebreaker purposes
       const currentTotalResponseTime = team.totalResponseTime || 0;
       const updatedTotalResponseTime = currentTotalResponseTime + maxResponseTime;
-      
+
       // Update team document with timing data
       await databases.updateDocument(
         DATABASE_ID,
         TEAMS_COLLECTION_ID,
         team.$id,
-        { 
+        {
           totalResponseTime: updatedTotalResponseTime,
-          averageResponseTime: team.responseCount ? 
-            Math.round((updatedTotalResponseTime) / (team.responseCount + 1)) : 
+          averageResponseTime: team.responseCount ?
+            Math.round((updatedTotalResponseTime) / (team.responseCount + 1)) :
             maxResponseTime,
           responseCount: (team.responseCount || 0) + 1
         }
       );
-      
+
       // Update local team data
       team.totalResponseTime = updatedTotalResponseTime;
       team.responseCount = (team.responseCount || 0) + 1;
-      team.averageResponseTime = team.responseCount ? 
-        Math.round(team.totalResponseTime / team.responseCount) : 
+      team.averageResponseTime = team.responseCount ?
+        Math.round(team.totalResponseTime / team.responseCount) :
         maxResponseTime;
-        
+
       localStorage.setItem("mockrbi-team", JSON.stringify(team));
-      
+
       setSubmitted(true);
       setTimerActive(false);
       setSelectedOption(null); // Set to null to show no selection was made
@@ -355,7 +359,8 @@ export default function PlayerPanel() {
       setTimerActive(true);
       setCanFetchNew(false);
       setResponseTime(null);
-      
+      setHasAutoSubmitted(false); // Reset auto-submit flag for new situation
+
       // Reset situation start time for new situation
       const currentTime = new Date().getTime(); // Keep as timestamp for calculations
       setSituationStartTime(currentTime);
@@ -377,7 +382,7 @@ export default function PlayerPanel() {
       console.error("Error updating login status on logout:", err);
     }
     localStorage.removeItem("mockrbi-team");
-    navigate("/mock-rbi/");
+    navigate("/ipl/");
   };
 
   if (loading) {
@@ -475,7 +480,7 @@ export default function PlayerPanel() {
                       </div>
                       {/* Progress Bar */}
                       <div className="mt-3 h-1.5 bg-secondary-opacity/50 rounded-full overflow-hidden">
-                        <div 
+                        <div
                           className={`h-full ${timeLeft > 60 ? 'bg-primary' : timeLeft > 30 ? 'bg-secondary' : 'bg-red-400'} transition-all duration-1000 ease-linear`}
                           style={{ width: `${(timeLeft / 90) * 100}%` }}
                         ></div>
@@ -503,11 +508,10 @@ export default function PlayerPanel() {
                       <button
                         onClick={handleGetNewSituation}
                         disabled={!canFetchNew}
-                        className={`w-full py-3.5 rounded-xl font-semibold transition-all duration-200 ${
-                          canFetchNew
-                            ? "bg-gradient-to-r from-primary to-secondary text-white hover:shadow-lg hover:shadow-primary/20 hover:scale-[1.02]"
-                            : "bg-tertiary/80 text-secondary/50 cursor-not-allowed border border-secondary/20"
-                        }`}
+                        className={`w-full py-3.5 rounded-xl font-semibold transition-all duration-200 ${canFetchNew
+                          ? "bg-gradient-to-r from-primary to-secondary text-white hover:shadow-lg hover:shadow-primary/20 hover:scale-[1.02]"
+                          : "bg-tertiary/80 text-secondary/50 cursor-not-allowed border border-secondary/20"
+                          }`}
                       >
                         {canFetchNew ? "Get New Situation" : "Waiting for new situation..."}
                       </button>
@@ -539,7 +543,7 @@ export default function PlayerPanel() {
                 </svg>
                 <h3 className="text-lg font-bold text-primary uppercase tracking-wide">Top Teams</h3>
               </div>
-              
+
               <div className="space-y-2.5">
                 {allTeams.length === 0 ? (
                   <div className="text-center py-8">
@@ -553,39 +557,35 @@ export default function PlayerPanel() {
                       "from-secondary/20 to-secondary/10 border-secondary/40",
                       "from-secondary/15 to-secondary/5 border-secondary/30",
                     ];
-                    
+
                     return (
                       <div
                         key={t.$id}
-                        className={`group flex items-center justify-between p-3.5 rounded-xl transition-all duration-200 border ${
-                          isCurrentTeam
-                            ? "bg-gradient-to-r from-primary/20 to-secondary/20 border-primary/40 shadow-lg"
-                            : index < 3
+                        className={`group flex items-center justify-between p-3.5 rounded-xl transition-all duration-200 border ${isCurrentTeam
+                          ? "bg-gradient-to-r from-primary/20 to-secondary/20 border-primary/40 shadow-lg"
+                          : index < 3
                             ? `bg-gradient-to-r ${rankColors[index]} hover:scale-[1.02]`
                             : "bg-tertiary/50 border-secondary/20 hover:bg-tertiary/70 hover:border-secondary/30"
-                        }`}
+                          }`}
                       >
                         <div className="flex items-center gap-3">
-                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm ${
-                            index === 0 ? "bg-primary/30 text-primary" :
+                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm ${index === 0 ? "bg-primary/30 text-primary" :
                             index === 1 ? "bg-secondary/30 text-secondary" :
-                            index === 2 ? "bg-secondary/20 text-secondary/80" :
-                            "bg-secondary-opacity/80 text-secondary/70"
-                          }`}>
+                              index === 2 ? "bg-secondary/20 text-secondary/80" :
+                                "bg-secondary-opacity/80 text-secondary/70"
+                            }`}>
                             {index + 1}
                           </div>
                           <span
-                            className={`font-medium truncate max-w-[120px] ${
-                              isCurrentTeam ? "text-primary" : "text-secondary/90"
-                            }`}
+                            className={`font-medium truncate max-w-[120px] ${isCurrentTeam ? "text-primary" : "text-secondary/90"
+                              }`}
                           >
                             {t.teamName}
                           </span>
                         </div>
                         <span
-                          className={`font-bold text-lg ${
-                            isCurrentTeam ? "text-primary" : "text-secondary"
-                          }`}
+                          className={`font-bold text-lg ${isCurrentTeam ? "text-primary" : "text-secondary"
+                            }`}
                         >
                           {t.Score}
                         </span>
@@ -594,9 +594,9 @@ export default function PlayerPanel() {
                   })
                 )}
               </div>
-              
+
               <button
-                onClick={() => window.open("/mock-rbi/leaderboard", "_blank")}
+                onClick={() => window.open("/ipl/leaderboard", "_blank")}
                 className="w-full mt-5 px-4 py-3 bg-gradient-to-r from-primary/10 to-secondary/10 text-primary rounded-xl hover:from-primary/20 hover:to-secondary/20 transition-all duration-200 font-medium border border-primary/20 hover:border-primary/30 hover:shadow-lg"
               >
                 View Full Leaderboard →

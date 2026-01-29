@@ -49,10 +49,10 @@ export default function HamburgerNav() {
       </div>
 
       {/* Hamburger bar items */}
-<div
-  className={`fixed inset-0 z-50 h-full w-full bg-secondary-opacity px-5 pt-3 font-Lato text-secondary transition-transform duration-300 ease-in  
+      <div
+        className={`fixed inset-0 z-50 h-full w-full bg-secondary-opacity px-5 pt-3 font-Lato text-secondary transition-transform duration-300 ease-in  
     ${isOpen ? "translate-x-0" : "translate-x-[-100%]"}`}
->
+      >
         {/* Top Bar inside drawer */}
         <div className="flex items-center justify-between">
           <div>
@@ -110,14 +110,14 @@ export default function HamburgerNav() {
           </div>
           {isMoreClicked && (
             <div>
-          <Link to="/economania" onClick={handleHamburgerClick}>
-            <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">Economania</h1>
-          </Link>
+              <Link to="/economania" onClick={handleHamburgerClick}>
+                <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">Economania</h1>
+              </Link>
               <Link to={"/galaxecon"} onClick={handleHamburgerClick}>
                 <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">GalaxEcon</h1>
               </Link>
-              <Link to={"/mock-rbi"} onClick={handleHamburgerClick}>
-                <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">MockRBI</h1>
+              <Link to={"/ipl"} onClick={handleHamburgerClick}>
+                <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">IPL</h1>
               </Link>
             </div>
           )}

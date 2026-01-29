@@ -24,7 +24,7 @@ const TapGame = () => {
 
   useEffect(() => {
     if (!isPlaying) return;
-    
+
     const timer = setInterval(() => {
       setTimeLeft((time) => (time <= 1 ? (setIsPlaying(false), 0) : time - 1));
     }, 1000);
@@ -51,7 +51,7 @@ const TapGame = () => {
         setShowRegistration(true);
       }
       setShowPopup(false);
-      
+
       if (score > bestScore) {
         setBestScore(score);
         localStorage.setItem("bestScore", score);
@@ -63,7 +63,7 @@ const TapGame = () => {
     const id = Date.now() + Math.random();
     const x = Math.random() * 80 + 10;
     const y = Math.random() * 80 + 10;
-    
+
     setGameObjects((prev) => [...prev, { id, type, x, y }]);
 
     setTimeout(() => {
@@ -88,10 +88,10 @@ const TapGame = () => {
       setScore((prev) => prev + 1);
     } else {
       setIsPlaying(false);
-      setTimeLeft(0); 
+      setTimeLeft(0);
     }
   };
-  
+
 
   return (
     <div className="max-w-lg mx-auto text-center p-4 relative">
@@ -118,7 +118,7 @@ const TapGame = () => {
                   BREACH 2025!
                 </a>
                 <a href="#" target="_blank" rel="noopener noreferrer" className="block mb-2 text-blue-400 underline">
-                  MOCK RBI
+                  IPL
                 </a>
                 <a href="https://docs.google.com/forms/d/1qmwO1sETLGyDnkCt15wHWAb-J74KSHvy8mhs3_WBNPM/viewform" target="_blank" rel="noopener noreferrer" className="block mb-2 text-blue-400 underline">
                   SPEAKER SESSION
@@ -132,7 +132,7 @@ const TapGame = () => {
                 <a href="#" target="_blank" rel="noopener noreferrer" className="block mb-2 text-blue-400 underline">
                   ANIRVEDA X BRAMHAND
                 </a>
-                
+
                 <button onClick={() => setShowPopup(false)} className="mt-4 px-6 py-2 bg-primary text-black rounded-md hover:bg-secondary transition">
                   Close
                 </button>
@@ -142,7 +142,7 @@ const TapGame = () => {
         </div>
       )}
 
-     
+
       <div className="bg-secondary bg-opacity-20 rounded-lg p-4 flex justify-around mb-4">
         <p className="text-primary text-xl font-bold">Score: {score}</p>
         <p className="text-primary text-xl font-bold">Best: {bestScore}</p>
