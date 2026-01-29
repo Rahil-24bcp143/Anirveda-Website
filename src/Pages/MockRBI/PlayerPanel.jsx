@@ -126,14 +126,8 @@ export default function PlayerPanel() {
       );
       if (response.documents.length > 0) {
         const situation = response.documents[0];
-        const optionsWithIndices = situation.option.map((opt, index) => ({
-          text: opt,
-          originalIndex: index,
-          weight: situation.weight[index],
-        }));
-        const shuffled = shuffleArray(optionsWithIndices);
-        setShuffledOptions(shuffled);
 
+        // Check if response already exists first
         const responses = await databases.listDocuments(
           DATABASE_ID,
           RESPONSES_COLLECTION_ID,
@@ -143,13 +137,26 @@ export default function PlayerPanel() {
           ]
         );
 
+        // Create options with indices
+        const optionsWithIndices = situation.option.map((opt, index) => ({
+          text: opt,
+          originalIndex: index,
+          weight: situation.weight[index],
+        }));
+
+        // If response exists, DON'T shuffle - keep original order
+        // This ensures the selected option displays correctly after refresh
+        const finalOptions = responses.documents.length > 0
+          ? optionsWithIndices
+          : shuffleArray(optionsWithIndices);
+
+        setShuffledOptions(finalOptions);
+
         if (responses.documents.length > 0) {
           setSubmitted(true);
           const originalSelectedIndex = responses.documents[0].selectedOption;
-          const shuffledIndex = shuffled.findIndex(
-            (opt) => opt.originalIndex === originalSelectedIndex
-          );
-          setSelectedOption(shuffledIndex);
+          // Since we're not shuffling when submitted, the index is the same as original
+          setSelectedOption(originalSelectedIndex);
           setTimerActive(false);
           sessionStorage.removeItem("mockrbi-timer");
           sessionStorage.removeItem("mockrbi-situation-id");
