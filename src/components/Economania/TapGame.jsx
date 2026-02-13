@@ -113,24 +113,9 @@ const TapGame = () => {
             ) : (
               <>
                 <h2 className="text-2xl font-bold mb-4">🎉 Congratulations! 🎉</h2>
-                <p className="mb-4">Register now using any of these links:</p>
-                <a href="https://unstop.com/o/4Qfa2F9?lb=VpYCae40&utm_medium=Share&utm_source=shortUrl" target="_blank" rel="noopener noreferrer" className="block mb-2 text-blue-400 underline">
-                  BREACH 2025!
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" className="block mb-2 text-blue-400 underline">
-                  IPL
-                </a>
-                <a href="https://docs.google.com/forms/d/1qmwO1sETLGyDnkCt15wHWAb-J74KSHvy8mhs3_WBNPM/viewform" target="_blank" rel="noopener noreferrer" className="block mb-2 text-blue-400 underline">
-                  SPEAKER SESSION
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" className="block mb-2 text-blue-400 underline">
-                  SPACE ODESSY
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" className="block mb-2 text-blue-400 underline">
-                  ANIRVEDA X MIND RIPPLE
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" className="block mb-2 text-blue-400 underline">
-                  ANIRVEDA X BRAMHAND
+                <p className="mb-4">Register now for Breach 2026:</p>
+                <a href="https://unstop.com/p/breach-2025-the-fintech-hackathon-duplicate-pandit-deendayal-energy-university-pdeu-formerly-pdpu-gandhinagar-1636769?utm_medium=Share&utm_source=breacani75207&utm_campaign=Online_coding_challenge" target="_blank" rel="noopener noreferrer" className="block mb-4 text-blue-400 underline hover:text-blue-300 text-lg font-semibold">
+                  🚀 BREACH 2026 - Register Here!
                 </a>
 
                 <button onClick={() => setShowPopup(false)} className="mt-4 px-6 py-2 bg-primary text-black rounded-md hover:bg-secondary transition">

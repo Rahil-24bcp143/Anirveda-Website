@@ -18,8 +18,8 @@ export default function EventsCards() {
     setSelectedEvent(null);
   };
 
-  const breachEvent = economaniaEvents.find(event => event.title === "Breach 2025");
-  const otherEvents = economaniaEvents.filter(event => event.title !== "Breach 2025");
+  const breachEvent = economaniaEvents.find(event => event.title === "Breach 2026");
+  const otherEvents = economaniaEvents.filter(event => event.title !== "Breach 2026");
 
   const breachVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -45,8 +45,8 @@ export default function EventsCards() {
   return (
     <div className="flex flex-col items-center w-full">
       {breachEvent && (
-        <motion.div 
-          key={breachEvent.id} 
+        <motion.div
+          key={breachEvent.id}
           className="w-full p-4"
           initial="hidden"
           whileInView="visible"
@@ -79,8 +79,8 @@ export default function EventsCards() {
 
       <div className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 p-4">
         {otherEvents.map((event, index) => (
-          <motion.div 
-            key={event.id} 
+          <motion.div
+            key={event.id}
             className="p-4"
             initial="hidden"
             whileInView="visible"

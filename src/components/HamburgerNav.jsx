@@ -89,12 +89,9 @@ export default function HamburgerNav() {
           <Link to="/sponsors" onClick={handleHamburgerClick}>
             <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">Sponsors</h1>
           </Link>
-          <Link to="/blogs" onClick={handleHamburgerClick}>
-            <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">Blogs</h1>
+          <Link to="/economania" onClick={handleHamburgerClick}>
+            <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">Economania</h1>
           </Link>
-          <a href="#contact" onClick={handleHamburgerClick}>
-            <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">Contact</h1>
-          </a>
 
           {/* Collapsible More */}
           <div
@@ -110,14 +107,14 @@ export default function HamburgerNav() {
           </div>
           {isMoreClicked && (
             <div>
-              <Link to="/economania" onClick={handleHamburgerClick}>
-                <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">Economania</h1>
-              </Link>
-              <Link to={"/galaxecon"} onClick={handleHamburgerClick}>
-                <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">GalaxEcon</h1>
-              </Link>
-              <Link to={"/ipl"} onClick={handleHamburgerClick}>
+              <Link to="/ipl" onClick={handleHamburgerClick}>
                 <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">IPL</h1>
+              </Link>
+              <Link to="/blogs" onClick={handleHamburgerClick}>
+                <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">Blogs</h1>
+              </Link>
+              <Link to="/galaxecon" onClick={handleHamburgerClick}>
+                <h1 className="mt-3 cursor-pointer uppercase hover:text-primary">GalaxEcon</h1>
               </Link>
             </div>
           )}

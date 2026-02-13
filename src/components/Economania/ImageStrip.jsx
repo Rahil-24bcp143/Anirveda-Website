@@ -1,11 +1,11 @@
 import { Renderer, Camera, Transform, Geometry, Program, Mesh, Texture } from 'ogl';
-import React,{ useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const ImageStrip = ({ images }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
-    const renderer = new Renderer({ canvas: canvasRef.current, width: window.innerWidth * 0.6, height: window.innerHeight * 0.4 });
+    const renderer = new Renderer({ canvas: canvasRef.current, width: window.innerWidth, height: window.innerHeight });
     const gl = renderer.gl;
     document.body.appendChild(gl.canvas);
 
@@ -78,7 +78,7 @@ const ImageStrip = ({ images }) => {
   return (
     <div className="flex flex-col items-center py-16">
       <h2 className="text-3xl font-bold text-primary mb-6">Our Sponsors</h2>
-      <canvas ref={canvasRef} style={{ width: '60vw', height: '40vh', position: 'relative' }} />
+      <canvas ref={canvasRef} style={{ width: '100vw', height: '100vh', position: 'relative' }} />
     </div>
   );
 };

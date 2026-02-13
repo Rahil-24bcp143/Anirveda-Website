@@ -40,12 +40,12 @@ export default function Nav() {
     { id: 2, title: "gallery", url: "/gallery" },
     { id: 3, title: "committee", url: "/committee" },
     { id: 4, title: "sponsors", url: "/sponsors" },
-    { id: 5, title: "blogs", url: "/blogs" },
+    { id: 5, title: "economania", url: "/economania" },
   ];
 
   const moreItems = [
     { id: 6, title: "IPL", url: "/ipl" },
-    { id: 7, title: "Economania", url: "/economania" },
+    { id: 7, title: "Blogs", url: "/blogs" },
     { id: 8, title: "GalaxEcon", url: "/galaxecon" }
   ];
 
