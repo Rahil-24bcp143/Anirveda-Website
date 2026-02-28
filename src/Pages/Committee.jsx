@@ -14,8 +14,8 @@ export default function Committee() {
       <Navbar />
 
       {/* Hero Section */}
-      <div className="relative flex items-center justify-center h-screen bg-cover bg-center">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/90"></div>
+      <div className="relative flex items-center justify-center h-[45vh] bg-cover bg-center">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/35 to-black/65"></div>
         <div className="relative text-center text-white px-6 sm:px-12 lg:px-20">
           <h1 className="font-Bebas text-[4rem] uppercase text-primary sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] leading-tight drop-shadow-lg">
             Committee
