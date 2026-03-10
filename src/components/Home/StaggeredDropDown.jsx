@@ -73,7 +73,7 @@ const StaggeredDropDown = () => {
           type="button" /* Explicitly set button type to prevent form submission behavior */
         >
           <div className="flex items-center gap-2">
-            <span className="font-medium text-2xl">Upcoming Events</span>
+            <span className="font-medium text-5xl">Events</span>
             <motion.span 
               animate={open ? { rotate: 180 } : { rotate: 0 }}
               transition={{ 

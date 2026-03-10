@@ -4,8 +4,8 @@ import { Client, Databases, Account, ID, Query } from 'appwrite';
 const client = new Client();
 
 client
-  .setEndpoint(import.meta.env.VITE_APPWRITE_ENDPOINT) // e.g. 'https://cloud.appwrite.io/v1'
-  .setProject(import.meta.env.VITE_APPWRITE_PROJECT_ID); // Your Appwrite project ID
+  .setEndpoint(import.meta.env.VITE_APPWRITE_ENDPOINT)
+  .setProject(import.meta.env.VITE_APPWRITE_PROJECT_ID);
 
 
 const apiKey = import.meta.env.VITE_APPWRITE_API_KEY;

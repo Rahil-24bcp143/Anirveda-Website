@@ -1,58 +1,80 @@
+import breachImg from "/eventImages/breach.png";
+import iplImg from "/eventImages/ipl.png";
+import speakerImg from "/eventImages/speaker.png";
+import spaceImg from "/eventImages/space.jpeg";
+import galaxeconImg from "/eventImages/galaxecon.jpeg";
+import paradigmImg from "/eventImages/paradigm.PNG";
+
 export const economaniaEvents = [
   {
-    id: 3,
-    img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756113471/breach2025_igls9m.png",
-    title: "Breach 2025",
-    registrationLink: "https://unstop.com/o/4Qfa2F9?lb=VpYCae40&utm_medium=Share&utm_source=shortUrl",
-    date: "March 21-23, 2025",
+    id: 1,
+    img: breachImg,
+    title: "Breach 2026",
+    registrationLink: "",
+    date: "13 | 14 | 15 March",
     timing: "9 AM - 6 PM",
-    venue: "TBA",
+    venue: "PDEU, Gandhinagar",
     description:
-      "Breach 2025 is an exhilarating 3-day coding event based on the theme- “Driving innovation in financial technology.” Participants will brainstorm, design and develop tools to provide solutions for pre- defined problem statements in the field of digital transactions, personal finance, investment & loans and other financial products. This hackathon provides valuable networking, mentorship and skill development opportunities along with exciting cash prizes upto 1.5 lakhs."
+      "Gujarat’s biggest FinTech Hackathon with ₹2,00,000 prize pool and internship opportunities."
   },
+
   {
     id: 2,
-    img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756113490/takeLoan_t4p9ie.png",
-    title: "Mock RBI",
+    img: iplImg,
+    title: "IPL Auction 2026",
     registrationLink: "",
-    date: "March 22, 2025",
-    timing: "4 PM - 6 PM",
-    venue: "TBA",
+    date: "31 January",
+    timing: "9 AM - 6 PM",
+    venue: "D-008",
     description:
-      "Mock RBI is Anirveda’s flagship event that simulates the working of the Reserve Bank of India. Participants will make crucial saving or investing decisions and draft monetary policies while navigating through challenges to ensure economic stability and financial regulation, gaining insights into the working of India’s central banking system."
+      "₹2000 prize pool IPL themed auction event. Strategy, bidding and team building challenge."
   },
+
   {
-    id: 4,
-    img: "/images/logos/logo.webp",
-    title: "Speaker Session",
-    registrationLink: "",
-    date: "March 23, 2025",
-    timing: "2 PM - 5 PM",
-    venue: "TBA",
-    description:
-      "An enlightening session featuring a prominent industrialist and visionary leader. Gain firsthand insights into industry trends, leadership strategies, and career advancement from the expert himself/herself! This exclusive event offers a unique chance to learn from real-world experiences, expand knowledge, and engage in meaningful discussions. Attendees will get an opportunity to interact directly with the speaker during the Q&A session and broaden their horizons!"
-  },
-  
-  {
-    id: 5,
-    img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756305210/ParallelParadigm_vvd0un.jpg",
+    id: 3,
+    img: paradigmImg,
     title: "Parallel Paradigm",
     registrationLink: "",
-    date: "March 21, 2025",
+    date: "21 March 2025",
     timing: "4 PM - 6 PM",
     venue: "TBA",
     description:
-      "Anirveda X Mind Ripple: :This even features three rounds: Pounce (bet for double points or penalties), Intermediary (decode a billionaire's will), and Puzzle-Based (test analytical and economic skills), with virtual money, sabotages, and power-ups."
+      "A high-stakes battle of wit and strategy where technology meets economics."
   },
+
+  {
+    id: 4,
+    img: spaceImg,
+    title: "Space Odyssey",
+    registrationLink: "",
+    date: "TBA",
+    timing: "TBA",
+    venue: "TBA",
+    description:
+      "Embark on an exhilarating journey through space. Navigate, compete and conquer."
+  },
+
+  {
+    id: 5,
+    img: speakerImg,
+    title: "Beyond AI: MBA",
+    registrationLink: "",
+    date: "23 March",
+    timing: "2:00 PM",
+    venue: "Auditorium",
+    description:
+      "Session by Satish Kumar (IIM Calcutta Alumnus) on AI’s impact on jobs and MBA relevance."
+  },
+
   {
     id: 6,
-    img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756305205/GalaxEcon_phj22e.jpg",
+    img: galaxeconImg,
     title: "GalaxEcon",
     registrationLink: "",
-    date: "March 22, 2025",
+    date: "22 March 2025",
     timing: "10 AM - 2 PM",
     venue: "TBA",
     description:
-      "Anirveda X Bramhand: Participants will analyze costs, create budgets, and pitch innovative, feasible, and sustainable space industry ideas."
+      "Plan. Manage. Pitch. Conquer Space."
   }
-];
+]

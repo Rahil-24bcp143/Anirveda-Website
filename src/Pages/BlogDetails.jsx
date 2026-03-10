@@ -1,75 +1,120 @@
-import React, { useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React from "react";
+import { useParams, Link } from "react-router-dom";
 import blogData from "../data/blogs";
+import Navbar from "../components/Navbar";
 
 const BlogDetails = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
-  const blog = blogData.find((blog) => blog.id === parseInt(id));
-
-  useEffect(() => {
-    document.title = blog ? `${blog.title} | My Blog` : "Blog Not Found | My Blog";
-  }, [blog]);
+  const blog = blogData.find((b) => b.id === Number(id));
 
   if (!blog) {
     return (
-      <div className="text-center text-gray-200 bg-gray-900 min-h-screen flex flex-col items-center justify-center">
-        <h1 className="text-3xl font-semibold text-red-500 mt-8">Blog Not Found</h1>
-        <button
-          className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-700 transition-all"
-          onClick={() => navigate("/blogs")}
-        >
-          Go Back
-        </button>
+      <div className="text-center mt-20 text-xl font-semibold text-white">
+        Blog not found
       </div>
     );
   }
 
   return (
-    <div className="bg-[#E3ECF7] min-h-screen font-sans px-4 md:px-6 pt-2 pb-10 relative">
-      {/* Back Button */}
-      <button
-        onClick={() => navigate("/blogs")}
-        className="fixed top-3 left-3 md:top-6 md:left-6 w-[10%] md:w-auto flex items-center gap-2 bg-[#000000] text-white px-4 md:px-5 py-2 rounded-full shadow-md hover:bg-[#162D66] transition-all text-sm md:text-lg font-medium z-50"
-      >
-        <svg className="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 20 20">
-          <path
-            fillRule="evenodd"
-            d="M10 3a1 1 0 01.7 1.7L6.4 10l4.3 5.3a1 1 0 01-1.4 1.4l-5-6a1 1 0 010-1.4l5-6A1 1 0 0110 3z"
-            clipRule="evenodd"
-          />
-        </svg>
-      </button>
+    <div className="min-h-screen bg-black text-white font-Lato">
 
-      {/* Blog Content */}
-      <div className="max-w-full md:max-w-[85%] lg:max-w-[75%] mx-auto p-6 md:p-8 bg-white text-gray-900 rounded-lg shadow-lg transition-all duration-300 hover:shadow-2xl mt-10 md:mt-20">
-        <img
-          src={blog.image}
-          alt={blog.title}
-          className="w-full h-64 md:h-96 object-cover rounded-md mb-6 shadow-md hover:scale-105 transition-transform duration-300"
-          loading="lazy"
-        />
-        <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+      {/* Navbar */}
+      <Navbar />
+
+      {/* TOP ANNOUNCEMENT */}
+      <div className="bg-primary text-black text-center py-2 font-semibold text-sm">
+        Take the MOCK-RBI Challenge on 10th October
+      </div>
+
+      {/* BLOG CONTAINER */}
+      <main className="max-w-5xl mx-auto px-6 py-12">
+
+        {/* Breadcrumb */}
+        <div className="text-sm text-gray-400 mb-6">
+          <Link to="/blogs" className="hover:text-primary">Blogs</Link> / Tech & Economics
+        </div>
+
+        {/* TITLE */}
+        <h1 className="text-4xl md:text-6xl font-Bebas text-primary mb-6">
           {blog.title}
         </h1>
-        <p className="text-sm md:text-lg text-gray-700 mb-6 italic">
-          <span className="font-medium">{blog.author}</span> &middot; {blog.date}
-        </p>
-        <div
-          className="text-base md:text-xl text-gray-800 leading-relaxed text-justify indent-8 space-y-6"
-          dangerouslySetInnerHTML={{
-            __html: blog.content
-              .replace(
-                /<h2>(.*?)<\/h2>/g,
-                '<h2 class="text-2xl md:text-4xl font-bold text-gray-900 mt-10 mb-6 border-b-2 border-gray-300 pb-2">$1</h2>'
-              )
-              .replace(
-                /<p>(.*?)<\/p>/g,
-                '<p class="text-base md:text-lg text-gray-700 leading-relaxed mb-4">$1</p>'
-              )
-          }}
-        />
-      </div>
+
+        {/* META */}
+        <div className="flex items-center gap-6 border-y border-gray-800 py-6 mb-10">
+          <div>
+            <p className="font-semibold">{blog.author}</p>
+            <p className="text-gray-400 text-sm">{blog.date}</p>
+          </div>
+        </div>
+
+        {/* HERO IMAGE */}
+        <div className="rounded-xl overflow-hidden shadow-lg mb-12">
+          <img
+            src={blog.image}
+            alt={blog.title}
+            className="w-full h-[420px] object-cover"
+          />
+        </div>
+
+        {/* ARTICLE */}
+        <article className="bg-[#111111] border border-gray-800 rounded-xl p-8 md:p-12">
+
+          {/* Intro */}
+          <p className="text-xl text-gray-300 italic mb-10 leading-relaxed">
+            {blog.excerpt}
+          </p>
+
+          {/* Content */}
+          <div
+            className="space-y-6 text-gray-300 leading-8 text-lg"
+            dangerouslySetInnerHTML={{ __html: blog.content }}
+          />
+        </article>
+
+        {/* AUTHOR SECTION */}
+        <div className="bg-[#111111] border border-gray-800 rounded-xl p-8 mt-12">
+          <h3 className="font-semibold text-xl mb-2 text-white">
+            About the Author
+          </h3>
+
+          <p className="text-gray-400">
+            Our research team explores technology, entrepreneurship, and economics.
+            We publish insights on emerging trends shaping the future of business.
+          </p>
+        </div>
+
+        {/* RELATED BLOGS */}
+        <div className="mt-16">
+          <h2 className="text-3xl font-bold mt-10 mb-6 bg-gradient-to-r from-orange-400 via-red-500 to-yellow-400 bg-clip-text text-transparent">
+
+            Related Articles
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {blogData.slice(0, 3).map((item) => (
+              <Link
+                key={item.id}
+                to={`/blogs/${item.id}`}
+                className="bg-[#111111] border border-gray-800 rounded-xl hover:border-primary transition overflow-hidden"
+              >
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="h-48 w-full object-cover"
+                />
+
+                <div className="p-5">
+                  <h3 className="font-semibold text-lg">{item.title}</h3>
+                  <p className="text-gray-400 text-sm mt-2">
+                    {item.excerpt.slice(0, 80)}...
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+      </main>
     </div>
   );
 };
