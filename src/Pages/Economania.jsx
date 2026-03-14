@@ -29,7 +29,7 @@ const Economania = () => {
             Bigger Than Ever!
           </p>
           <p className="text-xl md:text-2xl mb-8 text-secondary animate-slide-in-right">
-            Stay Connected to be a part of Once in a year Event
+            Breach the limits. Build the future.
           </p>
         </div>
       </section>
