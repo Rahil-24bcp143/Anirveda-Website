@@ -20,7 +20,7 @@ export const sponsors = [
     {
       id: 3,
       img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756113270/whitecarbon_tuhgd6.png",
-      title: "White Carbon",
+      title: "The 1% Club",
       description:
         "Founded in 2020, White Carbon Motors is putting energy into things that matter. With a mission to deliver consumer innovations that will improve how the world’s most populated cities distribute and utilize energy, the company is enabling the transformation of mega cities into smart cities.",
     //   website: "https://www.indusind.com/in/en/personal.html",
