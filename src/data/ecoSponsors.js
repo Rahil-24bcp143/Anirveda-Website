@@ -1,8 +1,8 @@
 export const sponsors = [
     {
       id: 1,
-      img: "https://res.cloudinary.com/duygdcgj3/image/upload/v1756113277/GVFL_bdcwab.png",
-      title: "GVFL Limited",
+      img: "/IMG_1608.PNG",
+      title: "The Hanana Vibes",
       description:
         "GVFL transforms visionary ideas into world-changing realities. As India's first venture capital firm, we've been fueling the nation's entrepreneurial spirit for over three decades. ",
     //   website: "https://www.indusind.com/in/en/personal.html",
