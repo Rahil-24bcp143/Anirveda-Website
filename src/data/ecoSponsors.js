@@ -1,7 +1,8 @@
+import img1608 from "./IMG_1608.PNG";
 export const sponsors = [
     {
       id: 1,
-      img: "/IMG_1608.PNG",
+      img: img1608,
       title: "The Hanana Vibes",
       description:
         "GVFL transforms visionary ideas into world-changing realities. As India's first venture capital firm, we've been fueling the nation's entrepreneurial spirit for over three decades. ",
