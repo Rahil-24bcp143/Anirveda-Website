@@ -1,15 +1,21 @@
 const emLogisticsCore = [
   {
     id: 1,
-    img_src: "https://res.cloudinary.com/duygdcgj3/image/upload/w_300,f_auto,q_auto/v1755525655/Pragati_EM_photo_1_-_Pragati_Joshi_mafa3x.jpg",
-    name: "Pragati Joshi",
+    img_src: "https://res.cloudinary.com/r5piguws/image/upload/v1785863086/IMG_5269_-_25BCL037_DhritvanR_hddqba.jpg",
+    name: "Dhritvan Rajde",
     linkedIn: "",
   },
   {
     id: 2,
-    img_src: "https://res.cloudinary.com/duygdcgj3/image/upload/w_300,f_auto,q_auto/v1755525658/Aarin_emandcreative_photo1_-_Aarin_Shah_ctuisb.jpg",
-    name: "Aarin Shah",
-    linkedIn: "https://www.linkedin.com/in/harsh-thacker-2161b1242?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    img_src: "https://res.cloudinary.com/r5piguws/image/upload/v1785863283/IMG_9987_-_24BEE025_ShrutiS_xdlppb.jpg",
+    name: "Shruti Shenoy",
+    linkedIn: "https://www.linkedin.com/in/shruti-shenoy-93786b312",
+  },
+  {
+    id: 3,
+    img_src: "https://res.cloudinary.com/r5piguws/image/upload/v1785863640/1414180_-_Naisargi_Chauhan_qyxc2x.jpg",
+    name: "Nisargi Chauhan",
+    linkedIn: "https://www.linkedin.com/in/naisargi-chauhan-098242383?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
   },
 ]
 

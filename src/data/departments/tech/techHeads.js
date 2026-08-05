@@ -1,15 +1,15 @@
 const techHeads = [
   {
     id: 1,
-    img_src:"https://res.cloudinary.com/duygdcgj3/image/upload/w_1000,f_auto,q_auto/v1755525535/Aayush_Tech_Head_xtuuzb.jpg",
-    name: "Aayush Parekh",
-    linkedIn: "https://www.linkedin.com/in/aayush-parekh-25764131a/"
+    img_src:"https://res.cloudinary.com/r5piguws/image/upload/v1785864627/WhatsApp_Image_2026-07-24_at_23.38.05_-_Kavy_Soni_qfq8ui.jpg",
+    name: "Kavy Soni",
+    linkedIn: "https://www.linkedin.com/in/kavy0121/"
   },
   {
     id: 2,
-    img_src:"https://res.cloudinary.com/duygdcgj3/image/upload/w_300,f_auto,q_auto/v1755525539/Rahil_Tech_Photo2_-_Rahil_Doshi_hdxg4u.jpg",
-    name: "Rahil Doshi",
-    linkedIn: "https://www.linkedin.com/in/rahil-d20-m02/",
+    img_src:"https://res.cloudinary.com/r5piguws/image/upload/v1785864718/IMG_20260725_011939_-_Vatsal_Bhindora_meeq6j.png",
+    name: "Vatsal Bhindora",
+    linkedIn: "https://www.linkedin.com/in/vatsalbhindora",
   },
 ]
 

@@ -1,10 +1,16 @@
  const cndHeads = [
     {
       id: 1,
-      img_src:"https://res.cloudinary.com/duygdcgj3/image/upload/w_300,f_auto,q_auto/v1755525603/Jiya_CnD_Photo1_-_Jiya_Mehta_jzw93v.heic",
-      name: "Jiya Mehta",
-      linkedIn: "https://www.linkedin.com/in/jiya-mehta-045592322?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+      img_src:"https://res.cloudinary.com/r5piguws/image/upload/v1785942236/IMG_7920_-_Prapti_Awasthi_xfymsr.jpg",
+      name: "Prapti Awasthi",
+      linkedIn: "https://www.linkedin.com/in/prapti-awasthi-b6a43a379?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
     },
+    {
+      id: 2,
+      img_src:"https://res.cloudinary.com/r5piguws/image/upload/v1785942406/motion_photo_1358860279797793920_-_Disha_Bhatt_knoig7.jpg",
+      name: "Disha Bhatt",
+      linkedIn: "https://www.linkedin.com/in/disha-bhatt-815715375?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+    }
 
 ]
  

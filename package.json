@@ -20,6 +20,7 @@
     "appwrite": "^21.0.0",
     "axios": "^1.3.4",
     "canvas-confetti": "^1.9.3",
+    "cloudinary": "^2.10.0",
     "clsx": "^2.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",

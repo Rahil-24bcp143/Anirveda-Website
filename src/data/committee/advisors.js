@@ -1,32 +1,44 @@
 const advisors = [
   {
     id: 1,
-    img_src: "https://res.cloudinary.com/duygdcgj3/image/upload/w_300,f_auto,q_auto/v1755525786/Aayushi_Advisor_Photo4_-_22BABBA201_AayushiT_vckp6a.heic",
-    name: "Aayushi Thakkar",
+    img_src:
+      "https://res.cloudinary.com/r5piguws/image/upload/f_auto/v1785860900/IMG20250925213124_-_Suhani_Lakhera_fijmhj.heic",
+    name: "Suhani Lakhera",
     position: "Ex-President",
-    linkedIn: "https://www.linkedin.com/in/aayushi-thakkar-4213842b6/",
+    linkedIn: "https://www.linkedin.com/in/suhani-lakhera-432935296/",
   },
   {
     id: 2,
-    img_src: "https://res.cloudinary.com/duygdcgj3/image/upload/w_300,f_auto,q_auto/v1755525791/Sumer_Advisor_Photo4_-_Sumer_Pandey_bjaine.heic",
-    name: "Sumer Pandey",
+    img_src:
+      "https://res.cloudinary.com/r5piguws/image/upload/v1785774628/image_2_-_23BEE078_GunraajS_afxfcj.png",
+    name: "Gunraj Singh",
     position: "Ex-Vice President",
-    linkedIn: "https://www.linkedin.com/in/sumerpandey/",
+    linkedIn: "https://www.linkedin.com/in/gunraaj-singh/",
   },
   {
     id: 3,
-    img_src: "https://res.cloudinary.com/duygdcgj3/image/upload/w_300,f_auto,q_auto/v1755525789/IMG_3343_-_Shreya_Patel_l16f25.heic",
-    name: "Shreya Patel",
-    position: "Ex-Chief Coordinator",
-    linkedIn: "https://www.linkedin.com/in/patelshreya7056/"
+    img_src:
+      "https://res.cloudinary.com/r5piguws/image/upload/v1785774630/IMG-20260723-WA0010_-_Shrey_Mehta_mggquh.jpg",
+    name: "Shrey Mehta",
+    position: "Ex-Chief Financial Officer",
+    linkedIn: "https://www.linkedin.com/in/shreyymehtaa/",
   },
   {
     id: 4,
-    img_src: "https://res.cloudinary.com/duygdcgj3/image/upload/w_300,f_auto,q_auto/v1755525798/Rajat_advisor_photo3_-_Rajat_Agrawal_hrsdsj.jpg",
-    name: "Rajat Aggarwal",
-    position: "Ex-Treasurer",
-    linkedIn: "https://www.linkedin.com/in/rajat-agrawal-piyushkumar/",
-  }
-]
+    img_src:
+      "https://res.cloudinary.com/r5piguws/image/upload/v1785774838/IMG_0818_-_Shriya_Pancholi_zmbuei.jpg",
+    name: "Shriya Pancholi",
+    position: "Ex-Chief Coordinator",
+    linkedIn: "http://www.linkedin.com/in/shriya-pancholi-338617282",
+  },
+  {
+    id: 5,
+    img_src:
+      "https://res.cloudinary.com/r5piguws/image/upload/f_jpg/v1785861013/1000180729_xj2y1i.heic",
+    name: "Khushal Shroff",
+    position: "Ex-Chief Coordinator",
+    linkedIn: "https://www.linkedin.com/in/khushal-shroff-64720a294/",
+  },
+];
 
-export default advisors
+export default advisors;

@@ -79,14 +79,14 @@ export default function About() {
           <div className="md:w-1/2 h-full flex flex-col justify-between gap-4">
             <div className="h-1/2 overflow-hidden rounded-lg">
               <img
-                src="https://res.cloudinary.com/duygdcgj3/image/upload/v1756360669/Committee_Photo-2_tacomp.jpg"
+                src="https://res.cloudinary.com/r5piguws/image/upload/v1785948890/VGA_1298_wbrmap.jpg"
                 alt="group of people"
                 className="w-full h-full object-cover hover:scale-105 transition-all duration-700"
               />
             </div>
             <div className="h-1/2 overflow-hidden rounded-lg">
               <img
-                src="https://res.cloudinary.com/duygdcgj3/image/upload/v1756360676/Committee_Photo-1_c4jpdr.jpg"
+                src="https://res.cloudinary.com/r5piguws/image/upload/f_auto/v1785948888/IMG_6007.HEIC_nkup8z.heic"
                 alt="group of people"
                 className="w-full h-full object-cover hover:scale-105 transition-all duration-700"
               />

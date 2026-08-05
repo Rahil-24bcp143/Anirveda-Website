@@ -1,15 +1,9 @@
 const prCore = [
   {
     id: 1,
-    img_src: "https://res.cloudinary.com/duygdcgj3/image/upload/w_300,f_auto,q_auto/v1755525864/IMG_7743_-_Prasham_Prajapati_fzsuyk.jpg",
-    name: "Prasham Prajapati",
-    linkedIn: "",
-  },
-  {
-    id: 2,
-    img_src: "https://res.cloudinary.com/duygdcgj3/image/upload/w_300,f_auto,q_auto/v1755525852/aditi-pr_1_-_R._Aditi_rkx4im.jpg",
-    name: "Aditi Rajput",
-    linkedIn: "",
+    img_src: "https://res.cloudinary.com/r5piguws/image/upload/v1785862168/Screenshot_20260223-090826_1_-_Krishiv_Joshi_ekokn3.png",
+    name: "Krishiv Joshi",
+    linkedIn: "https://www.linkedin.com/in/krishiv-joshi-b63744379?utm_source=share_via&utm_content=profile&utm_medium=member_android",
   },
 ]
 export default prCore
